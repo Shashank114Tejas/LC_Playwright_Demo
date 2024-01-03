@@ -1,8 +1,11 @@
 [
     { 
     "url":"https://qa-josephsbeverage-teststore.epicommercestore.com/", 
-    "username":"draftcardtesting1@gmail.com",
-    "password":"Welcome@123"
+    "email":"draftcardtesting1@gmail.com",
+    "password":"Welcome@123",
+    "productName1":"Red Bull SF 6 pack",
+    "productName2":"HENNESSY XO - 4103B",
+    "skuProductName":"Jimmies Cigarillos" 
     }
 
 ]

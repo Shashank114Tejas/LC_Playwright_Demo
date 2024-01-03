@@ -1,107 +1,120 @@
 // @ts-check
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
+import { POManager } from "../PageObjects/POManager";
 
-test('check title', async ({ page }) => {
-  await page.goto('https://qa-josephsbeverage-teststore.epicommercestore.com/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle("Home page");
-});
-
+//passing data from Json Object
+let webContext;
 const dataset = JSON.parse(
   JSON.stringify(require("../Utils/ClientAppTestData.json"))
 );
-
 for (const data of dataset) {
-test.only('Valid Login, Adding products to cart and checkout', async ({ page }) => {
-  await page.goto( data.url);
+  test.beforeAll(async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto(data.url);
 
-  // Click the Sign In link.
-  await page.locator('div.panel.header .header.links li.link.authorization-link a').click();
+    // Click the Sign In link.
+    const poManager = new POManager(page);
+    const dashboardPage = poManager.getDashBoardPage();
+    await dashboardPage.clickOnSignInLink();
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Customer Login' })).toBeVisible();
+    // Expects page to have a heading with Customer Login.
+    const loginPage = poManager.getLoginPage();
+    const heading = await loginPage.getCustomerLoginHeading();
+    expect(heading?.trim()).toBe("Customer Login");
 
-await page.locator(".control>#email").fill(data.username);
-await page.locator(".control>#pass").first().fill(data.password);
-await page.locator("button#send2").first().click()
-// await page.pause()
+    //valid login
+    await loginPage.validLogin(data.email, data.password);
+    await page.waitForLoadState("networkidle");
+    await context.storageState({ path: "state.json" }); //Returns storage state for this browser context, contains current cookies and local storage snapshot.
+    webContext = await browser.newContext({ storageState: "state.json" });
+  });
 
-await page.locator("nav.navigation>ul#ui-id-1 li.level0.nav-7>a>span").first().hover();
-await page.locator("li.level0.nav-7 li.level1.nav-7-10>a>span").click();
+  test("Navigate to login page", async ({}) => {
+    const page = await webContext.newPage();
+    await page.goto(data.url);
+    await page.locator("a#ui-id-107").waitFor();
+    // Click the Sign In link.
+    const poManager = new POManager(page);
+    const dashboardPage = poManager.getDashBoardPage();
 
- const products=page.locator("ol.products li");
-  await page.locator("ol.products>li strong>a").last().waitFor();
-  const count = await products.count();
-  console.log(count);
+    //  expect(await page.locator("li.greet.welcome>span").first().textContent()).toBe("Hi, QARemo!")
 
-  console.log(await products.locator("strong>a").allTextContents());
+    //Hover on category and click on subcategory
+    await dashboardPage.hoverOnCategoryAndThenClickOnSubCategory(
+      "POP",
+      "RED BULL"
+    );
 
-  for (let i = 9; i < count; ++i) {
-   
-   const text=await products.nth(i).locator("strong>a").textContent();
-   const anotherText=text?.trim();
-   console.log(anotherText);
-   console.log(text);
-  
-   
-    if (anotherText==('RED BULL DRAGON FRUIT 12OZ')||anotherText==('RED BULL DRAGON FRUIT 8.4OZ')) 
-    {
-      await products.nth(i).locator(" button").click();
-      console.log(await products.nth(i).locator("strong>a").textContent()+"Selected");
-      
+    //click on any product by name present on that page
+    const productListingPage = poManager.getProductListingPage();
+
+    await productListingPage.addProductsToCartByName(data.productName1);
+    const successfulProductAddedMsg1 =
+      await productListingPage.getDynamicProductAddedMsg();
+    console.log(successfulProductAddedMsg1);
+
+    expect(successfulProductAddedMsg1).toContain(
+      `You added ${data.productName1} to your shopping cart.`
+    );
+
+    await dashboardPage.hoverOnCategoryAndThenClickOnSubCategory(
+      "OH-LIQUOR",
+      "BRANDY"
+    );
+    //   // "productName2":"RAYNAL NAPOLEON VSOP - 8354B",
+
+
+    await productListingPage.addProductsToCartByName(data.productName2);
+
+    const successfulProductAddedMsg2 =
+      await productListingPage.getDynamicProductAddedMsg();
+    console.log(successfulProductAddedMsg2);
+    expect(successfulProductAddedMsg2).toContain(
+      `You added ${data.productName2} to your shopping cart.`
+    );
+
+    //addidng product to cart using SKU value
+    await dashboardPage.findAndAddProductToCartUsingSKU("859516004077");
+    const skuProductSuccessMsg =
+      await productListingPage.getDynamicProductAddedMsg();
+    console.log(skuProductSuccessMsg);
+    expect(skuProductSuccessMsg).toContain(
+      `You added ${data.skuProductName} to your shopping cart.`
+    );
+
+    await productListingPage.proceedToCheckout();
+
+    //selecting order type
+    const orderSummaryPage = poManager.getOrderSummaryPage();
+    await page.waitForTimeout(4000);
+    await orderSummaryPage.enableOrderTypeRadioBtn("Flat Rate");
+    await page.pause();
+
+    //fetching all the addresses
+    const allAddresses = page.locator("div.shipping-address-items>div");
+
+    const allAddressesCount = await page
+      .locator("div.shipping-address-items>div")
+      .count();
+    for (let i = 0; i < allAddressesCount; i++) {
+      console.log(await allAddresses.nth(i).textContent());
     }
-  }
-  await page.locator("a.action.showcart span.counter-number").hover();
 
- const cartQty= await page.locator("a.action.showcart span.counter-number").textContent()
- const actualQty=cartQty?.trim();
-  expect(actualQty).toEqual("2");
+    //  await page.locator("button.action.action-select-shipping-item>span").nth(1).click();
+    //  await page.locator("button.button.action.continue.primary").click();
+    //  await page.locator("input[name=billing-address-same-as-shipping]").uncheck();
+    //  await page.locator("div.field.field-select-billing div.control>select").selectOption({label:"QARemo Sys, 8607 Co Rd 30, Iberia, Ohio 43623, United States"})
+    //  await page.locator("button.action.action-update").click();
+    //  await page.locator("div.actions-toolbar button.action.primary.checkout").click();
+    //  await page.locator("button#btnSubmit").waitFor()
+    //  await page.screenshot({path:"Screenshots/Beforescreenshot.png"})
+    //  await page.frameLocator('iframe[name="tx_iframe_tokenExIframeDiv"]').getByLabel('Data').fill("4111 1111 1111 1111 ");
+    //  await page.locator(" input[name=name]").fill("Sonal Kashyap",{timeout:1000});
+    //  await page.frameLocator('iframe[name="tx_iframe_cvv_iframe-cvc"]').getByLabel('CVV').fill("123");
+    //  await page.locator('#expiry').pressSequentially("1224",{delay:100})
+    //  await page.screenshot({path:"Screenshots/Afterscreenshot.png"})
 
-
-    // await page.pause()
-  await page.locator("div.field.search input#search").type(" SKU 811538010580");
-  await page.locator("div.actions button[type=submit]").first().click();
-  const name =await page.locator("div.product.details a").textContent();
-  const actualName=name?.trim();
-  console.log(actualName);
-  expect(actualName).toBe("KRAKEN BLACK SPICED RUM - 5488F");
-  await page.locator("div.product.details button").click();
-
-  await page.waitForTimeout(4000)
-
- 
-  await page.waitForSelector("a.action.showcart span.counter-label")
-  await page.locator("a.action.showcart span.counter-number").hover()
-  const cartQty2 = await page
-   .locator("a.action.showcart span.counter-number")
-   .textContent();
-   const actualQty2 = cartQty2?.trim();
-   console.log(actualQty2);
-  //  await page.pause()
-   expect(actualQty2).toEqual("3")
-
- await page.locator("a.action.showcart span.counter-label").click();
- await page.locator("button#top-cart-btn-checkout").click();
- await page.locator("button.button.action.continue.primary").waitFor();
- await page.locator("input[value=flatrate_flatrate]").click();
- const addressText=await page.locator("div.shipping-address-items>div").nth(1).textContent();
- console.log(addressText);
- await page.locator("button.action.action-select-shipping-item>span").nth(1).click();
- await page.locator("button.button.action.continue.primary").click();
- await page.locator("input[name=billing-address-same-as-shipping]").uncheck();
- await page.locator("div.field.field-select-billing div.control>select").selectOption({label:"QARemo Sys, 8607 Co Rd 30, Iberia, Ohio 43623, United States"})
- await page.locator("button.action.action-update").click();
- await page.locator("div.actions-toolbar button.action.primary.checkout").click();
- await page.locator("button#btnSubmit").waitFor()
- await page.screenshot({path:"Screenshots/Beforescreenshot.png"})
- await page.frameLocator('iframe[name="tx_iframe_tokenExIframeDiv"]').getByLabel('Data').fill("4111 1111 1111 1111 ");
- await page.locator(" input[name=name]").fill("Sonal Kashyap",{timeout:1000});
- await page.frameLocator('iframe[name="tx_iframe_cvv_iframe-cvc"]').getByLabel('CVV').fill("123");
- await page.locator('#expiry').pressSequentially("1224",{delay:100})
- await page.screenshot({path:"Screenshots/Afterscreenshot.png"})
-
- await page.pause()
-
-
-})};
+    //  await page.pause()
+  });
+}

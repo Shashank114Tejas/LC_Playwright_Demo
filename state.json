@@ -1,0 +1,183 @@
+{
+  "cookies": [
+    {
+      "name": "form_key",
+      "value": "Kt1opFXS4Kss8oQ5",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704373886,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "storeId",
+      "value": "1",
+      "domain": ".qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "mage-cache-storage",
+      "value": "{}",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704291087,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "mage-cache-storage-section-invalidation",
+      "value": "{}",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704291087,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "mage-cache-sessid",
+      "value": "true",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704291088,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "mage-messages",
+      "value": "",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704291088,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "recently_viewed_product",
+      "value": "{}",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704291087,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "recently_viewed_product_previous",
+      "value": "{}",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704291087,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "recently_compared_product",
+      "value": "{}",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704291087,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "recently_compared_product_previous",
+      "value": "{}",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704291087,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "product_data_storage",
+      "value": "{}",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704291087,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "private_content_version",
+      "value": "c6d19bdc8d11c3d8ddd5655c9cd0ac9b",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1738847488.055632,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "PHPSESSID",
+      "value": "om3o1rcb0beujh0iteij53edc4",
+      "domain": ".qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704291088.326888,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "X-Magento-Vary",
+      "value": "9bf9a599123e6402b85cde67144717a08b817412",
+      "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
+      "path": "/",
+      "expires": 1704291088.327033,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://qa-josephsbeverage-teststore.epicommercestore.com",
+      "localStorage": [
+        {
+          "name": "mage-cache-storage",
+          "value": "{}"
+        },
+        {
+          "name": "product_data_storage",
+          "value": "{}"
+        },
+        {
+          "name": "mage-cache-storage-section-invalidation",
+          "value": "{}"
+        },
+        {
+          "name": "mage-cache-timeout",
+          "value": "\"2024-01-03T14:11:28.815Z\""
+        },
+        {
+          "name": "recently_compared_product_previous",
+          "value": "{}"
+        },
+        {
+          "name": "recently_viewed_product",
+          "value": "{}"
+        },
+        {
+          "name": "recently_compared_product",
+          "value": "{}"
+        },
+        {
+          "name": "recently_viewed_product_previous",
+          "value": "{}"
+        }
+      ]
+    }
+  ]
+}
