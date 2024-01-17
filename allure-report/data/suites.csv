@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Wed Jan 17 06:25:27 UTC 2024","Wed Jan 17 06:27:11 UTC 2024","104080","chromium","001_e2eValidCheckout.test.js","","","","Valid login and adding products to the cart and checkout by flat rate",""
+"passed","Wed Jan 17 06:26:25 UTC 2024","Wed Jan 17 06:26:37 UTC 2024","11123","chromium","003_headerValidations.test.js","","","","Header validation",""
+"passed","Wed Jan 17 06:25:27 UTC 2024","Wed Jan 17 06:26:25 UTC 2024","58092","chromium","002_quickGuestCheckout.test.js","","","","Quick Guest Checkout",""

@@ -2,10 +2,10 @@
   "cookies": [
     {
       "name": "form_key",
-      "value": "Kt1opFXS4Kss8oQ5",
+      "value": "a9M72adNchWRLhLM",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704373886,
+      "expires": 1705505062,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -25,7 +25,7 @@
       "value": "{}",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704291087,
+      "expires": 1705422264,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -35,7 +35,7 @@
       "value": "{}",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704291087,
+      "expires": 1705422264,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -45,7 +45,7 @@
       "value": "true",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704291088,
+      "expires": 1705422265,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -55,7 +55,7 @@
       "value": "",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704291088,
+      "expires": 1705422265,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Strict"
@@ -65,7 +65,7 @@
       "value": "{}",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704291087,
+      "expires": 1705422264,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -75,7 +75,7 @@
       "value": "{}",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704291087,
+      "expires": 1705422264,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -85,7 +85,7 @@
       "value": "{}",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704291087,
+      "expires": 1705422264,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -95,7 +95,7 @@
       "value": "{}",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704291087,
+      "expires": 1705422264,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -105,27 +105,27 @@
       "value": "{}",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704291087,
+      "expires": 1705422264,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
     },
     {
       "name": "private_content_version",
-      "value": "c6d19bdc8d11c3d8ddd5655c9cd0ac9b",
+      "value": "196159d7dcc0cc4467a0473bcc8c934c",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1738847488.055632,
+      "expires": 1739978664.901893,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
     },
     {
       "name": "PHPSESSID",
-      "value": "om3o1rcb0beujh0iteij53edc4",
+      "value": "usef21t2fgtnnjvab5h3k5fte8",
       "domain": ".qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704291088.326888,
+      "expires": 1705422265.18533,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Lax"
@@ -135,7 +135,7 @@
       "value": "9bf9a599123e6402b85cde67144717a08b817412",
       "domain": "qa-josephsbeverage-teststore.epicommercestore.com",
       "path": "/",
-      "expires": 1704291088.327033,
+      "expires": 1705422265.185506,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Lax"
@@ -159,7 +159,7 @@
         },
         {
           "name": "mage-cache-timeout",
-          "value": "\"2024-01-03T14:11:28.815Z\""
+          "value": "\"2024-01-16T16:24:25.651Z\""
         },
         {
           "name": "recently_compared_product_previous",
