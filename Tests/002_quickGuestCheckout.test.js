@@ -5,6 +5,14 @@ import { ExcelReader } from "../Utils/excelReader";
 const dataset = JSON.parse(
   JSON.stringify(require("../Utils/ClientAppTestData.json"))
 );
+test.beforeAll(() => {
+  console.log('=== Test Case Start ===');
+});
+
+test.afterAll(() => {
+  console.log('=== Test Case Teardown ===');
+});
+
 for (const data of dataset) {
   test("Quick Guest Checkout by Flat Rate orderType", async ({ page }) => {
     await page.goto(data.url);
@@ -21,7 +29,7 @@ for (const data of dataset) {
 
     // Hover on category, click on subcategory (if present), Adding products to the cart 
     for (const data1 of excelData) {
-      await dashboardPage.NavigateAndAddProductsToCart(data1);
+      await dashboardPage.navigateAndAddProductsToCart(data1);
     }
 
     // Proceed to checkout after iterating through all the test data

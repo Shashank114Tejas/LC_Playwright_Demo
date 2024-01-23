@@ -27,7 +27,6 @@ class MyAccountsPage {
     
         while (hasNextPage && iteration < maxIterations) {
             const count = await this.allOrdersRowInsinglePage.count();
-            console.log(count);
     
             for (let i = 0; i < count; ++i) {
                 const orderNoElement = this.allOrdersRowInsinglePage.nth(i).locator("td").first();

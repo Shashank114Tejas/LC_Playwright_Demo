@@ -1,4 +1,5 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Wed Jan 17 06:25:27 UTC 2024","Wed Jan 17 06:27:11 UTC 2024","104080","chromium","001_e2eValidCheckout.test.js","","","","Valid login and adding products to the cart and checkout by flat rate",""
-"passed","Wed Jan 17 06:26:25 UTC 2024","Wed Jan 17 06:26:37 UTC 2024","11123","chromium","003_headerValidations.test.js","","","","Header validation",""
-"passed","Wed Jan 17 06:25:27 UTC 2024","Wed Jan 17 06:26:25 UTC 2024","58092","chromium","002_quickGuestCheckout.test.js","","","","Quick Guest Checkout",""
+"passed","Tue Jan 23 05:44:46 UTC 2024","Tue Jan 23 05:45:47 UTC 2024","61935","chromium","002_quickGuestCheckout.test.js","","","","Quick Guest Checkout by Flat Rate orderType",""
+"passed","Tue Jan 23 05:44:45 UTC 2024","Tue Jan 23 05:45:10 UTC 2024","25074","chromium","003_headerValidations.test.js","","","","Header Validation on HomePage before sign-In",""
+"passed","Fri Jan 19 11:41:46 UTC 2024","Fri Jan 19 11:42:03 UTC 2024","17140","chromium","003_headerValidations.test.js","","","","Header validation",""
+"passed","Tue Jan 23 05:44:46 UTC 2024","Tue Jan 23 05:46:22 UTC 2024","96888","chromium","001_e2eValidLoginAndCheckout.test.js","","","","Valid login and adding products to the cart and checkout by Store pickup",""

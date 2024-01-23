@@ -115,7 +115,7 @@ class DashboardPage {
   
     while (hasNextPage) {
       const count = await this.allProductslistInsinglePage.count();
-      console.log(count);
+      
   
       for (let i = 0; i < count; ++i) {
         const productNameElement = this.allProductslistInsinglePage
@@ -129,14 +129,12 @@ class DashboardPage {
           await this.allProductslistInsinglePage.nth(i).locator("button").click();
           await this.page.waitForTimeout(2000)
           const newURL = await this.page.url();
-          console.log(currentURL,newURL);
+          // console.log(currentURL,newURL);
           if (currentURL !== newURL) {
             console.log("Item qty not available, skipping this product");
             return;
           }
           else {
-
-       
           
             const msg = await this.getDynamicSuccessfulProductAddedMsg();
          
@@ -179,7 +177,7 @@ class DashboardPage {
 
 
   // Updated hoverOnCategoryAndThenClickOnSubCategory method
-  async NavigateAndAddProductsToCart(data) {
+  async navigateAndAddProductsToCart(data) {
     const { CategoryName, SubCategoryName, ProductName } = data;
     console.log(`Data received: ${JSON.stringify(data)}`);
     console.log(`Checking categoryName: ${JSON.stringify(CategoryName)}`);
@@ -187,7 +185,7 @@ class DashboardPage {
     console.log(`Checking productName: ${JSON.stringify(ProductName)}`);
 
     const count = await this.allhrefs.count();
-    console.log(`Number of hrefs: ${count}`); 
+    console.log(`Number of Categories: ${count}`); 
   
     for (let i = 0; i < count; i++) {
       const href = await this.allhrefs
@@ -197,9 +195,9 @@ class DashboardPage {
         .getAttribute("href");
   
       if (href) {
-        console.log(`Checking href: ${href}`); 
+        console.log(`Checking category: ${href}`); 
         const lastIndex = JSON.stringify(data.CategoryName).indexOf(JSON.stringify(data.CategoryName).length - 1);
-        console.log(href.includes((JSON.stringify(data.CategoryName).slice(1,lastIndex).toLowerCase())));
+        // console.log(href.includes((JSON.stringify(data.CategoryName).slice(1,lastIndex).toLowerCase())));
 
          if (href.trim().includes((JSON.stringify(data.CategoryName).slice(1,lastIndex).toLowerCase().trim()))){
           console.log(`Category matched: ${JSON.stringify(data.CategoryName).toLowerCase()}`); 

@@ -13,7 +13,7 @@ class ProductListingPage {
       this.dynamicProductAddedMsg = page.locator('#custommessage:visible')
       this.paginationNextBtn=page.locator("ul.items a.action.next")
     }
-  async getDynamicProductAddedMsg() {
+  async getDynamicProductAddedMsg() {//dynamic
     return await this.dynamicProductAddedMsg.textContent()
   }
   

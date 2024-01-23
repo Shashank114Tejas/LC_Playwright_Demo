@@ -11,7 +11,7 @@ class MyOrdersPage {
     this.allOrderedProductsPricingRows = page.locator("tfoot>tr");
   }
 
-  async extractItemsDetailsDataMyOrdersPage() {
+  async extractOrderedItemDetailsDataMyOrdersPage() {
     const rowData = [];
     const rowsCount = await this.allOrderedProductsRows.count();
 
@@ -35,7 +35,7 @@ class MyOrdersPage {
     return rowData;
   }
 
-  async extractItemsPricingDataMyOrdersPage() {
+  async extractOrderedItemsPricingDataMyOrdersPage() {
     const rowData = [];
     const rowsCount = await this.allOrderedProductsPricingRows.count();
     const keys = ["Subtotal", "Shipping", "ServiceFee","Taxes", "GrandTotal"]; // Manually defined keys
@@ -100,8 +100,8 @@ class MyOrdersPage {
   async validatePricingData(expectedPricingData, actualPricingData, orderID) {
     // Define keys to compare (excluding OrderID)
     const keysToCompare = ["Subtotal", "Shipping", "ServiceFee","Taxes", "GrandTotal"];
-    console.log(expectedPricingData);
-    console.log(actualPricingData);
+    // console.log(expectedPricingData);
+    // console.log(actualPricingData);
 
     // Retrieve the OrderID from the second array in actualPricingData
     const actualOrderID = actualPricingData[1]?.find(item => item.OrderID)?.OrderID;
@@ -125,7 +125,7 @@ class MyOrdersPage {
         const expectedValue = expectedPricingData[i]?.[key]?.replace(/\$/g, "");
         const actualValue = parseFloat((actualPricingData[1]?.find(item => item[key])?.[key])?.replace(/\$/g, ""));
 
-        console.log(`Expected: ${expectedValue}, Actual: ${actualValue}`);
+        console.log(`Expected ${[key]}:  ${expectedValue}, Actual ${[key]}: ${actualValue}`);
 
         if (Math.abs(expectedValue - actualValue) > 0.0001 && !(expectedValue === 0 && actualValue === 0)) {
             console.log(

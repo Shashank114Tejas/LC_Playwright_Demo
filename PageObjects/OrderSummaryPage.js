@@ -94,6 +94,7 @@ class OrderSummaryPage {
     console.log(`clicked on ${orderType} ordertype radio btn`);
   }
 
+
   async removeQuotes(obj) {
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
@@ -127,6 +128,8 @@ class OrderSummaryPage {
     await this.nextButton.waitFor();
 
     // console.log(`Data received: ${JSON.stringify(data)}`);
+    //storePickup- Billing Info
+    //flat rate - Shipping info
 
     const modifiedData = await this.removeQuotes(data);
     console.log(`Data received:` + modifiedData);
@@ -242,7 +245,7 @@ class OrderSummaryPage {
     await this.billingShippingSameCheckBox.check();
     await this.paymentProceedToCheckOutBtn.click();
   }
-  async checkBillingAddressThenProceedToCheckout(addressComponents) {
+  async checkBillingAddressThenProceedToCheckout(addressComponents) {//validate
     const billAddress = await this.paymentBillingAddress.textContent();
     // Check if all address components are included in billAddress
     const addressCheck = addressComponents.every((component) =>

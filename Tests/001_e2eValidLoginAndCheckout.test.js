@@ -1,22 +1,35 @@
-// @ts-check
+//  @ts-check
 import { test, expect } from "@playwright/test";
 import { POManager } from "../PageObjects/POManager";
 import { ExcelReader } from "../Utils/excelReader";
+import { allure } from "allure-playwright";
 
 //passing data from Json Object
 const dataset = JSON.parse(
   JSON.stringify(require("../Utils/ClientAppTestData.json"))
 );
-for (const data of dataset) {
- 
 
+
+  test.beforeAll(() => {
+    console.log('=== Test Case Start ===');
+  });
+
+  test.afterAll(() => {
+    console.log('=== Test Case Teardown ===');
+  });
+
+
+for (const data of dataset) {
   test("Valid login and adding products to the cart and checkout by Store pickup", async ({
     page,
   }) => {
     await page.goto(data.url);
   const poManager = new POManager(page);
-  const dashboardPage = poManager.getDashBoardPage();
+    const dashboardPage = poManager.getDashBoardPage();
+
+    console.log("The user is signing in");
   await dashboardPage.clickOnSignInLink();
+    
 
   const loginPage = poManager.getLoginPage();
   const heading = await loginPage.getCustomerLoginHeading();
@@ -25,48 +38,59 @@ for (const data of dataset) {
   await loginPage.validLogin(data.email, data.password);
     await page.waitForLoadState("networkidle");
     
+    console.log("User Signed in Succesfully!");
     const excelReader = new ExcelReader('LC_Workbook.xlsx');
     await excelReader.loadWorkbook();
     const sheetName = 'ValidUserItemsList';
     const excelData = await excelReader.getData(sheetName);
 
-  for (const data1 of excelData) {
-    await dashboardPage.NavigateAndAddProductsToCart(data1);
+    for (const data1 of excelData) {
+    console.log("Extracting data from excel and adding products to the cart");
+      await dashboardPage.navigateAndAddProductsToCart(data1);
+      console.log("available products added in the cart");
     }
 
     // Proceed to checkout after iterating through all the test data
     const productListingPage = poManager.getProductListingPage();
+    console.log("Clicking on Proceed To Checkout button from shopping cart icon");
     await productListingPage.proceedToCheckout();
 
     //selecting order type
     const orderSummaryPage = poManager.getOrderSummaryPage();
-    await orderSummaryPage.enableOrderTypeRadioBtn("Store Pickup");
+    console.log("selecting order type");
+    await orderSummaryPage.enableOrderTypeRadioBtn("Store Pickup")
 
     //checking billing address and proceed to checkout
+    console.log("validating address and proceeding to checkout");
     await orderSummaryPage.checkBillingAddressThenProceedToCheckout(
       data.billingAddress
     );
 
     const paymentDetailsPage = poManager.getPaymentDetailsPage();
+    console.log("Entering card details");
     await paymentDetailsPage.fillPaymentCardDetails();
+
     const orderNo = await paymentDetailsPage.getPaymentSuccessOrderId();
-    console.log(orderNo);
+    console.log("Payment successful!! orderNo is generated.");
+    console.log(`Order No is: ${orderNo}`);
 
     //capturing the entity key for email scenario
     const entity_Id = String(orderNo).slice(6, orderNo.length);
-    console.log(entity_Id);
-
+   
+console.log("Navigating to My Orders page and extracting addresses and pricing details");
     await paymentDetailsPage.navigateToMyOrdersPage();
     const myOrdersPage = poManager.getMyOrdersPage();
 
     //extracting values and printing--------------------------------------->>>>>>>
     const expectedItemsData =
-      await myOrdersPage.extractItemsDetailsDataMyOrdersPage();
+      await myOrdersPage.extractOrderedItemDetailsDataMyOrdersPage();
 
     // printing pricing details--------------------------------------->>>>>>>
     const expectedPricing =
-      await myOrdersPage.extractItemsPricingDataMyOrdersPage();
+      await myOrdersPage.extractOrderedItemsPricingDataMyOrdersPage();
 
+    
+    console.log("checking Before/After status from My Accounts Page");
     //navigating to MyAccount page
     await dashboardPage.NavigateToMyAccountPage();
 
@@ -81,7 +105,7 @@ for (const data of dataset) {
         entity_Id,
         "confirm"
       );
-
+      
     //validating data's present on my orders page and confirmtation page are equal or not.
     const isValid = await myOrdersPage.validateOrderData(
       expectedItemsData,
@@ -109,7 +133,9 @@ for (const data of dataset) {
 
     const afterActionStatus = await myAccountsPage.checkOrderStatus(orderNo);
     console.log("After Action status:" + afterActionStatus);
-
+    // allure.step('XYZ',async () => {
+    //   console.log('ALLURE TEST CASE CHECKING');
+    // });
     console.log("Congratulations you've successfully placed an order!!");
   });
 
