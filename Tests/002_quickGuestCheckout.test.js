@@ -1,18 +1,13 @@
 import { test, expect } from "@playwright/test";
 import { POManager } from "../PageObjects/POManager";
 import { ExcelReader } from "../Utils/excelReader";
+import { addLoggingHooks } from "../Utils/TestUtils";
 
 const dataset = JSON.parse(
   JSON.stringify(require("../Utils/ClientAppTestData.json"))
 );
-test.beforeAll(() => {
-  console.log('=== Test Case Start ===');
-});
 
-test.afterAll(() => {
-  console.log('=== Test Case Teardown ===');
-});
-
+addLoggingHooks(test)
 for (const data of dataset) {
   test("Quick Guest Checkout by Flat Rate orderType", async ({ page }) => {
     await page.goto(data.url);
@@ -29,15 +24,21 @@ for (const data of dataset) {
 
     // Hover on category, click on subcategory (if present), Adding products to the cart 
     for (const data1 of excelData) {
+      console.log("Extracting data from excel and adding products to the cart");
       await dashboardPage.navigateAndAddProductsToCart(data1);
+      console.log("available products added in the cart");
+
     }
 
     // Proceed to checkout after iterating through all the test data
     const productListingPage = poManager.getProductListingPage();
+    console.log("Clicking on Proceed To Checkout button from shopping cart icon");
     await productListingPage.proceedToCheckout();
 
    
     //Selecting orderType and adding billing or shipping address and checking out
+    console.log("selecting order type radio button, adding addresses and checking out");
+
     const orderSummaryPage = poManager.getOrderSummaryPage();
 
     const sheetName2 = 'GuestUserBillingShippingAddress';
@@ -48,10 +49,13 @@ for (const data of dataset) {
    
 
     const paymentDetailsPage = poManager.getPaymentDetailsPage();
+    console.log("Entering card details");
     await paymentDetailsPage.fillPaymentCardDetails();
     const orderNo =
       await paymentDetailsPage.getGuestUserPaymentSuccessOrderID();
-    console.log(orderNo);
+      console.log("Payment successful!! orderNo is generated.");
+      console.log(`Order No is: ${orderNo}`);
+    
 
     //capturing the entity key for email scenario
     const entity_Id = String(orderNo).slice(6, orderNo.length);

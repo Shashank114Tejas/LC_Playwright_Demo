@@ -2,23 +2,14 @@
 import { test, expect } from "@playwright/test";
 import { POManager } from "../PageObjects/POManager";
 import { ExcelReader } from "../Utils/excelReader";
-import { allure } from "allure-playwright";
+import { addLoggingHooks } from "../Utils/TestUtils";
 
 //passing data from Json Object
 const dataset = JSON.parse(
   JSON.stringify(require("../Utils/ClientAppTestData.json"))
 );
 
-
-  test.beforeAll(() => {
-    console.log('=== Test Case Start ===');
-  });
-
-  test.afterAll(() => {
-    console.log('=== Test Case Teardown ===');
-  });
-
-
+ addLoggingHooks(test)
 for (const data of dataset) {
   test("Valid login and adding products to the cart and checkout by Store pickup", async ({
     page,

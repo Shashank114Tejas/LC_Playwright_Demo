@@ -1,19 +1,13 @@
 
 import { test, expect } from '@playwright/test'
 import { POManager } from '../PageObjects/POManager';
+import { addLoggingHooks } from '../Utils/TestUtils';
 
 
 const dataset = JSON.parse(
     JSON.stringify(require("../Utils/ClientAppTestData.json"))
 );
-test.beforeAll(() => {
-    console.log('=== Test Case Start ===');
-  });
-
-  test.afterAll(() => {
-    console.log('=== Test Case Teardown ===');
-  });
-
+ addLoggingHooks(test)
 for (const data of dataset) {
     test("Header Validation on HomePage before sign-In", async ({ page }) => {
         await page.goto(data.url);
