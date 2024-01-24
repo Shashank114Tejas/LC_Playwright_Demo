@@ -22,16 +22,18 @@ for (const data of dataset) {
     const sheetName = "GuestUserItemsList";
     const excelData = await excelReader.getData(sheetName);
 
+    console.log("Extracting data from excel and adding products to the cart");
+    console.log();
     // Hover on category, click on subcategory (if present), Adding products to the cart 
     for (const data1 of excelData) {
-      console.log("Extracting data from excel and adding products to the cart");
-      console.log();
+     
 
       await dashboardPage.navigateAndAddProductsToCart(data1);
-      console.log("available products added in the cart");
-      console.log();
+    
 
     }
+    console.log("available products added in the cart");
+    console.log();
 
     // Proceed to checkout after iterating through all the test data
     const productListingPage = poManager.getProductListingPage();
