@@ -25,19 +25,25 @@ for (const data of dataset) {
     // Hover on category, click on subcategory (if present), Adding products to the cart 
     for (const data1 of excelData) {
       console.log("Extracting data from excel and adding products to the cart");
+      console.log();
+
       await dashboardPage.navigateAndAddProductsToCart(data1);
       console.log("available products added in the cart");
+      console.log();
 
     }
 
     // Proceed to checkout after iterating through all the test data
     const productListingPage = poManager.getProductListingPage();
     console.log("Clicking on Proceed To Checkout button from shopping cart icon");
+    console.log();
+
     await productListingPage.proceedToCheckout();
 
    
     //Selecting orderType and adding billing or shipping address and checking out
     console.log("selecting order type radio button, adding addresses and checking out");
+    console.log();
 
     const orderSummaryPage = poManager.getOrderSummaryPage();
 
@@ -50,11 +56,15 @@ for (const data of dataset) {
 
     const paymentDetailsPage = poManager.getPaymentDetailsPage();
     console.log("Entering card details");
+    console.log();
+
     await paymentDetailsPage.fillPaymentCardDetails();
     const orderNo =
       await paymentDetailsPage.getGuestUserPaymentSuccessOrderID();
       console.log("Payment successful!! orderNo is generated.");
-      console.log(`Order No is: ${orderNo}`);
+    console.log(`Order No is: ${orderNo}`);
+    console.log();
+
     
 
     //capturing the entity key for email scenario

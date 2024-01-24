@@ -185,7 +185,7 @@ class DashboardPage {
     console.log(`Checking productName: ${JSON.stringify(ProductName)}`);
 
     const count = await this.allhrefs.count();
-    console.log(`Number of Categories: ${count}`); 
+    // console.log(`Number of Categories: ${count}`); 
   
     for (let i = 0; i < count; i++) {
       const href = await this.allhrefs
@@ -195,7 +195,7 @@ class DashboardPage {
         .getAttribute("href");
   
       if (href) {
-        console.log(`Checking category: ${href}`); 
+        // console.log(`Checking category: ${href}`); 
         const lastIndex = JSON.stringify(data.CategoryName).indexOf(JSON.stringify(data.CategoryName).length - 1);
         // console.log(href.includes((JSON.stringify(data.CategoryName).slice(1,lastIndex).toLowerCase())));
 

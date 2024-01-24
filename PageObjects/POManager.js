@@ -23,7 +23,6 @@ class POManager{
         this.myOrdersPage= new MyOrdersPage(this.page)
         this.myAccountsPage = new MyAccountsPage(this.page)
         this.confirmationPage=new ConfirmationPage(this.page)
- 
     }
 
     getLoginPage() {

@@ -4,6 +4,7 @@ import { POManager } from "../PageObjects/POManager";
 import { ExcelReader } from "../Utils/excelReader";
 import { addLoggingHooks } from "../Utils/TestUtils";
 
+
 //passing data from Json Object
 const dataset = JSON.parse(
   JSON.stringify(require("../Utils/ClientAppTestData.json"))
@@ -19,6 +20,7 @@ for (const data of dataset) {
     const dashboardPage = poManager.getDashBoardPage();
 
     console.log("The user is signing in");
+    console.log();
   await dashboardPage.clickOnSignInLink();
     
 
@@ -30,45 +32,61 @@ for (const data of dataset) {
     await page.waitForLoadState("networkidle");
     
     console.log("User Signed in Succesfully!");
+    console.log();
+
     const excelReader = new ExcelReader('LC_Workbook.xlsx');
     await excelReader.loadWorkbook();
     const sheetName = 'ValidUserItemsList';
     const excelData = await excelReader.getData(sheetName);
 
-    for (const data1 of excelData) {
     console.log("Extracting data from excel and adding products to the cart");
+    console.log();
+    for (const data1 of excelData) {
       await dashboardPage.navigateAndAddProductsToCart(data1);
-      console.log("available products added in the cart");
     }
+    console.log("available products added in the cart");
+    console.log();
 
     // Proceed to checkout after iterating through all the test data
     const productListingPage = poManager.getProductListingPage();
     console.log("Clicking on Proceed To Checkout button from shopping cart icon");
+    console.log();
+
     await productListingPage.proceedToCheckout();
 
     //selecting order type
     const orderSummaryPage = poManager.getOrderSummaryPage();
     console.log("selecting order type");
+    console.log();
+
     await orderSummaryPage.enableOrderTypeRadioBtn("Store Pickup")
 
     //checking billing address and proceed to checkout
     console.log("validating address and proceeding to checkout");
+    console.log();
+
     await orderSummaryPage.checkBillingAddressThenProceedToCheckout(
       data.billingAddress
     );
 
     const paymentDetailsPage = poManager.getPaymentDetailsPage();
     console.log("Entering card details");
+    console.log();
+
     await paymentDetailsPage.fillPaymentCardDetails();
 
     const orderNo = await paymentDetailsPage.getPaymentSuccessOrderId();
     console.log("Payment successful!! orderNo is generated.");
     console.log(`Order No is: ${orderNo}`);
+    console.log();
+
 
     //capturing the entity key for email scenario
     const entity_Id = String(orderNo).slice(6, orderNo.length);
    
-console.log("Navigating to My Orders page and extracting addresses and pricing details");
+    console.log("Navigating to My Orders page and extracting addresses and pricing details");
+    console.log();
+
     await paymentDetailsPage.navigateToMyOrdersPage();
     const myOrdersPage = poManager.getMyOrdersPage();
 
@@ -82,6 +100,8 @@ console.log("Navigating to My Orders page and extracting addresses and pricing d
 
     
     console.log("checking Before/After status from My Accounts Page");
+    console.log();
+
     //navigating to MyAccount page
     await dashboardPage.NavigateToMyAccountPage();
 
@@ -104,6 +124,8 @@ console.log("Navigating to My Orders page and extracting addresses and pricing d
     );
     if (isValid) {
       console.log("Data validation successful!");
+      console.log();
+
     } else {
       console.log("Data validation failed!");
     }
@@ -114,6 +136,8 @@ console.log("Navigating to My Orders page and extracting addresses and pricing d
     );
     if (isPricingValid) {
       console.log("Pricing validation successful!");
+      console.log();
+
     } else {
       console.log("Pricing validation failed!");
     }
@@ -124,14 +148,10 @@ console.log("Navigating to My Orders page and extracting addresses and pricing d
 
     const afterActionStatus = await myAccountsPage.checkOrderStatus(orderNo);
     console.log("After Action status:" + afterActionStatus);
-    // allure.step('XYZ',async () => {
-    //   console.log('ALLURE TEST CASE CHECKING');
-    // });
+    console.log();
+
     console.log("Congratulations you've successfully placed an order!!");
   });
-
-
- 
 }
 
 //addidng product to cart using SKU value
