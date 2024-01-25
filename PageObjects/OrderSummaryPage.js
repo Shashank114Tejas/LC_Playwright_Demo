@@ -83,8 +83,11 @@ class OrderSummaryPage {
     await this.nextButton.waitFor();
     if (orderType.toLowerCase() == "store pickup") {
       await this.storePickupRadioBtn.check();
-      await this.page.waitForLoadState("domcontentloaded");
       await this.nextButton.hover();
+
+      console.log("selected radio btn");
+      await this.nextButton.waitFor();
+      await this.page.waitForTimeout(3000)
       await this.nextButton.click();
     } else {
       await this.flatRateRadioBtn.check();
@@ -244,8 +247,9 @@ class OrderSummaryPage {
     await this.paymentProceedToCheckOutBtn.click();
   }
   async checkBillingAddressThenProceedToCheckout(addressComponents) {//validate
-    await this.page.waitForLoadState("domcontentloaded")
+    await this.page.waitForTimeout(2000)
     const billAddress = await this.paymentBillingAddress.textContent();
+
     // Check if all address components are included in billAddress
     const addressCheck = addressComponents.every((component) =>
       billAddress.includes(component)
