@@ -10,7 +10,7 @@ class DashboardPage {
     this.page = page;
     this.signInLink = page.locator("div.panel.header .header.links li.link.authorization-link a");
     this.menuItemsLocator = '[role="menuitem"][name="${name}"]';
-    this.allhrefs = page.locator("ul#ui-id-1>li"); //13
+    this.allhrefs = page.locator("nav.navigation ul#ui-id-1>li"); //13
     this.searchBarSKU = page.locator("div.field.search input#search");
     this.searchBarSKUseachIcon = page.locator("div.actions button[type=submit]").first();
     this.allProductsList = page.locator("ol.products li");
@@ -118,7 +118,7 @@ class DashboardPage {
       
   
       for (let i = 0; i < count; ++i) {
-        const productNameElement = this.allProductslistInsinglePage
+        const productNameElement = await this.allProductslistInsinglePage
           .nth(i)
           .locator("strong > a");
         const productNameText = await productNameElement.textContent();
@@ -127,9 +127,9 @@ class DashboardPage {
         if (trimmedProductName.includes(productName)) { 
           const currentURL = await this.page.url();
           await this.allProductslistInsinglePage.nth(i).locator("button").click();
-          await this.page.waitForTimeout(3000)
+          await this.page.waitForTimeout(2000)
           const newURL = await this.page.url();
-          // console.log(currentURL,newURL);
+           console.log(currentURL,newURL);
           if (currentURL !== newURL) {
             console.log("Item qty not available, skipping this product");
             return;
@@ -237,7 +237,6 @@ class DashboardPage {
               console.log("Subcategory not found, clicking on the category");
               await this.allhrefs.nth(i).locator("a").first().click();
             }
-  
             await this.addProductsToCartByNames(`${JSON.stringify(ProductName)}`.replace(/"/g, '')); 
              break;
           }
