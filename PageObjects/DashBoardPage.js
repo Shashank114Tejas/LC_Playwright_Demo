@@ -127,7 +127,7 @@ class DashboardPage {
         if (trimmedProductName.includes(productName)) { 
           const currentURL = await this.page.url();
           await this.allProductslistInsinglePage.nth(i).locator("button").click();
-          await this.page.waitForTimeout(2000)
+          await this.page.waitForTimeout(3000)
           const newURL = await this.page.url();
           // console.log(currentURL,newURL);
           if (currentURL !== newURL) {
