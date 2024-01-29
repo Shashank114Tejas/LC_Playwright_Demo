@@ -85,7 +85,6 @@ class OrderSummaryPage {
       await this.storePickupRadioBtn.check();
       await this.nextButton.hover();
 
-      console.log("selected radio btn");
       await this.nextButton.waitFor();
       await this.page.waitForTimeout(3000)
       await this.nextButton.click();
