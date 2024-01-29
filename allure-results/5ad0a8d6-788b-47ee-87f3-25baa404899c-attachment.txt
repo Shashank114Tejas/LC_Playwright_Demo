@@ -1,0 +1,22 @@
+
+***************Test Case Start: Product Validation Through Search Panel Using SKU Values***************
+
+Extracting data from excel and adding products to the cart
+
+{
+  "SKU_Values(use ' if Sku starts from zero)": '707510415408',
+  Product_Names: 'xyz',
+  Colour: 1,
+  Quantity: 2,
+  Relavent_Names: 3
+}
+undefined
+Did not found any product with the SKU value undefined
+{ "SKU_Values(use ' if Sku starts from zero)": '412565696190' }
+undefined
+Did not found any product with the SKU value undefined
+{ "SKU_Values(use ' if Sku starts from zero)": '070847038245' }
+undefined
+
+***************Test Case Teardown: Product Validation Through Search Panel Using SKU Values***************
+

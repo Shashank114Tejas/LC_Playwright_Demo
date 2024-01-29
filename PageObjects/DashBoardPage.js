@@ -254,22 +254,24 @@ class DashboardPage {
 
 
   async findAndAddProductToCartUsingSKU(SKU_Value) {
-    await this.searchBarSKU.fill(SKU_Value);
+    await this.searchBarSKU.clear()
+    await this.searchBarSKU.fill((SKU_Value));
     await this.searchBarSKUseachIcon.click();
     if ((await this.allProductsList.count()) > 0) {
       await this.allProductsList.locator("button").click();
       try {
-        const successmsg = getDynamicSuccessfulProductAddedMsg()
+        const successmsg = await this.getDynamicSuccessfulProductAddedMsg()
         if (successmsg != null)
-          console.log(successmsg);
+          console.log();
+          console.log(successmsg.trim());
       }
       catch (error) {
         console.error("Item qty not available");
         throw new Error("Item qty not available");
       }
-      console.log("product added by SKU Value");
     } else {
-      console.log(`Did not found any product with the SKU value ${SKU_Value}`);
+      console.log();
+      console.log(`-> Did not found any product with the SKU value ${SKU_Value}`);
     }
   }
 }

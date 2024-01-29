@@ -1,0 +1,15 @@
+
+***************Test Case Start: Product Validation Through Search Panel Using SKU Values***************
+
+Extracting data from excel and adding products to the cart
+
+{
+  'SKU Values': 'abc',
+  'Product Names': 'xyz',
+  Colour: 1,
+  Quantity: 2,
+  'Relavent Names': 3
+}
+
+***************Test Case Teardown: Product Validation Through Search Panel Using SKU Values***************
+

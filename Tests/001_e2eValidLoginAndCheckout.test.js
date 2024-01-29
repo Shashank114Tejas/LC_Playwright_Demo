@@ -156,14 +156,7 @@ for (const data of dataset) {
   });
 }
 
-//addidng product to cart using SKU value
-// await dashboardPage.findAndAddProductToCartUsingSKU("859516004077");
-// const skuProductSuccessMsg =
-//   await productListingPage.getDynamicProductAddedMsg();
-// console.log(skuProductSuccessMsg);
-// expect(skuProductSuccessMsg).toContain(
-//   `You added ${data.skuProductName} to your shopping cart.`
-// );
+
 
 // //fetching all the addresses
 // const allAddresses = page.locator("div.shipping-address-items>div");

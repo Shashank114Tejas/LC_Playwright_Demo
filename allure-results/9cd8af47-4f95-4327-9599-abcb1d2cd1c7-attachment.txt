@@ -1,0 +1,11 @@
+
+***************Test Case Start: Product Validation Through Search Panel Using SKU Values***************
+
+Extracting data from excel and adding products to the cart
+
+abc
+123
+980
+
+***************Test Case Teardown: Product Validation Through Search Panel Using SKU Values***************
+

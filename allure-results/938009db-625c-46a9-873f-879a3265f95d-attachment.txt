@@ -1,0 +1,32 @@
+
+***************Test Case Start: Product Validation Through Search Panel Using SKU Values***************
+
+Extracting data from excel and adding products to the cart
+
+707510415408
+
+        
+            
+You added Sluricane Hurricane to your shopping cart.
+        
+    
+412565696190
+
+        
+            
+You added Tap Deposit to your shopping cart.
+        
+    
+070847038245
+
+        
+            
+You added MONSTER HYDRO ZERO SUGAR 20OZ to your shopping cart.
+        
+    
+145627282829
+Did not found any product with the SKU value 145627282829
+All available products are added in the cart through SKU values
+
+***************Test Case Teardown: Product Validation Through Search Panel Using SKU Values***************
+
