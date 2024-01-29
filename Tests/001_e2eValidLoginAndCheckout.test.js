@@ -129,6 +129,8 @@ for (const data of dataset) {
     } else {
       console.log("Data validation failed!");
     }
+
+    console.log("Validating Pricing details");
     const isPricingValid = await myOrdersPage.validatePricingData(
       expectedPricing,
       actualItemsData,
@@ -176,13 +178,14 @@ for (const data of dataset) {
 /**
  * 1. valid login and add products to cart and checkout ||Done
  * 2. guest user and add products to cart and checkout  ||Done
- * 3. valid login and add sku value products and checkout
- * 1. Search Panel ||P2
+
+ * 1. Buy a product ||P1 Done
  * 2. Quick Checkout ||P1 Done
  * 3. Header Validation  ||P1 Done
+ * 
  * 4. New User Registration||P2
  * 5. Menu  Validation ||P2
- * 6. Buy a product ||Done
+ * 6. Search Panel ||P2
  * 7. My account/edit/change password/ ||P2
  * 8. Cart Validation settings/edit ||P2
  *
