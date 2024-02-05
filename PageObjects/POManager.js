@@ -6,6 +6,7 @@ import { PaymentDetailsPage } from './PaymentDetailsPage';
 import { MyOrdersPage } from './MyOrdersPage';
 import { MyAccountsPage } from './MyAccountsPage';
 import { ConfirmationPage } from './ConfirmationPage';
+import { MyAddressBookPage } from './MyAddressBookpage';
 
 
 class POManager{
@@ -22,7 +23,8 @@ class POManager{
         this.paymentDetailsPage = new PaymentDetailsPage(this.page)
         this.myOrdersPage= new MyOrdersPage(this.page)
         this.myAccountsPage = new MyAccountsPage(this.page)
-        this.confirmationPage=new ConfirmationPage(this.page)
+        this.confirmationPage = new ConfirmationPage(this.page)
+        this.addressBookPage= new MyAddressBookPage(this.page)
     }
 
     getLoginPage() {
@@ -48,6 +50,9 @@ class POManager{
     }
     getConfirmationPage() {
         return this.confirmationPage
+    }
+    getMyAddressbookPage() {
+        return this.addressBookPage
     }
 
 }

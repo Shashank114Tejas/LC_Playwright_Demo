@@ -80,7 +80,6 @@ class ConfirmationPage {
    */
   async navigateToConfirmationPageAndPerformAction(entityId, action) {
     const allRowData = []; // Array to store data for each iteration
-    // const allFinalData = [];
   
     for (const data of this.dataset) {
       const modifiedUrl = data.confirmationPageUrl.replace(
@@ -98,9 +97,6 @@ class ConfirmationPage {
       const rowData2=await this.extractItemsPricingDetailsData(newPage)
       allRowData.push(rowData2)
 
-      // console.log(allFinalData);
-
-      //  await this.page.pause()
       // Perform the action based on the 'action' parameter
       if (action.toLowerCase() === "confirm") {
         await newPage.locator("button.btn-primary").click();

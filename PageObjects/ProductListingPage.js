@@ -20,11 +20,14 @@ class ProductListingPage {
   
   
   async proceedToCheckout() {
-    await this.page.waitForTimeout(2000)
-        await this.shoppingCartIcon.click();
-       await this.proceedToCheckoutBtn.click()
-      await this.page.waitForLoadState("domcontentloaded")
-        }
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    await this.shoppingCartIcon.click();
+    await this.proceedToCheckoutBtn.click();
+    
+    await this.page.waitForLoadState("domcontentloaded");
+}
+
 
        
         

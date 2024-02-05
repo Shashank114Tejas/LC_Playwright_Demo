@@ -36,14 +36,14 @@ export default defineConfig({
   // reporter: [["html"], ["allure"]],
   reporter: [
     ["html"],
-    [
-      "allure-playwright",
-      {
-        detail: true,
-        suiteTitle: false,
+    // [
+    //   "allure-playwright",
+    //   {
+    //     detail: true,
+    //     suiteTitle: false,
       
-      },
-    ],
+    //   },
+    // ],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

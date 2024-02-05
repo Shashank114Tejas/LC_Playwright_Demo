@@ -28,11 +28,6 @@ class PaymentDetailsPage {
         return;
       }
   
-      // console.log('CARD_NUMBER:', process.env.CARD_NUMBER);
-      // console.log('CARD_NAME:', process.env.CARD_NAME);
-      // console.log('CARD_CVV:', process.env.CARD_CVV);
-      // console.log('CARD_EXPIRY:', process.env.CARD_EXPIRY);
-  
       // Fill the payment card details
       await this.cardNumberFeild.pressSequentially(process.env.CARD_NUMBER, { delay: 100 });
       await this.cardNameFeild.fill(process.env.CARD_NAME, { timeout: 1000 });

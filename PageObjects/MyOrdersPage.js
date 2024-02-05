@@ -100,9 +100,7 @@ class MyOrdersPage {
   async validatePricingData(expectedPricingData, actualPricingData, orderID) {
     // Define keys to compare (excluding OrderID)
     const keysToCompare = ["Subtotal", "Shipping", "ServiceFee","Taxes", "GrandTotal"];
-    // console.log(expectedPricingData);
-    // console.log(actualPricingData);
-
+   
     // Retrieve the OrderID from the second array in actualPricingData
     const actualOrderID = actualPricingData[1]?.find(item => item.OrderID)?.OrderID;
 

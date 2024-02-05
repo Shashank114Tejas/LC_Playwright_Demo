@@ -8,7 +8,8 @@ class OrderSummaryPage {
     this.storePickupRadioBtn = page.locator(
       "input[value=amstorepickup_amstorepickup]"
     );
-    this.flatRateRadioBtn = page.locator("input[value=flatrate_flatrate]");
+    this.deliveryRadioBtn = page.locator("input[value=flatrate_flatrate]");
+    this.firstDeliveryAddress=page.locator("div.shipping-address-items>div")
     this.nextButton = page.locator("button.button.action.continue.primary");
     this.guestUserStorePickupBillingInfoUpdateBtn = page.locator(
       "button.action.action-update>span"
@@ -77,7 +78,7 @@ class OrderSummaryPage {
    * Generates a confirmation page URL and performs an action.
    *
    *
-   * @param {'Store Pickup' | 'Flat Rate'} orderType - The action to perform.
+   * @param {'Store Pickup' | 'Delivery'} orderType - The action to perform.
    */
   async enableOrderTypeRadioBtn(orderType) {
     await this.nextButton.waitFor();
@@ -89,7 +90,11 @@ class OrderSummaryPage {
       await this.page.waitForTimeout(3000)
       await this.nextButton.click();
     } else {
-      await this.flatRateRadioBtn.check();
+      await this.deliveryRadioBtn.check();
+      await this.firstDeliveryAddress.first().locator("button[class*=shipping-item]>span").click();
+      await this.nextButton.waitFor();
+      await this.page.waitForTimeout(3000)
+      await this.nextButton.click();
     }
     console.log(`clicked on ${orderType} ordertype radio btn`);
   }
@@ -113,7 +118,7 @@ class OrderSummaryPage {
   /**
    * Generates a confirmation page URL and performs an action.
    *
-   * @param {'Store Pickup' | 'Flat Rate'} orderType - The action to perform.
+   * @param {'Store Pickup' | 'Delivery'} orderType - The action to perform.
    * @param {string} email - The guest user's email address.
    * @param {string} firstName - The guest user's first name.
    * @param {string} lastName - The guest user's last name.
@@ -127,13 +132,7 @@ class OrderSummaryPage {
   async enableGuestUserOrderTypeRadioBtnAndCheckout(data) {
     await this.nextButton.waitFor();
 
-    // console.log(`Data received: ${JSON.stringify(data)}`);
-    //storePickup- Billing Info
-    //flat rate - Shipping info
-
     const modifiedData = await this.removeQuotes(data);
-    console.log(`Data received:` + modifiedData);
-
     if (
       JSON.stringify(modifiedData.orderType).toLowerCase() === "store pickup"
     ) {
@@ -150,7 +149,7 @@ class OrderSummaryPage {
         modifiedData.country
       );
     } else {
-      await this.flatRateRadioBtn.check();
+      await this.deliveryRadioBtn.check();
       await this.fillGuestUserFlatRateShippingDetails(
         modifiedData.email,
         modifiedData.firstName,

@@ -15,6 +15,14 @@ class MyAccountsPage {
         this.viewAllOrdersLink = page.locator("div.block-title.order a.action.view>span")
         this.allOrdersRowInsinglePage = page.locator("table.data.table.table-order-items.history tbody>tr")
         this.paginationNextBtn = page.locator("a.action.next")
+        this.myAccountEditBtn = page.locator("div.block.block-dashboard-info a.action.edit>span")
+        this.contactInfoNameEmail = page.locator("div.block.block-dashboard-info div.box-content>p")
+        this.pageHeader = page.locator("h1>span")
+        this.editFirstnameField=page.locator("form#form-validate div.control>input#firstname")
+        this.editLastnameField = page.locator("form#form-validate div.control>input#lastname")
+        this.editAccountInfoSaveBtn = page.locator("form#form-validate div.primary>button.action.save.primary>span")
+        this.editSuccessMsg = page.locator("main#maincontent div[data-ui-id='message-success']>div")
+        this.sidebarAddressBookLink=page.locator("div.sidebar.sidebar-main li>a[href*='address']")
     }
 
     async checkOrderStatus(orderNo) {
@@ -54,20 +62,45 @@ class MyAccountsPage {
         throw new Error(`Order ${orderNo} not found on any page.`);
     }
     
+    async getMyAccountFirstNameLastNameEmail() {
+        const firstLastNameEmail = await this.contactInfoNameEmail.textContent();
+        const infoArr = firstLastNameEmail.split(" ");
+        const contactInfo = infoArr.filter((val) => val.trim() !== "").map((val) => val.trim());
+        return contactInfo;
+    }
     
    
-    
-    
-    
-  
-
-    
-   
-    
-   
+    async editMyAccountFirstNameAndLastName() {        
+        const [firstName, lastName, email] =await this.getMyAccountFirstNameLastNameEmail()
       
-       
-        
+
+        await this.myAccountEditBtn.click()
+        if (await this.pageHeader.textContent() == "Edit Account Information") {
+            if (firstName === 'QARemo' && lastName === 'Sys') {
+                await this.editFirstnameField.fill("John");
+                await this.editLastnameField.fill("Doe");
+            }
+            else
+            {
+                await this.editFirstnameField.fill("QARemo");
+                await this.editLastnameField.fill("Sys");  
+                }
+        }
+        await this.editAccountInfoSaveBtn.click();
+        const editSuccess = await this.editSuccessMsg.textContent()
+        if (editSuccess.trim() === 'You saved the account information.') {
+           console.log("User's Account firstname and lastname are changed");
+        }
+        else {
+            console.log("-> User's Account firstname and lastname are not changed");
+        }
+
+
+    }      
+    
+    async navigateToAddressBookPage() {
+        await this.sidebarAddressBookLink.click()
+    }
 }
  
 
