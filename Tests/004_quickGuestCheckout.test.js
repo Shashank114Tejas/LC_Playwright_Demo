@@ -57,7 +57,7 @@ for (const data of dataset) {
    
 
     const paymentDetailsPage = poManager.getPaymentDetailsPage();
-    console.log("Entering card details");
+    console.log("Entering card details and making payment");
     console.log();
 
     await paymentDetailsPage.fillPaymentCardDetails();

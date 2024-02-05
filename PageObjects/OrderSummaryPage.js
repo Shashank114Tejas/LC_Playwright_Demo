@@ -85,8 +85,7 @@ class OrderSummaryPage {
     if (orderType.toLowerCase() == "store pickup") {
       await this.storePickupRadioBtn.check();
       await this.nextButton.hover();
-
-      console.log("selected radio btn");
+      console.log();
       await this.nextButton.waitFor();
       await this.page.waitForTimeout(3000)
       await this.nextButton.click();
