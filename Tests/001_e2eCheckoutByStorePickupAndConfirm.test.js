@@ -172,10 +172,10 @@ for (const data of dataset) {
  * 3. Header Validation  ||P1 Done
  * 
  * 4. New User Registration||P2 || Captcha
- * 5. Menu  Validation ||P2 
+ * 5. Menu  Validation ||P2 //In process
  * 6. Search Panel ||P2 
- * 7. My account/edit/change password/ ||P2
- * 8. Cart Validation settings/edit ||P2
+ * 7. My account/edit/change password/ ||P2 //recent orders/reorder
+ * 8. Cart Validation settings/edit ||P2 //
  *
  *
  */

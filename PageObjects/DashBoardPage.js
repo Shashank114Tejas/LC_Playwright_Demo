@@ -49,7 +49,10 @@ class DashboardPage {
       "div.panel.header div.block-content button#btn-minicart-close"
     );
     this.emptyCartMsg = page.locator("strong.subtitle.empty");
+    this.shoppingCartViewAndEditLink=page.locator("div#minicart-content-wrapper a.action.viewcart>span")
     this.shoppingCartPopupClose = page.locator("button#btn-minicart-close");
+    this.removeIconMinicart = page.locator("div.minicart-wrapper.active div.product-item-details div.secondary>a.action.delete")
+    this.minicartItemsList= page.locator("div.minicart-wrapper.active div.product-item-details")
   }
 
   async clickOnSignInLink() {
@@ -158,7 +161,7 @@ class DashboardPage {
           return new Promise((resolve) => {
             setTimeout(async () => {
               const newURL = await this.page.url();
-              console.log(currentURL, newURL);
+              // console.log(currentURL, newURL);
 
               if (currentURL !== newURL) {
                 console.log("Item qty not available, skipping this product");
@@ -217,92 +220,76 @@ class DashboardPage {
     console.log(`Checking categoryName: ${JSON.stringify(CategoryName)}`);
     console.log(`Checking subcategoryName: ${JSON.stringify(SubCategoryName)}`);
     console.log(`Checking productName: ${JSON.stringify(ProductName)}`);
-
+   await this.allhrefs.last().waitFor()
     const count = await this.allhrefs.count();
-    // console.log(`Number of Categories: ${count}`);
-
+  
     for (let i = 0; i < count; i++) {
       const href = await this.allhrefs
         .nth(i)
         .locator("a")
         .first()
         .getAttribute("href");
-
+  
       if (href) {
-        // console.log(`Checking category: ${href}`);
-        const lastIndex = JSON.stringify(data.CategoryName).indexOf(
-          JSON.stringify(data.CategoryName).length - 1
-        );
-        // console.log(href.includes((JSON.stringify(data.CategoryName).slice(1,lastIndex).toLowerCase())));
-
         if (
           href
             .trim()
             .includes(
               JSON.stringify(data.CategoryName)
-                .slice(1, lastIndex)
+                .slice(1, -1)
                 .toLowerCase()
                 .trim()
             )
         ) {
           console.log(
-            `Category matched: ${JSON.stringify(
-              data.CategoryName
-            ).toLowerCase()}`
+            `Category matched: ${JSON.stringify(data.CategoryName).toLowerCase()}`
           );
-
+  
           await this.allhrefs.nth(i).locator("a").first().hover();
-
+  
           const isCategoryExpanded = await this.page
             .locator("ul[aria-expanded=true]")
             .getAttribute("aria-expanded");
-
+  
           if (isCategoryExpanded === "true") {
             console.log("Category is expanded");
-
+  
             const subCategoryList = this.page.locator(
-              "ul[aria-expanded=true]>li"
+              "ul[aria-expanded=true]>li a"
             );
             const subcategoryCount = await subCategoryList.count();
-
+  
             let subcategoryFound = false;
-
             for (let j = 0; j < subcategoryCount; j++) {
-              const subcategoryText = await subCategoryList
+              const subcategoryHref = await subCategoryList
                 .nth(j)
-                .locator("a>span")
-                .innerText();
-
+                .getAttribute("href");
+             
               if (
-                subcategoryText.toLowerCase() ===
-                `${JSON.stringify(SubCategoryName).replace(
-                  /"/g,
-                  ""
-                )}`.toLowerCase()
+                subcategoryHref &&
+                subcategoryHref.trim().toLowerCase().includes(SubCategoryName.toLowerCase().trim())
               ) {
-                console.log(
-                  `Subcategory matched:${JSON.stringify(SubCategoryName)}`
-                );
-
-                await subCategoryList.nth(j).locator("span").click();
+                console.log(`Subcategory matched: ${SubCategoryName}`);
+                await subCategoryList.nth(j).click();
                 subcategoryFound = true;
                 break;
               }
             }
-
+  
             if (!subcategoryFound) {
               console.log("Subcategory not found, clicking on the category");
               await this.allhrefs.nth(i).locator("a").first().click();
             }
-            await this.addProductsToCartByNames(
-              `${JSON.stringify(ProductName)}`.replace(/"/g, "")
-            );
+            await this.addProductsToCartByNames(ProductName);
             break;
           }
         }
       }
     }
   }
+  
+  
+  
 
   async NavigateToMyAccountPage() {
     await this.headerAccountLink.click();
@@ -332,5 +319,46 @@ class DashboardPage {
       );
     }
   }
+
+  async navigateToShoppingCart() {
+    return new Promise((resolve) => {
+      setTimeout(async () => {
+        await this.shoppingCartIcon.click();
+        await this.shoppingCartViewAndEditLink.hover()
+        await this.shoppingCartViewAndEditLink.click();
+        resolve(); 
+      }, 2000);
+    });
+  }
+
+  async removeFirstItemFromMinicart() {
+    return new Promise((resolve, reject) => {
+        setTimeout(async () => {
+          try {
+          
+            await this.shoppingCartIcon.click(); // Open mini-cart
+            await this.page.waitForTimeout(2000)
+            const initialCount = await this.minicartItemsList.count();// Get initial count
+                await this.removeIconMinicart.first().hover(); // Hover over remove icon
+              await this.removeIconMinicart.first().click(); // Click on remove icon
+                await this.page.on('dialog', (dialog) => dialog.accept());
+              await this.page.locator("button.action-primary.action-accept").click();
+              await this.page.waitForTimeout(2000)
+              const finalCount = await this.minicartItemsList.count();// Get final count
+                if (finalCount === initialCount-1 ) {
+                    resolve(); // If count decreased by 1, resolve promise
+                } else {
+                    reject(new Error("Count did not decrease by 1 after removing item."));
+                }
+            } catch (error) {
+                reject(error); // Reject with any caught error
+            }
+        }, 2000);
+    });
 }
+
+
+}
+
+  
 export { DashboardPage };
