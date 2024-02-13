@@ -39,7 +39,7 @@ To run the tests, ensure that Node.js and Playwright are installed. Clone the re
 ## Scenario
 
 ```javascript
-### Test Case: Purchase Flow with Store Pickup and Order Confirmation
+**Test Case: Purchase Flow with Store Pickup and Order Confirmation**
 
 Description:
 This test case validates the purchase flow on an e-commerce platform.
@@ -59,7 +59,7 @@ Scenario:
 A user logs into the e-commerce website, adds products to the cart, selects store pickup at checkout, completes the payment process, verifies order details, and confirms the order. This scenario ensures the smooth functioning of the purchase flow and order confirmation process.
 ```
 ```javascript
-### Test Case: Purchase Flow with Delivery Option and Order Rejection
+**Test Case: Purchase Flow with Delivery Option and Order Rejection**
 
 Description:
 This test case validates the purchase flow on an e-commerce platform, specifically testing the delivery option at checkout.
@@ -80,7 +80,7 @@ A user logs into the e-commerce website, adds products to the cart, selects deli
 ```
 
 ```javascript
-### Test Case: Header Validation on Homepage Before Sign-In
+**Test Case: Header Validation on Homepage Before Sign-In**
 
 Description:
 This test case validates the header section of the homepage before user sign-in.
@@ -98,7 +98,7 @@ A user navigates to the homepage of the e-commerce website and verifies the head
 ```
 
 ```javascript
-### Test Case: Quick Guest Checkout with Flat Rate Order Type
+**Test Case: Quick Guest Checkout with Flat Rate Order Type**
 
 Description:
 This test case performs a quick guest checkout using the flat rate order type.
@@ -118,7 +118,7 @@ Scenario:
 A guest user visits the e-commerce website's homepage and adds products to the cart. After selecting the flat rate order type, the guest user proceeds to checkout and provides billing or shipping addresses as per the data from an Excel sheet. The user then enters payment card details to complete the checkout process. Upon successful payment, the order number is captured and logged, confirming the successful placement of the order.
 ```
 ```javascript
-### Test Case: Edit User Firstname And Lastname
+**Test Case: Edit User Firstname And Lastname**
 
 Description:
 This test case edits the user's first name and last name on the account page.
@@ -141,7 +141,7 @@ A user navigates to the e-commerce website's homepage and signs in using provide
 ```
 
 ```javascript
-### Test Case: Get Default Billing/Shipping Addresses
+**Test Case: Get Default Billing/Shipping Addresses**
 
 Description:
 These test cases involve retrieving default billing and shipping addresses from the user's address book.
@@ -161,7 +161,7 @@ A user navigates to the e-commerce website's homepage and signs in using provide
 ```
 
 ```javascript
-### Test Case: Product Validation Through Search Panel Using SKU Values
+**Test Case: Product Validation Through Search Panel Using SKU Values**
 
 Description:
 This test case involves validating products through the search panel using SKU values.
@@ -180,7 +180,7 @@ Scenario:
 A user navigates to the e-commerce website's homepage and initiates a product validation process through the search panel using SKU values. The test case iterates through a list of SKU values extracted from an Excel sheet. For each SKU value, the test searches for the corresponding product and adds it to the cart. The process is logged to provide visibility into the validation of products using SKU values.
 ```
 ```javascript
-### Test Suite: Shopping Cart Functionality Validation
+**Test Suite: Shopping Cart Functionality Validation**
 
 Description:
 This test suite involves validating various functionalities related to the shopping cart,
@@ -196,17 +196,21 @@ Test File Name: TC_08_shoppingCartFunctionalityValidation.test.js
 
 Scenarios:
 
-Validate Quantities Update Functionality
+**Validate Quantities Update Functionality**
 
 - A user logs in and navigates to the shopping cart.
 - Products are added to the cart, and their quantities are updated.
 - The quantities update functionality is validated by comparing the grand total before and after the update.
 - Validate Remove Functionality from Minicart
 
+**Validate Remove Single Product From Minicart Functionality**
+
 - A user logs in and navigates to the homepage.
 - The first item is removed from the minicart.
 - The successful removal of the first item is confirmed.
 - Validate Remove Functionality in Shopping Cart
+
+**Validate All Products Remove Functionality**
 
 - A user logs in and navigates to the shopping cart.
 - All products are removed from the cart.
