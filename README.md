@@ -82,10 +82,10 @@ Description:
 This test case validates the header section of the homepage before user sign-in.
 
 It includes the following steps:
-Asserting header texts, such as merchant name, address, phone, hours, and delivery options.
-Checking the visibility and functionality of the logo, shopping cart icon, and account functions.
-Validating the behavior of the shopping cart when no products are added.
-Testing sign-in and sign-out functionalities.
+- Asserting header texts, such as merchant name, address, phone, hours, and delivery options.
+- Checking the visibility and functionality of the logo, shopping cart icon, and account functions.
+- Validating the behavior of the shopping cart when no products are added.
+- Testing sign-in and sign-out functionalities.
 
 Test File Name: TC_03_headerValidationBeforeSignIn.test.js
 
@@ -98,13 +98,13 @@ Description:
 This test case performs a quick guest checkout using the flat rate order type.
 
 It involves the following steps:
-Navigating to the homepage.
-Adding products to the cart extracted from an Excel sheet.
-Proceeding to checkout and selecting the order type.
-Adding billing or shipping addresses from an Excel sheet and checking out.
-Entering payment card details.
-Capturing and logging the generated order number.
-Confirming the successful placement of the order.
+- Navigating to the homepage.
+- Adding products to the cart extracted from an Excel sheet.
+- Proceeding to checkout and selecting the order type.
+- Adding billing or shipping addresses from an Excel sheet and checking out.
+- Entering payment card details.
+- Capturing and logging the generated order number.
+- Confirming the successful placement of the order.
 
 Test File Name: TC_04_quickGuestCheckoutFlatRate.test.js
 
@@ -117,15 +117,15 @@ Description:
 This test case edits the user's first name and last name on the account page.
 
 It involves the following steps:
-Navigating to the specified URL.
-Signing in with the provided credentials.
-Navigating to the My Account page.
-Retrieving the current first name, last name, and email.
-Logging the current first name and last name.
-Editing the first name and last name.
-Retrieving the updated first name and last name.
-Logging the updated first name and last name.
-Asserting that the updated first name and last name match the expected values.
+- Navigating to the specified URL.
+- Signing in with the provided credentials.
+- Navigating to the My Account page.
+- Retrieving the current first name, last name, and email.
+- Logging the current first name and last name.
+- Editing the first name and last name.
+- Retrieving the updated first name and last name.
+- Logging the updated first name and last name.
+- Asserting that the updated first name and last name match the expected values.
 
 Test File Name: TC_05_editUserFirstnameLastname.test.js
 
@@ -138,12 +138,12 @@ Description:
 These test cases involve retrieving default billing and shipping addresses from the user's address book.
 
 The flow includes:
-Navigating to the specified URL.
-Signing in with the provided credentials.
-Navigating to the My Account page.
-Navigating to the Address Book page.
-Retrieving default billing and shipping addresses.
-Logging the default billing and shipping addresses.
+- Navigating to the specified URL.
+- Signing in with the provided credentials.
+- Navigating to the My Account page.
+- Navigating to the Address Book page.
+- Retrieving default billing and shipping addresses.
+- Logging the default billing and shipping addresses.
 
 Test File Name: TC_06_getDefaultBillingShippingAddresses.test.js
 
@@ -156,12 +156,12 @@ Description:
 This test case involves validating products through the search panel using SKU values.
 
 The flow includes:
-Navigating to the specified URL.
-Loading test data from an Excel file.
-Extracting SKU values from the Excel sheet.
-Iterating through each SKU value.
-Using the SKU value to search for and add the corresponding product to the cart.
-Logging the process of searching for and adding products using SKU values.
+- Navigating to the specified URL.
+- Loading test data from an Excel file.
+- Extracting SKU values from the Excel sheet.
+- Iterating through each SKU value.
+- Using the SKU value to search for and add the corresponding product to the cart.
+- Logging the process of searching for and adding products using SKU values.
 
 Test File Name: TC_07_productValidationSearchPanelSKU.test.js
 
@@ -175,10 +175,10 @@ This test suite involves validating various functionalities related to the shopp
 
 including:
 
-Validating the quantities update functionality for products in the shopping cart at once.
-Validating the remove functionality from the minicart by removing the first item.
-Validating the remove functionality in the shopping cart by removing all products.
-The test suite also utilizes session storage to store user login information for efficient testing.
+- Validating the quantities update functionality for products in the shopping cart at once.
+- Validating the remove functionality from the minicart by removing the first item.
+- Validating the remove functionality in the shopping cart by removing all products.
+- The test suite also utilizes session storage to store user login information for efficient testing.
 
 Test File Name: TC_08_shoppingCartFunctionalityValidation.test.js
 
@@ -186,19 +186,19 @@ Scenarios:
 
 Validate Quantities Update Functionality
 
-A user logs in and navigates to the shopping cart.
-Products are added to the cart, and their quantities are updated.
-The quantities update functionality is validated by comparing the grand total before and after the update.
-Validate Remove Functionality from Minicart
+- A user logs in and navigates to the shopping cart.
+- Products are added to the cart, and their quantities are updated.
+- The quantities update functionality is validated by comparing the grand total before and after the update.
+- Validate Remove Functionality from Minicart
 
-A user logs in and navigates to the homepage.
-The first item is removed from the minicart.
-The successful removal of the first item is confirmed.
-Validate Remove Functionality in Shopping Cart
+- A user logs in and navigates to the homepage.
+- The first item is removed from the minicart.
+- The successful removal of the first item is confirmed.
+- Validate Remove Functionality in Shopping Cart
 
-A user logs in and navigates to the shopping cart.
-All products are removed from the cart.
-The successful removal of all products from the cart is confirmed.
+- A user logs in and navigates to the shopping cart.
+- All products are removed from the cart.
+- The successful removal of all products from the cart is confirmed.
 
 ## Contributors
 
