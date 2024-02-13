@@ -1,4 +1,4 @@
-![RemosysLogo](Screenshots\JS-Playwright_Remosys.png)
+![RemosysLogo](C:\Users\Shubham\Desktop\QA Env Josheps Automation\Screenshots\JS-Playwright_Remosys.png)
 
 # Remosys Project - Playwright Test Automation Framework
 
