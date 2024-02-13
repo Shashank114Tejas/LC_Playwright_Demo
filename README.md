@@ -1,4 +1,4 @@
-![RemosysLogo](https://imgur.com/a/DaRzLnY)
+![RemosysLogo](https://i.imgur.com/O5uPgo2.png)
 
 # Remosys Project - Playwright Test Automation Framework
 
