@@ -38,6 +38,7 @@ To run the tests, ensure that Node.js and Playwright are installed. Clone the re
 
 ## Scenario
 
+```javascript
 ### Test Case: Purchase Flow with Store Pickup and Order Confirmation
 
 Description:
@@ -56,7 +57,8 @@ Test File Name: TC_01_e2eCheckoutByStorePickupAndConfirm.test.js
 
 Scenario:
 A user logs into the e-commerce website, adds products to the cart, selects store pickup at checkout, completes the payment process, verifies order details, and confirms the order. This scenario ensures the smooth functioning of the purchase flow and order confirmation process.
-
+```
+```javascript
 ### Test Case: Purchase Flow with Delivery Option and Order Rejection
 
 Description:
@@ -75,7 +77,9 @@ Test File Name: TC_02_e2eCheckoutByDeliveryAndReject.test.js
 
 Scenario:
 A user logs into the e-commerce website, adds products to the cart, selects delivery option at checkout, completes the payment process, verifies order details, rejects the order, and confirms the cancellation. This scenario ensures the proper functioning of the purchase flow with the delivery option and order rejection.
+```
 
+```javascript
 ### Test Case: Header Validation on Homepage Before Sign-In
 
 Description:
@@ -91,7 +95,9 @@ Test File Name: TC_03_headerValidationBeforeSignIn.test.js
 
 Scenario:
 A user navigates to the homepage of the e-commerce website and verifies the header section. The test ensures that all the necessary information, such as merchant details and delivery options, are correctly displayed. It also checks the visibility and functionality of the logo, shopping cart icon, and account functions. Additionally, it validates the behavior of the shopping cart when no products are added and tests the sign-in and sign-out functionalities.
+```
 
+```javascript
 ### Test Case: Quick Guest Checkout with Flat Rate Order Type
 
 Description:
@@ -110,7 +116,8 @@ Test File Name: TC_04_quickGuestCheckoutFlatRate.test.js
 
 Scenario:
 A guest user visits the e-commerce website's homepage and adds products to the cart. After selecting the flat rate order type, the guest user proceeds to checkout and provides billing or shipping addresses as per the data from an Excel sheet. The user then enters payment card details to complete the checkout process. Upon successful payment, the order number is captured and logged, confirming the successful placement of the order.
-
+```
+```javascript
 ### Test Case: Edit User Firstname And Lastname
 
 Description:
@@ -131,7 +138,9 @@ Test File Name: TC_05_editUserFirstnameLastname.test.js
 
 Scenario:
 A user navigates to the e-commerce website's homepage and signs in using provided credentials. After signing in, the user navigates to the My Account page to edit their first name and last name. The test retrieves the current first name and last name, edits them, and verifies that the changes were successfully applied by checking the updated first name and last name against the expected values.
+```
 
+```javascript
 ### Test Case: Get Default Billing/Shipping Addresses
 
 Description:
@@ -149,7 +158,9 @@ Test File Name: TC_06_getDefaultBillingShippingAddresses.test.js
 
 Scenario:
 A user navigates to the e-commerce website's homepage and signs in using provided credentials. After signing in, the user navigates to the My Account page and then to the Address Book page. In the first test case, the user retrieves and logs the default billing and shipping addresses. In the second test case, the user retrieves and logs additional address entries from the address book.
+```
 
+```javascript
 ### Test Case: Product Validation Through Search Panel Using SKU Values
 
 Description:
@@ -167,7 +178,8 @@ Test File Name: TC_07_productValidationSearchPanelSKU.test.js
 
 Scenario:
 A user navigates to the e-commerce website's homepage and initiates a product validation process through the search panel using SKU values. The test case iterates through a list of SKU values extracted from an Excel sheet. For each SKU value, the test searches for the corresponding product and adds it to the cart. The process is logged to provide visibility into the validation of products using SKU values.
-
+```
+```javascript
 ### Test Suite: Shopping Cart Functionality Validation
 
 Description:
@@ -199,6 +211,7 @@ Validate Quantities Update Functionality
 - A user logs in and navigates to the shopping cart.
 - All products are removed from the cart.
 - The successful removal of all products from the cart is confirmed.
+```
 
 ## Contributors
 
@@ -213,3 +226,6 @@ Validate Quantities Update Functionality
 ## About RemoSys Technologies
 
 RemoSys Technologies is a leading software development company specializing in providing cutting-edge solutions for businesses worldwide. With a focus on innovation and quality, RemoSys Technologies delivers bespoke software products and services tailored to meet the unique requirements of its clients.
+
+
+
