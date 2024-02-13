@@ -1,3 +1,7 @@
+/*
+This file contains a class `ExcelReader` which is responsible for reading data from an Excel file (.xlsx).
+The class provides methods to load an Excel workbook and retrieve data from a specific worksheet.
+*/
 import { Workbook } from 'exceljs';
 
 class ExcelReader {

@@ -9,7 +9,7 @@ class OrderSummaryPage {
       "input[value=amstorepickup_amstorepickup]"
     );
     this.deliveryRadioBtn = page.locator("input[value=flatrate_flatrate]");
-    this.firstDeliveryAddress=page.locator("div.shipping-address-items>div")
+    this.firstDeliveryAddress = page.locator("div.shipping-address-items>div");
     this.nextButton = page.locator("button.button.action.continue.primary");
     this.guestUserStorePickupBillingInfoUpdateBtn = page.locator(
       "button.action.action-update>span"
@@ -75,32 +75,58 @@ class OrderSummaryPage {
   }
 
   /**
-   * Generates a confirmation page URL and performs an action.
+   * This method enables the order type radio button based on the provided order type.
+   *  If the order type is "Store Pickup", it selects the store pickup radio button and clicks
+   *  on the next button. If the order type is "Delivery", it selects the delivery radio button,
+   *  selects the first delivery address, and clicks on the next button.
    *
-   *
-   * @param {'Store Pickup' | 'Delivery'} orderType - The action to perform.
+   * @param {'Store Pickup' | 'Delivery'} orderType - The type of order (either 'Store Pickup' or 'Delivery').
    */
   async enableOrderTypeRadioBtn(orderType) {
-    await this.nextButton.waitFor();
-    if (orderType.toLowerCase() == "store pickup") {
-      await this.storePickupRadioBtn.check();
-      await this.nextButton.hover();
+    await this.nextButton.waitFor(); // Wait for the next button to be visible
 
-      console.log("selected radio btn");
+    // Check the order type and perform actions accordingly
+    if (orderType.toLowerCase() === "store pickup") {
+      // Select store pickup radio button
+      await this.storePickupRadioBtn.check();
+      await this.nextButton.hover(); // Hover over the next button
+
+      console.log("Selected store pickup radio button");
+
+      // Click on the next button after a delay
       await this.nextButton.waitFor();
-      await this.page.waitForTimeout(3000)
+      await this.page.waitForTimeout(3000);
       await this.nextButton.click();
     } else {
+      // Select delivery radio button
       await this.deliveryRadioBtn.check();
-      await this.firstDeliveryAddress.first().locator("button[class*=shipping-item]>span").click();
-      await this.nextButton.waitFor();
-      await this.page.waitForTimeout(3000)
+
+      // Select the first delivery address
+      await this.firstDeliveryAddress
+        .first()
+        .locator("button[class*=shipping-item]>span")
+        .click();
+
+      await this.nextButton.waitFor(); // Wait for the next button to be visible
+      await this.page.waitForTimeout(3000); // Wait for a brief timeout
+
+      // Click on the next button
       await this.nextButton.click();
     }
-    console.log(`clicked on ${orderType} ordertype radio btn`);
+
+    console.log(`Clicked on ${orderType} order type radio button`);
   }
 
-
+  /**
+   * This method removes quotes from the keys and string values of the provided object.
+   *  It iterates through each key of the object and recursively removes quotes from nested objects.
+   *  If the value associated with a key is a string,
+   *  it removes quotes from that string. Finally, it returns the modified object with quotes removed.
+   *   Removes quotes from the keys and string values of the provided object.
+   *
+   * @param {object} obj - The object from which quotes are to be removed.
+   * @returns {object} The object with quotes removed from keys and string values.
+   */
   async removeQuotes(obj) {
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
@@ -113,13 +139,19 @@ class OrderSummaryPage {
         }
       }
     }
-    return obj;
+    return obj; // Return the modified object
   }
 
   /**
-   * Generates a confirmation page URL and performs an action.
+   * This method enables the order type radio button and proceeds to checkout for a guest user,
+   *  providing necessary data such as email, first name, last name, address, etc.
+   *  It first waits for the next button to be visible, then removes any quotes from the data object.
+   *  Depending on the order type (store pickup or delivery), it selects the appropriate radio button and
+   *  fills the required details.
+   *  Finally, it logs the action performed.
+   * Enables the order type radio button and proceeds to checkout for a guest user, providing necessary data.
    *
-   * @param {'Store Pickup' | 'Delivery'} orderType - The action to perform.
+   * @param {'Store Pickup' | 'Delivery'} orderType - The type of order to perform.
    * @param {string} email - The guest user's email address.
    * @param {string} firstName - The guest user's first name.
    * @param {string} lastName - The guest user's last name.
@@ -131,12 +163,17 @@ class OrderSummaryPage {
    * @param {string} country - The guest user's country.
    */
   async enableGuestUserOrderTypeRadioBtnAndCheckout(data) {
+    // Wait for the next button to be visible
     await this.nextButton.waitFor();
 
+    // Remove quotes from data object
     const modifiedData = await this.removeQuotes(data);
+
+    // Check the order type and proceed accordingly
     if (
       JSON.stringify(modifiedData.orderType).toLowerCase() === "store pickup"
     ) {
+      // If store pickup, select store pickup radio button and fill necessary details
       await this.storePickupRadioBtn.check();
       await this.fillGuestUserStorePickupEmailAddress(modifiedData.email);
       await this.fillBillingInfoUpdateAndProceedToCheckOut(
@@ -150,6 +187,7 @@ class OrderSummaryPage {
         modifiedData.country
       );
     } else {
+      // If delivery, select delivery radio button and fill necessary details
       await this.deliveryRadioBtn.check();
       await this.fillGuestUserFlatRateShippingDetails(
         modifiedData.email,
@@ -165,48 +203,82 @@ class OrderSummaryPage {
       await this.checkBillingShippingAddressSameCheckboxAndProceedToCheckout();
     }
 
+    // Log the action performed
     console.log(
       `Clicked on ${modifiedData.orderType} order type radio button and filled shipping details`
     );
   }
 
+  /**
+ *This method handles the process of filling in flat rate shipping details during the checkout process
+  for a guest user. It fills in various shipping details such as email, first name, last name, address, etc.,
+  and then clicks on the next button to proceed with the checkout process.
+
+ *  Fills flat rate shipping details for a guest user during checkout.
+ * 
+ *
+ * @param {string} email - The guest user's email address.
+ * @param {string} firstName - The guest user's first name.
+ * @param {string} lastName - The guest user's last name.
+ * @param {string} streetAddress - The guest user's street address.
+ * @param {string} stateProvince - The guest user's state or province.
+ * @param {string} city - The guest user's city.
+ * @param {string} zipPostalCode - The guest user's ZIP or postal code.
+ * @param {string} phnNo - The guest user's phone number.
+ * @param {string} country - The guest user's country.
+ */
   async fillGuestUserFlatRateShippingDetails(
     email,
     firstName,
-    LastName,
+    lastName,
     streetAddress,
-    state_Province,
+    stateProvince,
     city,
-    zip_postalCode,
+    zipPostalCode,
     phnNo,
     country
   ) {
+    // Fill flat rate shipping details
     await this.shippingEmailField.fill(email);
     await this.shippingFirstNameField.fill(firstName);
-    await this.shippingLastNameField.fill(LastName);
+    await this.shippingLastNameField.fill(lastName);
     await this.shippingStreetAddressField.fill(streetAddress);
-    await this.shippingStateProvinceDrp.selectOption(state_Province);
+    await this.shippingStateProvinceDrp.selectOption(stateProvince);
     await this.shippingCityField.fill(city);
-    await this.shippingZipPostalCodeField.fill(zip_postalCode);
+    await this.shippingZipPostalCodeField.fill(zipPostalCode);
     await this.shippingPhnNoField.fill(phnNo);
 
+    // Select country if provided
     if (country) {
       await this.shippingCountryDrp.selectOption(country);
     }
-    await this.nextButton.locator("span").click();
-  }
 
-  async fillGuestUserStorePickupEmailAddress(email) {
-    await this.shippingEmailField.fill(email);
-    await this.page.waitForLoadState("domcontentloaded");
+    // Click on the next button to proceed
     await this.nextButton.locator("span").click();
   }
 
   /**
-   * Generates a confirmation page URL and performs an action.
+ *This method fills in the email address field for a guest user during the store pickup checkout process.
+  It waits for the page to finish loading and then
+  clicks on the next button to proceed with the checkout.
+ *  Fills the email address field for a guest user during store pickup checkout.
+ *
+ * @param {string} email - The guest user's email address.
+ */
+  async fillGuestUserStorePickupEmailAddress(email) {
+    // Fill the email address field
+    await this.shippingEmailField.fill(email);
+
+    // Wait for the page to finish loading
+    await this.page.waitForLoadState("domcontentloaded");
+
+    // Click on the next button to proceed
+    await this.nextButton.locator("span").click();
+  }
+
+  /**
+   * Fills the billing information for a guest user and proceeds to checkout.
    *
-   *
-   * @param {string} email - The guest user's email address.
    * @param {string} firstName - The guest user's first name.
    * @param {string} lastName - The guest user's last name.
    * @param {string} streetAddress - The guest user's street address.
@@ -226,6 +298,7 @@ class OrderSummaryPage {
     phnNo,
     country
   ) {
+    // Fill the billing information fields
     await this.GuestBillingFirstNameField.fill(firstName);
     await this.GuestBillingLastNameField.fill(LastName);
     await this.GuestBillingStreetAddressField.fill(streetAddress);
@@ -234,30 +307,50 @@ class OrderSummaryPage {
     await this.GuestBillingZipPostalCodeField.fill(zip_postalCode);
     await this.GuestBillingPhnNoField.fill(phnNo);
 
+    // If country is provided, select it from the dropdown
     if (country) {
       await this.GuestBillingCountryDrp.selectOption(country);
     }
+
+    // Click on the update button for billing info
     await this.guestUserStorePickupBillingInfoUpdateBtn.click();
+
+    // Click on the button to proceed to payment checkout
     await this.paymentProceedToCheckOutBtn.click();
   }
 
+  /**
+   * Checks the billing and shipping address are the same and proceeds to checkout.
+   */
   async checkBillingShippingAddressSameCheckboxAndProceedToCheckout() {
+    // Check the billing and shipping address same checkbox
     await this.billingShippingSameCheckBox.check();
+
+    // Click on the button to proceed to payment checkout
     await this.paymentProceedToCheckOutBtn.click();
   }
-  async checkBillingAddressThenProceedToCheckout(addressComponents) {//validate
-    await this.page.waitForTimeout(2000)
+
+  /**
+   * Checks the billing address and then proceeds to checkout.
+   *
+   * @param {Array<string>} addressComponents - The components of the expected billing address.
+   */
+  async checkBillingAddressThenProceedToCheckout(addressComponents) {
+    await this.page.waitForTimeout(2000);
+
+    // Retrieve the current billing address text
     const billAddress = await this.paymentBillingAddress.textContent();
 
-    // Check if all address components are included in billAddress
+    // Check if all address components are included in the billing address
     const addressCheck = addressComponents.every((component) =>
       billAddress.includes(component)
     );
 
+    // If address components match, proceed to checkout; otherwise, log the mismatch
     if (addressCheck) {
       await this.paymentProceedToCheckOutBtn.click();
     } else {
-      console.log("address not matched");
+      console.log("Address not matched");
     }
   }
 }

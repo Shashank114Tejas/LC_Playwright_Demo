@@ -14,65 +14,90 @@ class ConfirmationPage {
     );
   }
 
- 
+  /**
+   * Extracts details data from items rows on a page.
+   *
+   * @param {Page} page - The page to extract data from.
+   * @returns {Object[]} rowData - An array containing details data for each row.
+   */
   async extractItemsDetailsRowData(page) {
     const rowData = []; // Array to store data for each row
-  
+
+    // Counting the number of visible rows
     const rowsCount = await page
       .locator("div.card.card-body p tbody>tr:visible")
       .count();
-  
+
+    // Iterating over each row
     for (let i = 0; i < rowsCount; i++) {
       const row = page.locator("div.card.card-body p tbody>tr").nth(i);
       const cellsCount = await row.locator("td").count();
-  
+
       const cells = row.locator("td");
-  
-      const rowDataItem = {};
+
+      const rowDataItem = {}; // Object to store data for each cell in the row
+      // Iterating over each cell in the row
       for (let j = 0; j < cellsCount; j++) {
         const cellText = await cells.nth(j).innerText();
-        const key = ["Name", "Quantity", "Price"][j];
-        rowDataItem[key] = cellText;
+        const key = ["Name", "Quantity", "Price"][j]; // Determining the key based on cell index
+        rowDataItem[key] = cellText; // Storing cell text with corresponding key
       }
-  
-      rowData.push(rowDataItem);
+
+      rowData.push(rowDataItem); // Adding row data to the rowData array
     }
-  
-    return rowData;
+
+    return rowData; // Returning the array containing details data for each row
   }
-  
+
+  /**
+   * Extracts pricing details data from a page.
+   *
+   * @param {Page} page - The page to extract data from.
+   * @returns {Object[]} rowData - An array containing pricing details data.
+   */
   async extractItemsPricingDetailsData(page) {
     const rowData = []; // Array to store data for each row
 
+    // Counting the number of visible pricing detail sections
     const rowsCount = await page
-        .locator("main#maincontent h4:visible")//7
-        .count();
+      .locator("main#maincontent h4:visible") // Selecting visible pricing detail sections
+      .count();
 
+    // Iterating over each pricing detail section
     for (let i = 0; i < rowsCount; i++) {
-        if (i == 1) {
-            continue;
-        }
+      if (i == 1) {
+        continue; // Skipping the second section
+      }
 
-        const row = page.locator("main#maincontent h4").nth(i);
-        const cellsCount = await row.locator("span").count();
-        const cells = row.locator("span");
+      // Selecting the pricing detail section
+      const row = page.locator("main#maincontent h4").nth(i);
+      const cellsCount = await row.locator("span").count();
+      const cells = row.locator("span");
 
-        const rowDataItem = {};
-        const keys = ["OrderID", "","Subtotal", "Taxes", "Shipping", "ServiceFee", "GrandTotal"];
+      const rowDataItem = {}; // Object to store data for each cell in the section
+      const keys = [
+        "OrderID",
+        "",
+        "Subtotal",
+        "Taxes",
+        "Shipping",
+        "ServiceFee",
+        "GrandTotal",
+      ]; // Keys for each data item
 
-        for (let j = 0; j < cellsCount; j++) {
-            const cellText = await cells.nth(j).innerText();
-            rowDataItem[keys[i]] = cellText;
-        }
+      // Iterating over each cell in the section
+      for (let j = 0; j < cellsCount; j++) {
+        const cellText = await cells.nth(j).innerText();
+        rowDataItem[keys[i]] = cellText; // Storing cell text with corresponding key
+      }
 
-        rowData.push(rowDataItem);
+      rowData.push(rowDataItem); // Adding section data to the rowData array
     }
 
-    return(rowData);
-}
+    return rowData; // Returning the array containing pricing details data
+  }
 
-
-   /**
+  /**
    * Generates a confirmation page URL and performs an action.
    *
    * @param {string} entityId - The ID of the entity.
@@ -80,22 +105,22 @@ class ConfirmationPage {
    */
   async navigateToConfirmationPageAndPerformAction(entityId, action) {
     const allRowData = []; // Array to store data for each iteration
-  
+
     for (const data of this.dataset) {
       const modifiedUrl = data.confirmationPageUrl.replace(
         /entity_id=\d+/,
         `entity_id=${entityId}`
       );
-  
+
       // Create a new tab and navigate to the modified URL
       const newPage = await this.page.context().newPage();
       await newPage.goto(modifiedUrl);
       await newPage.locator("button.btn-primary").waitFor();
-  
+
       const rowData = await this.extractItemsDetailsRowData(newPage);
       allRowData.push(rowData);
-      const rowData2=await this.extractItemsPricingDetailsData(newPage)
-      allRowData.push(rowData2)
+      const rowData2 = await this.extractItemsPricingDetailsData(newPage);
+      allRowData.push(rowData2);
 
       // Perform the action based on the 'action' parameter
       if (action.toLowerCase() === "confirm") {
@@ -103,14 +128,13 @@ class ConfirmationPage {
       } else {
         await newPage.locator("button.btn-warning").click();
       }
-  
+
       // Closing the new tab
       await newPage.close();
     }
-  
-    return(allRowData); ;
+
+    return allRowData;
   }
-  
 }
 
 export { ConfirmationPage };
