@@ -67,6 +67,7 @@ class PaymentDetailsPage {
    * @returns {Promise<string>} The order ID.
    */
   async getPaymentSuccessOrderId() {
+    await this.paymentSuccessOrderNo.waitFor()
     return this.paymentSuccessOrderNo.textContent();
   }
 
