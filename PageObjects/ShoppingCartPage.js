@@ -44,7 +44,6 @@ class ShoppingCartPage {
     await this.updateShoppingCartBtn.click();
 
     // Wait for the page to finish loading after updating the shopping cart
-   await this.page.waitForEvent("domcontentloaded")
    await this.page.waitForTimeout(2000)
   }
 

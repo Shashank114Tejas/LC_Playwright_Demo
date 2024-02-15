@@ -98,10 +98,10 @@ A user navigates to the homepage of the e-commerce website and verifies the head
 ```
 
 ```javascript
-**Test Case: Quick Guest Checkout with Flat Rate Order Type**
+**Test Case: Quick Guest Checkout with Delivery Order Type**
 
 Description:
-This test case performs a quick guest checkout using the flat rate order type.
+This test case performs a quick guest checkout using the Delivery order type.
 
 It involves the following steps:
 - Navigating to the homepage.
@@ -112,7 +112,7 @@ It involves the following steps:
 - Capturing and logging the generated order number.
 - Confirming the successful placement of the order.
 
-Test File Name: TC_04_quickGuestCheckoutFlatRate.test.js
+Test File Name: TC_04_quickGuestCheckoutDelivery.test.js
 
 Scenario:
 A guest user visits the e-commerce website's homepage and adds products to the cart. After selecting the flat rate order type, the guest user proceeds to checkout and provides billing or shipping addresses as per the data from an Excel sheet. The user then enters payment card details to complete the checkout process. Upon successful payment, the order number is captured and logged, confirming the successful placement of the order.
@@ -159,6 +159,7 @@ Test File Name: TC_06_getDefaultBillingShippingAddresses.test.js
 Scenario:
 A user navigates to the e-commerce website's homepage and signs in using provided credentials. After signing in, the user navigates to the My Account page and then to the Address Book page. In the first test case, the user retrieves and logs the default billing and shipping addresses. In the second test case, the user retrieves and logs additional address entries from the address book.
 ```
+
 
 ```javascript
 **Test Case: Product Validation Through Search Panel Using SKU Values**
@@ -215,6 +216,26 @@ Scenarios:
 - A user logs in and navigates to the shopping cart.
 - All products are removed from the cart.
 - The successful removal of all products from the cart is confirmed.
+```
+```javascript
+**Test Case: Get Additional Addresses Entries**
+
+Description:
+This test case involves retrieving additional address entries from the user's address book.
+
+The flow includes:
+
+- Navigating to the specified URL.
+- Signing in with the provided credentials.
+- Navigating to the My Account page.
+- Navigating to the Address Book page.
+- Retrieving additional address entries.
+- Logging the retrieved additional address entries.
+
+Test File Name: TC_09_getAdditionalAddressesEntries.test.js
+
+Scenario:
+A user navigates to the e-commerce website's homepage and signs in using provided credentials. After signing in, the user navigates to the My Account page and then to the Address Book page. The user retrieves and logs additional address entries from the address book.
 ```
 
 ## Contributors

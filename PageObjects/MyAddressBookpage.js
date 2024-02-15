@@ -37,7 +37,7 @@ class MyAddressBookPage {
   async getDefaultBillingAddress() {
     // Get the text content of the default billing address element
     const billAddress = await this.defaultBillingAddress.textContent();
-    console.log(billAddress); // Log the default billing address
+   
     // Format the billing address and return it
     return this.formatData(billAddress);
   }

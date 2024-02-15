@@ -479,7 +479,7 @@ async navigateToShoppingCart() {
 
           // Get the initial count of items in the mini-cart
           const initialCount = await this.minicartItemsList.count();
-          await this.removeIconMinicart.waitFor()
+          await this.removeIconMinicart.last().waitFor()
           // Hover over and click on the remove icon of the first item
           await this.removeIconMinicart.first().hover();
           await this.removeIconMinicart.first().click();

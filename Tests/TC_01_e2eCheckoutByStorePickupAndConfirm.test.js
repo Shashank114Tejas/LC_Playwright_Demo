@@ -21,7 +21,7 @@ const dataset = JSON.parse(
 
  addLoggingHooks(test)
  for (const data of dataset) {
-  test("Valid Login, add items to cart, opt for Store pickup at checkout, and confirm the order.", async ({
+  test("Purchase Flow with Store Pickup and Order Confirmation.", async ({
     page,
   }) => {
     // Navigate to the application URL
@@ -120,7 +120,7 @@ const dataset = JSON.parse(
     }
 
     // Reload page for next iteration
-    await new Promise(resolve => setTimeout(resolve, 5000));
+    await new Promise(resolve => setTimeout(resolve, 7000));
     await page.reload();
     await dashboardPage.NavigateToMyAccountPage();
 
