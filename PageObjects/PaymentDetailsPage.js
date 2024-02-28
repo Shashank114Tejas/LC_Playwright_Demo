@@ -33,7 +33,7 @@ class PaymentDetailsPage {
       if (
         !process.env.CARD_NUMBER ||
         !process.env.CARD_NAME ||
-        !process.env.CARD_CVV ||
+        !process.env.CARD_CVV || "",
         !process.env.CARD_EXPIRY
       ) {
         console.error(

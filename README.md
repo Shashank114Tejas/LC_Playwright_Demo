@@ -1,10 +1,41 @@
 ![RemosysLogo](https://i.imgur.com/O5uPgo2.png)
 
-# Remosys Project - Playwright Test Automation Framework
+# 💻 Remosys Project - Playwright Test Automation Framework
 
+[![Playwright](https://img.shields.io/badge/Playwright-34495E?style=for-the-badge&logo=playwright&logoColor=white)](https://playwright.dev/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://javascript.info/) 
+
+[![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)](https://code.visualstudio.com/)
+[![Playwright HTML Reporter](https://img.shields.io/badge/Playwright%20HTML%20Reporter-<COLOR>?style=for-the-badge&logo=playwright&logoColor=white)](https://www.npmjs.com/package/playwright-html-reporter)
+[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions) 
+
+## 📑 Table of Contents
+
+- [Introduction](#📖-introduction)
+- [Prerequisites](#🛠️-prerequisites)
+- [Application Under Test](#🔍-application-under-test)
+- [Overview](#👓-overview)
+- [Features](#▶️-features)
+- [Running Tests](#🚀-running-tests)
+- [Dependencies](#🔄-dependencies)
+- [Scenarios](#📢-scenarios)
+- [Project Structure](#📁-project-structure)
+- [Configuration](#⚙️-configuration)
+- [Reporting](#📊-reporting)
+- [Contributors](#🤝-contributors)
+- [About RemoSys Technologies](#❤-about-remosys-technologies-❤)
+
+## 📖 Introduction
 This project is a Playwright test automation framework developed by RemoSys Technologies. It is designed to automate end-to-end testing of a web application, providing comprehensive test coverage and robust validation of application functionalities.
 
-## Application Under Test
+
+## 🛠️ Prerequisites
+
+- [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/) (v18.16.1 or higher recommended)
+- [![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/) (v9.5.1 or higher recommended)
+
+
+## 🔍 Application Under Test
 
 We are using `LiquorCart` as the Application Under Test.
 
@@ -12,7 +43,7 @@ We are using `LiquorCart` as the Application Under Test.
 OS : Windows 10
 IDE : Visual Studio Code
 
-## Overview
+## 👓 Overview
 
 The Remosys project consists of the following components:
 
@@ -20,23 +51,23 @@ The Remosys project consists of the following components:
 - **Utils**: Contains utility functions and helpers used across the test automation framework. This includes functions for reading data from Excel files, custom logging hooks, and other helper functions.
 - **Tests**: Contains test cases written using the Playwright test framework. Test cases cover various scenarios and functionalities of the web application.
 
-## Features
+## ▶️ Features 
 
 - **Modular Design**: The framework follows a modular design, separating concerns such as page objects, utilities, and tests for better organization and maintainability.
 - **Custom Logging Hooks**: Custom logging hooks are implemented to provide enhanced logging before and after each test case execution, improving visibility and debugging.
 - **Data-Driven Testing**: Test cases utilize external data sources such as JSON files and Excel sheets for data-driven testing, allowing for easy parameterization and scalability.
 - **Page Object Model (POM)**: The framework adopts the Page Object Model design pattern to improve code reusability, readability, and maintenance of tests.
 
-## Usage
+## 🚀 Running Tests
 
 To run the tests, ensure that Node.js and Playwright are installed. Clone the repository and install dependencies using `npm install`. Then, execute the tests using `npm test`.
 
-## Dependencies
+## 🔄 Dependencies
 
 - [Playwright](https://playwright.dev/): A Node.js library for automating browsers.
 - [ExcelJS](https://github.com/exceljs/exceljs): A library for reading and writing Excel files in JavaScript.
 
-## Scenario
+## 📢 Scenarios
 
 ```javascript
 **Test Case: Purchase Flow with Store Pickup and Order Confirmation**
@@ -237,8 +268,63 @@ Test File Name: TC_09_getAdditionalAddressesEntries.test.js
 Scenario:
 A user navigates to the e-commerce website's homepage and signs in using provided credentials. After signing in, the user navigates to the My Account page and then to the Address Book page. The user retrieves and logs additional address entries from the address book.
 ```
+## 📁 Project Structure
 
-## Contributors
+The tests follow a modular and maintainable structure:
+
+```
+|-- .vscode
+|-- PageObjects   
+|     |-- ConfirmationPage.js
+|     |-- DashBoardPage.js 
+|     |-- LoginPage.js
+|     |-- MyAccountsPage.js
+|     |-- MyAddressBookpage.js
+|     |-- MyOrdersPage.js
+|     |-- OrderSummaryPage.js
+|     |-- PaymentDetailsPage.js
+|     |-- POManager.js
+|     |-- ProductListingPage.js
+|     |-- ShoppingCartPage.js
+|-- Screenshots
+|-- Tests
+|     |-- TC_01_e2eCheckoutByStorePickupAndConfirm.test.js     
+|     |-- TC_02_e2eCheckoutByDeliveryAndReject.test
+|     |-- TC_03_headerValidationBeforeSignIn.test.js
+|     |-- TC_04_quickGuestCheckoutDelivery.test.js
+|     |-- TC_05_editUserFirstnameLastname.test.js
+|     |-- TC_06_getDefaultBillingShippingAddresses.test.js
+|     |-- TC_07_productValidationSearchPanelSKU.test.js
+|     |-- TC_08_shoppingCartFunctionalityValidation.test.js
+|     |-- TC_09_getAdditionalAddressesEntries.test.js
+|-- utils
+|     |-- ClientAppTestData.json
+|     |-- ExcelReader.js
+|     |-- TestUtils.js
+|-- .env
+|-- .gitignore
+|-- package.json
+|-- playwright.config.js
+```
+
+- `playwright-report`: Contains the HTML report for tests (Logs are attached).
+- `.env` :  stores environment variables that configure aspects of application, such as API keys, and other sensitive information.
+- `Tests`: Contains the actual test files. 
+- `utils`: Houses utility functions and data sources for various tasks, such as reading Excel files (`ExcelReader.js`), managing test data (`ClientAppTestData.json`), and providing test utilities (`TestUtils.js`).
+
+
+## ⚙️ Configuration
+
+- Modify `playwright.config.js` for playwright configuration settings such as
+  - `baseURL`
+  - `testDir`
+  - `reporter`
+
+## 📊 Reporting
+
+Playwright HTML report (Logs are attached) is stored in the `playwright-report` directory.
+
+## 🤝 Contributors
 
 - Sonal Kashyap
 - Shubham Srivastava
@@ -248,7 +334,7 @@ A user navigates to the e-commerce website's homepage and signs in using provide
 - Akash Dwarkadas Dilwale
 - Shashank Kumar
 
-## About RemoSys Technologies
+## ❤ About RemoSys Technologies ❤
 
 RemoSys Technologies is a leading software development company specializing in providing cutting-edge solutions for businesses worldwide. With a focus on innovation and quality, RemoSys Technologies delivers bespoke software products and services tailored to meet the unique requirements of its clients.
 

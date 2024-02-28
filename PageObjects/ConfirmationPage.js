@@ -9,6 +9,7 @@ class ConfirmationPage {
     this.rejectOrderBtn = page.locator("button.btn-warning");
     this.actionText = page.locator("h3").last();
     this.allOrderedProductsRows = page.locator("div.card.card-body p tbody>tr");
+    
     this.dataset = JSON.parse(
       JSON.stringify(require("../Utils/ClientAppTestData.json"))
     );
