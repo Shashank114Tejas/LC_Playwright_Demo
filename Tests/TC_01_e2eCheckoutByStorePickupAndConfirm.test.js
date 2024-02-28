@@ -82,10 +82,11 @@ const dataset = JSON.parse(
     const entity_Id = String(orderNo).slice(6, orderNo.length);
 
     // Navigate to My Orders page and extract order details
-    console.log("Navigating to My Orders page and extracting addresses and pricing details...");
+    console.log("Navigating to My Orders page and extracting order and pricing details...");
     await paymentDetailsPage.navigateToMyOrdersPage();
     const myOrdersPage = poManager.getMyOrdersPage();
     const expectedItemsData = await myOrdersPage.extractOrderedItemDetailsDataMyOrdersPage();
+
     const expectedPricing = await myOrdersPage.extractOrderedItemsPricingDataMyOrdersPage();
 
     // Check status before confirmation
@@ -100,6 +101,7 @@ const dataset = JSON.parse(
     const confirmationPage = poManager.getConfirmationPage();
     console.log("Confirming order...");
     const actualItemsData = await confirmationPage.navigateToConfirmationPageAndPerformAction(entity_Id, "confirm");
+
 
     // Validate order data
     console.log("Validating order data...");

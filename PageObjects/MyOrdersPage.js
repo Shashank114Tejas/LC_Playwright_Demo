@@ -8,7 +8,7 @@ class MyOrdersPage {
     this.allOrderedProductsRows = page.locator(
       "table.data.table.table-order-items tbody"
     );
-    this.allOrderedProductsPricingRows = page.locator("tfoot>tr");
+    this.allOrderedProductsPricingRows = page.locator("table#my-orders-table tbody").last();
   }
 
   /**
@@ -23,7 +23,7 @@ class MyOrdersPage {
     const rowsCount = await this.allOrderedProductsRows.count();
 
     // Loop through each row
-    for (let i = 0; i < rowsCount; i++) {
+    for (let i = 0; i < rowsCount-1; i++) {
       // Get the current row element
       const row = this.allOrderedProductsRows.nth(i);
 
@@ -60,12 +60,12 @@ class MyOrdersPage {
     const keys = ["Subtotal", "Shipping", "ServiceFee", "Taxes", "GrandTotal"]; // Manually defined keys
 
     // Count the number of rows containing pricing data
-    const rowsCount = await this.allOrderedProductsPricingRows.count();
+    const rowsCount = await this.allOrderedProductsPricingRows.locator("tr").count();
 
     // Loop through each row
     for (let i = 0; i < rowsCount; i++) {
       // Get the current row element
-      const row = this.allOrderedProductsPricingRows.nth(i);
+      const row = this.allOrderedProductsPricingRows.locator("tr").nth(i);
 
       // Get the cells within the row
       const cells = await row.locator("span");
