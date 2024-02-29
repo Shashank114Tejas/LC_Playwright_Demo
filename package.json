@@ -17,6 +17,8 @@
   "dependencies": {
     "chai": "^5.0.0",
     "dotenv": "^16.3.1",
-    "exceljs": "^4.4.0"
+    "exceljs": "^4.4.0",
+    "log4js": "^6.9.1",
+    "winston-daily-rotate-file": "^5.0.0"
   }
 }

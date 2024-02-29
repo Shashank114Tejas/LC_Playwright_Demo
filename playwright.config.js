@@ -12,7 +12,7 @@ import { defineConfig, devices } from "@playwright/test";
  */
 export default defineConfig({
   testDir: "./Tests",
-  timeout: 240 * 1000,
+  timeout: 180 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -59,18 +59,18 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: "chromium",
-      use: {
-        ...devices["Desktop Chrome"],
-        viewport: { width: 1366, height: 641 },
-      },
-    },
-
     // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
+    //   name: "chromium",
+    //   use: {
+    //     ...devices["Desktop Chrome"],
+    //     viewport: { width: 1366, height: 641 },
+    //   },
     // },
+
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
 
     // {
     //   name: 'webkit',

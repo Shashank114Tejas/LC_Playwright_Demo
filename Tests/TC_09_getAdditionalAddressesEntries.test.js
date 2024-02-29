@@ -13,6 +13,9 @@ These test cases involve retrieving additional addresses entries from the user's
 import { test, expect } from "@playwright/test";
 import { POManager } from "../PageObjects/POManager";
 import { addLoggingHooks } from "../Utils/TestUtils";
+import { logger, logTestCaseStart, logTestCaseEnd } from '../Utils/Logger';
+
+
 
 // Loading test data from a JSON file
 const dataset = JSON.parse(
@@ -24,15 +27,18 @@ addLoggingHooks(test);
 
 // Iterating through each set of test data
 for (const data of dataset) {
+  test("Get Additional Addresses Entries", async ({ page }) => {
+    logTestCaseStart("=>=>=> Get Additional Addresses Entries. <=<=<=");
 
-    test("Get Additional Addresses Entries", async ({ page }) => {
         // Navigate to the specified URL
         await page.goto(data.url);
+        logger.info(`Navigated to URL: ${data.url}`);
+
         const poManager = new POManager(page);
         const dashboardPage = poManager.getDashBoardPage();
 
-        console.log("The user is signing in");
-        console.log();
+        // Log sign-in action
+        logger.info("Signing in...");
         await dashboardPage.clickOnSignInLink();
 
         // Login with provided credentials
@@ -42,8 +48,8 @@ for (const data of dataset) {
         await loginPage.validLogin(data.email, data.password);
         await page.waitForLoadState("networkidle");
 
-        console.log("User Signed in Succesfully!");
-        console.log();
+        // Log sign-in success
+        logger.info("User Signed in Successfully!");
 
         // Navigate to My Account page
         await dashboardPage.NavigateToMyAccountPage();
@@ -54,6 +60,10 @@ for (const data of dataset) {
 
         // Retrieve additional address entries
         const additionalAddresses = await addressBookPage.getAdditionalAddressesEntries();
-        console.log(additionalAddresses);
+        logger.info(`Additional addresses: ${additionalAddresses}`);
+
+      
+    logTestCaseEnd("=>=>=> Get Additional Addresses Entries. <=<=<=");
+
     });
 }

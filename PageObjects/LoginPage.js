@@ -5,9 +5,7 @@ class LoginPage {
 
   constructor(page) {
     this.page = page;
-    this.customerHeading = page.getByRole("heading", {
-      name: "Customer Login",
-    });
+    this.customerHeading = page.locator("h1>span");
     this.emailFeild = page.locator(".control>#email").first();
     this.passwordFeild = page.locator(".control>#pass").first();
     this.signInBtn = page.locator("button#send2").first();

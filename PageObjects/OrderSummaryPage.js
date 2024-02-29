@@ -1,3 +1,4 @@
+import { logger } from '../Utils/Logger'; 
 class OrderSummaryPage {
   /**
    * @param {import('@playwright/test').Page} page
@@ -91,7 +92,7 @@ class OrderSummaryPage {
       await this.storePickupRadioBtn.check();
       await this.nextButton.hover(); // Hover over the next button
 
-      console.log("Selected store pickup radio button");
+      logger.info("Selected store pickup radio button");
 
       // Click on the next button after a delay
       await this.nextButton.waitFor();
@@ -114,7 +115,7 @@ class OrderSummaryPage {
       await this.nextButton.click();
     }
 
-    console.log(`Clicked on ${orderType} order type radio button`);
+    logger.info(`Clicked on ${orderType} order type radio button`);
   }
 
   /**
@@ -204,7 +205,7 @@ class OrderSummaryPage {
     }
 
     // Log the action performed
-    console.log(
+    logger.info(
       `Clicked on ${modifiedData.orderType} order type radio button and filled shipping details`
     );
   }
@@ -350,7 +351,7 @@ class OrderSummaryPage {
     if (addressCheck) {
       await this.paymentProceedToCheckOutBtn.click();
     } else {
-      console.log("Address not matched");
+      logger.info("Address not matched");
     }
   }
 }

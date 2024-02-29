@@ -15,6 +15,8 @@ This test case edits the user's first name and last name on the account page. It
 import { test, expect } from "@playwright/test";
 import { POManager } from "../PageObjects/POManager";
 import { addLoggingHooks } from "../Utils/TestUtils";
+import { logger, logTestCaseStart, logTestCaseEnd } from '../Utils/Logger';
+
 
 // Loading test data from a JSON file
 const dataset = JSON.parse(
@@ -29,13 +31,14 @@ for (const data of dataset) {
     test("Edit User Firstname And Lastname", async ({
         page,
     }) => {
+        logTestCaseStart("=>=>=> Edit User Firstname And Lastname. <=<=<=");
+
         // Navigate to the specified URL
         await page.goto(data.url);
         const poManager = new POManager(page);
         const dashboardPage = poManager.getDashBoardPage();
 
-        console.log("The user is signing in");
-        console.log();
+        logger.info("Signing in...");
         await dashboardPage.clickOnSignInLink();
 
         // Login with provided credentials
@@ -44,31 +47,28 @@ for (const data of dataset) {
         expect(heading?.trim()).toBe("Customer Login");
         await loginPage.validLogin(data.email, data.password);
         await page.waitForLoadState("networkidle");
-    
-        console.log("User Signed in Succesfully!");
-        console.log();
+
+        logger.info("User Signed in Succesfully!");
 
         // Navigate to My Account page
         await dashboardPage.NavigateToMyAccountPage();
         const myAccountsPage = poManager.getMyAccountsPage();
-        console.log();
         
         // Retrieve current first name, last name, and email
         const [firstname, lastname] = await myAccountsPage.getMyAccountFirstNameLastNameEmail();
-        console.log();
-        console.log(`Before editing account firstname, lastname is --> ${firstname} ${lastname}`);
-        console.log();
+        logger.info(`Before editing account firstname, lastname is --> ${firstname} ${lastname}`);
 
         // Edit first name and last name
         await myAccountsPage.editMyAccountFirstNameAndLastName();
 
         // Retrieve updated first name and last name
         const [firstName, lastName] = await myAccountsPage.getMyAccountFirstNameLastNameEmail();
-        console.log();
-        console.log(`After editing account firstname, lastname is --> ${firstName} ${lastName}`);
+        logger.info(`After editing account firstname, lastname is --> ${firstName} ${lastName}`);
 
         // Assert that updated first name and last name match expected values
         expect(["QARemo", "John"]).toContain(firstName);
-        expect(["Sys","Doe"]).toContain(lastName);
+        expect(["Sys", "Doe"]).toContain(lastName);
+        logTestCaseEnd("=>=>=> Edit User Firstname And Lastname. <=<=<=");
+
     })
 }

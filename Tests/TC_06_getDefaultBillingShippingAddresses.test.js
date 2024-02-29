@@ -13,6 +13,8 @@ These test cases involve retrieving default billing/shipping addresses entries f
 import { test, expect } from "@playwright/test";
 import { POManager } from "../PageObjects/POManager";
 import { addLoggingHooks } from "../Utils/TestUtils";
+import { logger, logTestCaseStart, logTestCaseEnd } from '../Utils/Logger';
+
 
 // Loading test data from a JSON file
 const dataset = JSON.parse(
@@ -24,25 +26,26 @@ addLoggingHooks(test);
 
 // Iterating through each set of test data
 for (const data of dataset) {
-    test("Get Default Billing/Shipping Addresses", async ({ page }) => {
+  test("Get Default Billing/Shipping Addresses", async ({ page }) => {
+    logTestCaseStart("=>=>=> Get Default Billing/Shipping Addresses. <=<=<=");
+
         // Navigate to the specified URL
         await page.goto(data.url);
         const poManager = new POManager(page);
         const dashboardPage = poManager.getDashBoardPage();
 
-        console.log("The user is signing in");
-        console.log();
+        logger.info("Signing in...");
         await dashboardPage.clickOnSignInLink();
 
         // Login with provided credentials
         const loginPage = poManager.getLoginPage();
+
         const heading = await loginPage.getCustomerLoginHeading();
         expect(heading?.trim()).toBe("Customer Login");
         await loginPage.validLogin(data.email, data.password);
         await page.waitForLoadState("networkidle");
 
-        console.log("User Signed in Succesfully!");
-        console.log();
+        logger.info("User Signed in Successfully!");
 
         // Navigate to My Account page
         await dashboardPage.NavigateToMyAccountPage();
@@ -56,11 +59,9 @@ for (const data of dataset) {
         const shippingAddress = await addressBookPage.getDefaultShippingAddress();
 
         // Log default billing and shipping addresses
-        console.log(`Default Billing address is :- ${billingAddress}`);
-        console.log();
-        console.log(`Default Shipping address is:- ${shippingAddress}`);
+        logger.info(`Default Billing address is: ${billingAddress}`);
+    logger.info(`Default Shipping address is: ${shippingAddress}`);
+    logTestCaseEnd("=>=>=> Get Default Billing/Shipping Addresses. <=<=<=");
+
     });
-
-
-   
 }

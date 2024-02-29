@@ -1,3 +1,5 @@
+import { logger } from '../Utils/Logger';
+
 class MyAccountsPage {
   /**
    * @param {import('@playwright/test').Page} page
@@ -132,9 +134,9 @@ class MyAccountsPage {
     // Check if the edit was successful and log a message accordingly
     const editSuccess = await this.editSuccessMsg.textContent();
     if (editSuccess.trim() === "You saved the account information.") {
-      console.log("User's Account firstname and lastname are changed");
+     logger.info("User's Account firstname and lastname are changed");
     } else {
-      console.log("-> User's Account firstname and lastname are not changed");
+     logger.info("-> User's Account firstname and lastname are not changed");
     }
   }
 

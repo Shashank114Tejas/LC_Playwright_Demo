@@ -1,5 +1,4 @@
-import { log } from "console";
-
+import { logger } from '../Utils/Logger';
 class DashboardPage {
   /**
    * @param {import('@playwright/test').Page} page
@@ -183,11 +182,11 @@ class DashboardPage {
       if (successmsg != null) {
         return successmsg;
       } else {
-        console.log("No message found");
+        logger.info("No message found");
         return null;
       }
     } catch (error) {
-      console.error("Catch block: Item qty not available");
+      logger.error("Catch block: Item qty not available");
       return null;
     }
   }
@@ -247,8 +246,7 @@ class DashboardPage {
 
               // Check if the URL has changed after adding the product to the cart
               if (currentURL !== newURL) {
-                console.log("Item qty not available, skipping this product");
-                console.log();
+                logger.info("Item qty not available, skipping this product");
                 resolve();
               } else {
                 const msg = await this.getDynamicSuccessfulProductAddedMsg();
@@ -260,20 +258,19 @@ class DashboardPage {
                       `You added ${productName} to your shopping cart.`
                     )
                   ) {
-                    console.log(`${productName} added in cart`);
-                    console.log();
+                   logger.info(`${productName} added in cart`);
 
                     // Assert the success message
                     if (await this.assertDynamicProductAddedMsg(productName))
                       resolve(); // Exit the function if the product is added
                   } else {
-                    console.log(
+                    logger.info(
                       "1st else block: The requested qty is not available"
                     );
                     resolve();
                   }
                 } else {
-                  console.log(
+                  logger.info(
                     "2nd else block: The requested qty is not available and I am on product listing page"
                   );
                   // Exit the function if no message is found
@@ -294,7 +291,7 @@ class DashboardPage {
       }
     }
 
-    console.log(`Product ${productName} not found on any page.`);
+    logger.info(`Product ${productName} not found on any page.`);
   }
 
   /**
@@ -306,10 +303,10 @@ class DashboardPage {
     const { CategoryName, SubCategoryName, ProductName } = data;
 
     // Log received data for debugging
-    console.log(`Data received: ${JSON.stringify(data)}`);
-    console.log(`Checking categoryName: ${JSON.stringify(CategoryName)}`);
-    console.log(`Checking subcategoryName: ${JSON.stringify(SubCategoryName)}`);
-    console.log(`Checking productName: ${JSON.stringify(ProductName)}`);
+    logger.info(`Data received: ${JSON.stringify(data)}`);
+    logger.info(`Checking categoryName: ${JSON.stringify(CategoryName)}`);
+    logger.info(`Checking subcategoryName: ${JSON.stringify(SubCategoryName)}`);
+    logger.info(`Checking productName: ${JSON.stringify(ProductName)}`);
 
     // Wait for the last link to be visible
     await this.allhrefs.last().waitFor();
@@ -335,7 +332,7 @@ class DashboardPage {
             JSON.stringify(data.CategoryName).slice(1, -1).toLowerCase().trim()
           )
       ) {
-        console.log(
+        logger.info(
           `Category matched: ${JSON.stringify(data.CategoryName).toLowerCase()}`
         );
 
@@ -348,7 +345,7 @@ class DashboardPage {
           .getAttribute("aria-expanded");
 
         if (isCategoryExpanded === "true") {
-          console.log("Category is expanded");
+          logger.info("Category is expanded");
 
           // Get the list of subcategories
           const subCategoryList = this.page.locator(
@@ -372,7 +369,7 @@ class DashboardPage {
                 .toLowerCase()
                 .includes(SubCategoryName.toLowerCase().trim())
             ) {
-              console.log(`Subcategory matched: ${SubCategoryName}`);
+              logger.info(`Subcategory matched: ${SubCategoryName}`);
 
               // Click on the subcategory link
               await subCategoryList.nth(j).click();
@@ -383,7 +380,7 @@ class DashboardPage {
 
           // If the subcategory is not found, click on the category link
           if (!subcategoryFound) {
-            console.log("Subcategory not found, clicking on the category");
+            logger.info("Subcategory not found, clicking on the category");
             await this.allhrefs.nth(i).locator("a").first().click();
           }
 
@@ -404,7 +401,7 @@ class DashboardPage {
 
     // Check if the page header indicates the user is on the My Account page
     if ((await this.myAccountPageHeader.textContent()) === "My Account") {
-      console.log("User is on the My Account page");
+      logger.info("User is on the My Account page");
     }
   }
 
@@ -428,14 +425,14 @@ class DashboardPage {
       try {
         // Check if a success message is displayed
         const successmsg = await this.getDynamicSuccessfulProductAddedMsg();
-        if (successmsg != null) console.log(successmsg.trim());
+        if (successmsg != null) logger.info(successmsg.trim());
       } catch (error) {
-        console.error("Item qty not available");
+        logger.error("Item qty not available");
         throw new Error("Item qty not available");
       }
     } else {
       // Log a message if no products are found with the given SKU value
-      console.log(`Did not find any product with the SKU value ${SKU_Value}`);
+      logger.info(`Did not find any product with the SKU value ${SKU_Value}`);
     }
   }
 
@@ -457,7 +454,7 @@ async navigateToShoppingCart() {
     await this.shoppingCartViewAndEditLink.hover();
     await this.shoppingCartViewAndEditLink.click();
   } catch (error) {
-    console.error("Error navigating to shopping cart:", error);
+    logger.error("Error navigating to shopping cart:", error);
   }
 }
 

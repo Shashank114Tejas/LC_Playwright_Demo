@@ -13,6 +13,8 @@ import { test, expect } from '@playwright/test'
 import { POManager } from '../PageObjects/POManager';
 import { ExcelReader } from "../Utils/excelReader";
 import { addLoggingHooks } from '../Utils/TestUtils';
+import { logger, logTestCaseStart, logTestCaseEnd } from '../Utils/Logger';
+
 
 // Loading test data from a JSON file
 const dataset = JSON.parse(
@@ -25,6 +27,8 @@ addLoggingHooks(test);
 // Iterating through each set of test data
 for (const data of dataset) {
     test("Product Validation Through Search Panel Using SKU Values", async ({ page }) => {
+        logTestCaseStart("=>=>=> Product Validation Through Search Panel Using SKU Values. <=<=<=");
+
         // Navigate to the specified URL
         await page.goto(data.url);
         await page.waitForLoadState("domcontentloaded");
@@ -37,17 +41,16 @@ for (const data of dataset) {
         const sheetName = "SearchPanelList";
         const excelData = await excelReader.getData(sheetName);
         
-        console.log("Extracting data from excel and adding products to the cart");
-        console.log();
+        logger.info("Adding products to the cart from Excel data...");
         
         // Iterating through each data row from the Excel sheet
         for (const data of excelData) {
-            console.log();
-            console.log(`Looking for ${data.SKU_Values} SKU value`);
+            logger.info(`Looking for ${data.SKU_Values} SKU value`);
             // Adding products to cart using SKU value
             await dashboardPage.findAndAddProductToCartUsingSKU(data.SKU_Values);
         }
-        console.log();
-        console.log("All available products are added in the cart through SKU values");
+        logger.info("All available products are added in the cart through SKU values");
+        logTestCaseEnd("=>=>=> Product Validation Through Search Panel Using SKU Values. <=<=<=");
+
     })
 }

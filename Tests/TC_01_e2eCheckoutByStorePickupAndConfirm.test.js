@@ -8,39 +8,45 @@ This test case validates the purchase flow on an e-commerce platform. It involve
 - Confirming the order and checking the updated status on My Account page.
 */
 
+// Importing necessary dependencies and utilities
 import { test, expect } from "@playwright/test";
 import { POManager } from "../PageObjects/POManager";
-import { ExcelReader } from "../Utils/excelReader";
+import { ExcelReader } from "../Utils/ExcelReader";
 import { addLoggingHooks } from "../Utils/TestUtils";
+import { logger, logTestCaseStart, logTestCaseEnd } from '../Utils/Logger';
 
 
-//passing data from Json Object
+// Loading test data from a JSON file
 const dataset = JSON.parse(
   JSON.stringify(require("../Utils/ClientAppTestData.json"))
 );
 
- addLoggingHooks(test)
- for (const data of dataset) {
+// Adding logging hooks for better test reporting
+addLoggingHooks(test);
+
+// Iterating through each set of test data
+for (const data of dataset) {
   test("Purchase Flow with Store Pickup and Order Confirmation.", async ({
     page,
   }) => {
+    logTestCaseStart("=>=>=> Purchase Flow with Store Pickup and Order Confirmation. <=<=<=");
     // Navigate to the application URL
     await page.goto(data.url);
-    console.log(`Navigating to URL: ${data.url}`);
+    logger.info(`Navigating to URL: ${data.url}`);
 
     // Initialize Page Object Manager
     const poManager = new POManager(page);
     const dashboardPage = poManager.getDashBoardPage();
 
     // Sign in to the application
-    console.log("Signing in...");
+    logger.info("Signing in...");
     await dashboardPage.clickOnSignInLink();
     const loginPage = poManager.getLoginPage();
     const heading = await loginPage.getCustomerLoginHeading();
-    console.log("Verifying login page heading:", heading.trim());
+    logger.info(` Verifying login page heading: ${heading.trim()}`);
     await loginPage.validLogin(data.email, data.password);
     await page.waitForLoadState("networkidle");
-    console.log("User signed in successfully!");
+    logger.info("User signed in successfully!");
 
     // Load test data from Excel
     const excelReader = new ExcelReader('LC_Workbook.xlsx');
@@ -49,40 +55,40 @@ const dataset = JSON.parse(
     const excelData = await excelReader.getData(sheetName);
 
     // Add products to the cart from Excel data
-    console.log("Adding products to the cart from Excel data...");
+    logger.info("Adding products to the cart from Excel data...");
     for (const data1 of excelData) {
       await dashboardPage.navigateAndAddProductsToCart(data1);
     }
-    console.log("All available products added to the cart");
+    logger.info("All available products added to the cart");
 
     // Proceed to checkout
     const productListingPage = poManager.getProductListingPage();
-    console.log("Proceeding to checkout...");
+    logger.info("Proceeding to checkout...");
     await productListingPage.proceedToCheckout();
 
     // Select Store Pickup option at checkout
     const orderSummaryPage = poManager.getOrderSummaryPage();
-    console.log("Selecting Store Pickup at checkout...");
+    logger.info("Selecting Store Pickup at checkout...");
     await orderSummaryPage.enableOrderTypeRadioBtn("Store Pickup");
 
     // Validate billing address and proceed to checkout
-    console.log("Validating address and proceeding to checkout...");
+    logger.info("Validating address and proceeding to checkout...");
     await orderSummaryPage.checkBillingAddressThenProceedToCheckout(data.billingAddress);
 
     // Fill payment card details
     const paymentDetailsPage = poManager.getPaymentDetailsPage();
-    console.log("Filling payment card details...");
+    logger.info("Filling payment card details...");
     await paymentDetailsPage.fillPaymentCardDetails();
 
     // Get the order number after successful payment
     const orderNo = await paymentDetailsPage.getPaymentSuccessOrderId();
-    console.log("Payment successful! Order number:", orderNo);
+    logger.info("Payment successful! Order number:", orderNo);
 
     // Extract entity ID from order number
     const entity_Id = String(orderNo).slice(6, orderNo.length);
 
     // Navigate to My Orders page and extract order details
-    console.log("Navigating to My Orders page and extracting order and pricing details...");
+    logger.info("Navigating to My Orders page and extracting order and pricing details...");
     await paymentDetailsPage.navigateToMyOrdersPage();
     const myOrdersPage = poManager.getMyOrdersPage();
     const expectedItemsData = await myOrdersPage.extractOrderedItemDetailsDataMyOrdersPage();
@@ -90,35 +96,34 @@ const dataset = JSON.parse(
     const expectedPricing = await myOrdersPage.extractOrderedItemsPricingDataMyOrdersPage();
 
     // Check status before confirmation
-    console.log("Checking before/after status from My Accounts Page...");
+    logger.info("Checking before/after status from My Accounts Page...");
     await dashboardPage.NavigateToMyAccountPage();
     const myAccountsPage = poManager.getMyAccountsPage();
     const beforeActionStatus = await myAccountsPage.checkOrderStatus(orderNo);
-    console.log("Before action status:", beforeActionStatus);
+    logger.info(`Before action status: ${beforeActionStatus}` );
     expect(beforeActionStatus).toBe("Processing");
 
     // Confirm order
     const confirmationPage = poManager.getConfirmationPage();
-    console.log("Confirming order...");
+    logger.info("Confirming order...");
     const actualItemsData = await confirmationPage.navigateToConfirmationPageAndPerformAction(entity_Id, "confirm");
 
-
     // Validate order data
-    console.log("Validating order data...");
+    logger.info("Validating order data...");
     const isValid = await myOrdersPage.validateOrderData(expectedItemsData, actualItemsData);
     if (isValid) {
-      console.log("Data validation successful!");
+      logger.info("Data validation successful!");
     } else {
-      console.log("Data validation failed!");
+      logger.info("Data validation failed!");
     }
 
     // Validate pricing data
-    console.log("Validating pricing details...");
+    logger.info("Validating pricing details...");
     const isPricingValid = await myOrdersPage.validatePricingData(expectedPricing, actualItemsData, orderNo);
     if (isPricingValid) {
-      console.log("Pricing validation successful!");
+      logger.info("Pricing validation successful!");
     } else {
-      console.log("Pricing validation failed!");
+      logger.info("Pricing validation failed!");
     }
 
     // Reload page for next iteration
@@ -128,30 +133,10 @@ const dataset = JSON.parse(
 
     // Check status after confirmation
     const afterActionStatus = await myAccountsPage.checkOrderStatus(orderNo);
-    console.log("After action status:", afterActionStatus);
+    logger.info(`After action status: ${afterActionStatus}`);
     expect(afterActionStatus).toBe("Confirmed");
 
-    console.log("Congratulations! Order successfully placed.");
+    logger.info("Congratulations! Order successfully placed.");
+    logTestCaseEnd("=>=>=> Purchase Flow with Store Pickup and Order Confirmation. <=<=<=");
   });
 }
-
-
- 
-
-
-/**
- * 1. valid login and add products to cart and checkout ||Done
- * 2. guest user and add products to cart and checkout  ||Done
-
- * 1. Buy a product ||P1 Done
- * 2. Quick Checkout ||P1 Done
- * 3. Header Validation  ||P1 Done
- * 
- * 4. New User Registration||P2 || Captcha
- * 5. Menu  Validation ||P2 //In process
- * 6. Search Panel ||P2 
- * 7. My account/edit/change password/ ||P2 //recent orders/reorder
- * 8. Cart Validation settings/edit ||P2 //
- *
- *
- */

@@ -1,0 +1,56 @@
+INFO - 
+🚀 Starting test case: =>=>=> Purchase Flow with Store Pickup and Order Confirmation. <=<=<= 🚀
+
+INFO - Navigating to URL: https://qa-josephsbeverage-teststore.epicommercestore.com/
+INFO - Signing in...
+INFO -  Verifying login page heading: Customer Login
+INFO - User signed in successfully!
+INFO - Adding products to the cart from Excel data...
+INFO - Data received: {"CategoryName":"POP","SubCategoryName":"RED-BULL","ProductName":"Red Bull SF 6 pack"}
+INFO - Checking categoryName: "POP"
+INFO - Checking subcategoryName: "RED-BULL"
+INFO - Checking productName: "Red Bull SF 6 pack"
+INFO - Category matched: "pop"
+INFO - Category is expanded
+INFO - Subcategory matched: RED-BULL
+INFO - Red Bull SF 6 pack added in cart
+INFO - Data received: {"CategoryName":"OH-LIQUOR","SubCategoryName":"BRANDY","ProductName":"HENNESSY XO - 4103B"}
+INFO - Checking categoryName: "OH-LIQUOR"
+INFO - Checking subcategoryName: "BRANDY"
+INFO - Checking productName: "HENNESSY XO - 4103B"
+INFO - Category matched: "oh-liquor"
+INFO - Category is expanded
+INFO - Subcategory matched: BRANDY
+INFO - Product HENNESSY XO - 4103B not found on any page.
+INFO - Data received: {"CategoryName":"OH-LIQUOR","SubCategoryName":"SCOTCH","ProductName":"CLASSIC MALTS - COASTAL PACK - 6669H"}
+INFO - Checking categoryName: "OH-LIQUOR"
+INFO - Checking subcategoryName: "SCOTCH"
+INFO - Checking productName: "CLASSIC MALTS - COASTAL PACK - 6669H"
+INFO - Category matched: "oh-liquor"
+INFO - Category is expanded
+INFO - Subcategory matched: SCOTCH
+INFO - CLASSIC MALTS - COASTAL PACK - 6669H added in cart
+INFO - Data received: {"CategoryName":"TOBACCO","SubCategoryName":"KING-EDWARD","ProductName":"KING EDWARD"}
+INFO - Checking categoryName: "TOBACCO"
+INFO - Checking subcategoryName: "KING-EDWARD"
+INFO - Checking productName: "KING EDWARD"
+INFO - Category matched: "tobacco"
+INFO - Category is expanded
+INFO - Subcategory matched: KING-EDWARD
+INFO - Item qty not available, skipping this product
+INFO - Data received: {"CategoryName":"E-Cig","SubCategoryName":"Breeze","ProductName":"Breeze Watermelon Mint"}
+INFO - Checking categoryName: "E-Cig"
+INFO - Checking subcategoryName: "Breeze"
+INFO - Checking productName: "Breeze Watermelon Mint"
+INFO - Category matched: "e-cig"
+INFO - Category is expanded
+INFO - Subcategory matched: Breeze
+INFO - Item qty not available, skipping this product
+INFO - All available products added to the cart
+INFO - Proceeding to checkout...
+INFO - Selecting Store Pickup at checkout...
+INFO - Selected store pickup radio button
+INFO - Clicked on Store Pickup order type radio button
+INFO - Validating address and proceeding to checkout...
+INFO - Filling payment card details...
+ERROR - One or more required environment variables are not defined.

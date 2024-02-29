@@ -15,6 +15,8 @@ import { test, expect } from "@playwright/test";
 import { POManager } from "../PageObjects/POManager";
 import { ExcelReader } from "../Utils/excelReader";
 import { addLoggingHooks } from "../Utils/TestUtils";
+import { logger, logTestCaseStart, logTestCaseEnd } from '../Utils/Logger';
+
 
 // Loading test data from a JSON file
 const dataset = JSON.parse(
@@ -27,6 +29,8 @@ addLoggingHooks(test);
 // Iterating through each set of test data
 for (const data of dataset) {
   test("Quick Guest Checkout with Delivery Order Type", async ({ page }) => {
+    logTestCaseStart("=>=>=> Quick Guest Checkout with Delivery Order Type. <=<=<=");
+
     // Navigate to the specified URL
     await page.goto(data.url);
     await page.waitForLoadState("domcontentloaded");
@@ -46,20 +50,18 @@ for (const data of dataset) {
     const sheetName = "GuestUserItemsList";
     const excelData = await excelReader.getData(sheetName);
 
-    console.log("Extracting data from excel and adding products to the cart");
-    console.log();
+    // Log info
+    logger.info("Adding products to the cart from Excel data...");
     
     // Iterate through each product data and add them to the cart
     for (const data1 of excelData) {
       await dashboardPage.navigateAndAddProductsToCart(data1);
     }
-    console.log("Available products added in the cart");
-    console.log();
+    logger.info("Available products added in the cart");
 
     // Proceed to checkout after adding products to the cart
     const productListingPage = poManager.getProductListingPage();
-    console.log("Clicking on Proceed To Checkout button from shopping cart icon");
-    console.log();
+    logger.info("Clicking on Proceed To Checkout button from shopping cart icon");
     await productListingPage.proceedToCheckout();
 
     // Initialize Order Summary Page
@@ -70,8 +72,7 @@ for (const data of dataset) {
     const excelData2 = await excelReader.getData(sheetName2);
 
     // Iterate through each address data and enable guest user order type radio button and checkout
-    console.log("Selecting order type radio button, adding addresses and checking out");
-    console.log();
+    logger.info("Selecting order type radio button, adding addresses and checking out");
     for (const address of excelData2) {
       await orderSummaryPage.enableGuestUserOrderTypeRadioBtnAndCheckout(address);
     }
@@ -80,17 +81,15 @@ for (const data of dataset) {
     const paymentDetailsPage = poManager.getPaymentDetailsPage();
 
     // Fill payment card details and capture the order number
-    console.log("Entering card details");
-    console.log();
+    logger.info("Filling payment card details...");
     await paymentDetailsPage.fillPaymentCardDetails();
     const orderNo = await paymentDetailsPage.getGuestUserPaymentSuccessOrderID();
-    console.log("Payment successful!! Order number is generated.");
-    console.log(`Order No is: ${orderNo}`);
-    console.log();
+    logger.info("Payment successful!! Order number is generated.");
+    logger.info(`Order No is: ${orderNo}`);
 
     // Log the success message
-    console.log(
-      `Congratulations you've successfully placed an order with orderId: ${orderNo}`
-    );
+    logger.info(`Congratulations you've successfully placed an order with orderId: ${orderNo}`);
+    logTestCaseEnd("=>=>=> Quick Guest Checkout with Delivery Order Type. <=<=<=");
+
   });
 }

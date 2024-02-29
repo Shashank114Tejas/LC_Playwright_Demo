@@ -1,0 +1,16 @@
+INFO - 
+🚀 Starting test case: =>=>=> Header Validation on Homepage Before Sign-In. <=<=<= 🚀
+
+INFO - Store info is being displayed as : Josephs Beverage Center-test, 4129 Talmadge RD, Toledo, Ohio, 43623
+INFO - Merchant's phone and hours info is being displayed as : (631) 494-3506 Open from 9:00 am to 6:00 pm
+INFO - Logo is displayed on the homepage of the application
+INFO - Shopping Cart icon is displayed
+INFO - Logo functionality is working fine
+INFO - The Account functions is not functioning properly as it is displayed on the homepage for users who are not logged in.
+INFO - Shopping cart functionality is working fine when no product is added
+INFO - Sign in Functionality is working fine, User is logged in
+INFO - Sign out functionality is working fine, User is logged out
+INFO - Congratulations!! All Header Validation is Successful
+INFO - 
+✅ Finished test case: =>=>=> Header Validation on Homepage Before Sign-In <=<=<= ✅
+

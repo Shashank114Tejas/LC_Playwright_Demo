@@ -1,3 +1,4 @@
+import { logger } from '../Utils/Logger';
 class MyOrdersPage {
   /**
    * @param {import('@playwright/test').Page} page
@@ -103,7 +104,7 @@ class MyOrdersPage {
 
       // Check if the matching actual item exists
       if (!matchingActualItem) {
-        console.log(`Product "${expectedItem.Name}" not found in actual data.`);
+       logger.info(`Product "${expectedItem.Name}" not found in actual data.`);
         return false; // Return false if the item is not found
       }
 
@@ -114,7 +115,7 @@ class MyOrdersPage {
 
         // Check if the quantities match
         if (expectedQTY !== actualQTY) {
-          console.log(
+         logger.info(
             `Quantity mismatch for "${expectedItem.Name}": expected "${expectedQTY}", actual "${actualQTY}"`
           );
           return false; // Return false if the quantities do not match
@@ -129,7 +130,7 @@ class MyOrdersPage {
 
       // Check if the prices match
       if (expectedPrice !== actualPrice) {
-        console.log(
+       logger.info(
           `Price mismatch for "${expectedItem.Name}": expected ${expectedPrice}, actual ${actualPrice}`
         );
         return false; // Return false if the prices do not match
@@ -164,19 +165,19 @@ class MyOrdersPage {
 
     // Check if OrderID exists in actualPricingData
     if (!actualOrderID) {
-      console.log("OrderID not found in actualPricingData.");
+     logger.info("OrderID not found in actualPricingData.");
       return false;
     }
 
     // Check if the actual OrderID matches the expected OrderID
     if (actualOrderID !== orderID) {
-      console.log(
+      logger.info(
         `OrderID mismatch: expected ${orderID}, actual ${actualOrderID}`
       );
       return false;
     }
 
-    console.log(`OrderNo:-${actualOrderID} verified`);
+    logger.info(`OrderNo:-${actualOrderID} verified`);
 
     // Compare values for each key
     for (let i = 0; i < keysToCompare.length; i++) {
@@ -193,7 +194,7 @@ class MyOrdersPage {
       );
 
       // Log expected and actual values
-      console.log(
+      logger.info(
         `Expected ${[key]}:  ${expectedValue}, Actual ${[key]}: ${actualValue}`
       );
 
@@ -202,7 +203,7 @@ class MyOrdersPage {
         Math.abs(expectedValue - actualValue) > 0.0001 &&
         !(expectedValue === 0 && actualValue === 0)
       ) {
-        console.log(
+        logger.info(
           `Value mismatch for "${key}": expected ${expectedValue}, actual ${actualValue}`
         );
         return false;

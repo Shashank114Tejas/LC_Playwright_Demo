@@ -1,3 +1,5 @@
+import { logger } from "../Utils/Logger";
+
 // Import dotenv and load the configuration
 require("dotenv").config();
 
@@ -23,7 +25,7 @@ class PaymentDetailsPage {
    * This method fills the payment card details using environment variables such as
    *  card number, name, CVV, and expiry date. After filling the details, it waits for the page to load
    *  and then clicks on the payment button.
-   *  If any error occurs during the process, it's logged to the console.
+   *  If any error occurs during the process, it's logged to the logfile.
    * Fills the payment card details using environment variables and proceeds with payment.
    *
    */
@@ -36,7 +38,7 @@ class PaymentDetailsPage {
         !process.env.CARD_CVV || "",
         !process.env.CARD_EXPIRY
       ) {
-        console.error(
+        logger.error(
           "One or more required environment variables are not defined."
         );
         return;
@@ -58,7 +60,7 @@ class PaymentDetailsPage {
       // Click on the payment button
       await this.payBtn.click();
     } catch (error) {
-      console.error("Error while filling payment card details:", error.message);
+      logger.error("Error while filling payment card details:", error.message);
     }
   }
 

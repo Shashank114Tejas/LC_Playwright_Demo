@@ -274,6 +274,7 @@ The tests follow a modular and maintainable structure:
 
 ```
 |-- .vscode
+|-- logs
 |-- PageObjects   
 |     |-- ConfirmationPage.js
 |     |-- DashBoardPage.js 
@@ -300,17 +301,17 @@ The tests follow a modular and maintainable structure:
 |-- utils
 |     |-- ClientAppTestData.json
 |     |-- ExcelReader.js
+|     |-- Logger.js
+|     |-- runData.json
 |     |-- TestUtils.js
-|-- .env
 |-- .gitignore
 |-- package.json
 |-- playwright.config.js
 ```
 
 - `playwright-report`: Contains the HTML report for tests (Logs are attached).
-- `.env` :  stores environment variables that configure aspects of application, such as API keys, and other sensitive information.
 - `Tests`: Contains the actual test files. 
-- `utils`: Houses utility functions and data sources for various tasks, such as reading Excel files (`ExcelReader.js`), managing test data (`ClientAppTestData.json`), and providing test utilities (`TestUtils.js`).
+- `utils`: Houses utility functions and data sources for various tasks, such as reading Excel files (`ExcelReader.js`), managing test data (`ClientAppTestData.json`), providing test utilities (`TestUtils.js`), Contains configuration for the logging framework (`Logger.js`) and Stores information about test runs, such as the last run date and the number of runs (`runData.json`).
 
 
 ## ⚙️ Configuration
