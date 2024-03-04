@@ -3,72 +3,34 @@ import path from 'path';
 import log4js from 'log4js';
 
 // File path for storing run data
-const runDataFilePath = path.resolve(__dirname, 'runData.json');
+const runDataFilePath = path.resolve("Utils", 'runData.json');
+const logsFolderPath = path.resolve("logs");
 
-// Load run data from file or initialize if file doesn't exist
-let { lastRunDate, runCount } = { lastRunDate: '', runCount: 0 };
-if (fs.existsSync(runDataFilePath)) {
-  try {
-    const data = fs.readFileSync(runDataFilePath, 'utf8');
-    if (data) {
-      const parsedData = JSON.parse(data);
-      lastRunDate = parsedData.lastRunDate || '';
-      runCount = parsedData.runCount || 0;
-    }
-  } catch (error) {
-    console.error('Error loading run data:', error);
-  }
+// Ensure logs directory exists
+if (!fs.existsSync(logsFolderPath)) {
+  fs.mkdirSync(logsFolderPath);
 }
 
-// Function to save run data to file
-function saveRunData() {
-  try {
-    const data = JSON.stringify({ lastRunDate, runCount });
-    fs.writeFileSync(runDataFilePath, data, 'utf8');
-  } catch (error) {
-    console.error('Error saving run data:', error);
-  }
-}
+// Delete all existing log files
+fs.readdirSync(logsFolderPath).forEach(file => {
+  const filePath = path.join(logsFolderPath, file);
+  fs.unlinkSync(filePath);
+});
 
-// Function to check if the current date is different from the last run date
-function isNewDay() {
-  const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const day = String(currentDate.getDate()).padStart(2, '0');
-  const currentDateStr = `${year}-${month}-${day}`;
-  return currentDateStr !== lastRunDate;
-}
-
-// Increment run count and handle new day logic
-const currentDate = new Date();
-const year = currentDate.getFullYear();
-const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-const day = String(currentDate.getDate()).padStart(2, '0');
-const currentDateStr = `${year}-${month}-${day}`;
-if (isNewDay()) {
-  lastRunDate = currentDateStr;
-  runCount = 1; // Reset run count to 1 for a new day
-} else {
-  runCount++; // Increment run count for the same day
-}
-
-// Generate unique identifier
-const uniqueId = `${lastRunDate}_${runCount}`;
+// Generate a unique filename for the log file
+const currentTimestamp = new Date().toISOString().replace(/:/g, "-");
+const logFileName = `${currentTimestamp}.log`;
+const logFilePath = path.join(logsFolderPath, logFileName);
 
 // Configure log4js
 log4js.configure({
   appenders: {
     file: {
       type: 'file',
-      filename: `logs/${uniqueId}.log`, // Include unique identifier in the filename
+      filename: logFilePath,
       maxLogSize: 10485760, // 10MB
       backups: 3,
-      compress: true,
-      layout: {
-        type: 'pattern',
-        pattern:'%p - %m' // Include log level (%p) and message (%m) without timestamp
-      }
+      compress: true
     }
   },
   categories: {
@@ -77,6 +39,11 @@ log4js.configure({
 });
 
 const logger = log4js.getLogger();
+
+// Function to save run data to file (if needed)
+function saveRunData() {
+  // You can add code here to save run data if required
+}
 
 // Hook into process exit event to save run data before exiting
 process.on('exit', () => {

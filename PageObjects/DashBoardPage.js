@@ -1,4 +1,4 @@
-import { logger } from '../Utils/Logger';
+import { logger } from "../Utils/Logger";
 class DashboardPage {
   /**
    * @param {import('@playwright/test').Page} page
@@ -58,6 +58,7 @@ class DashboardPage {
     this.minicartItemsList = page.locator(
       "div.minicart-wrapper.active div.product-item-details"
     );
+   
   }
 
   /**
@@ -75,6 +76,7 @@ class DashboardPage {
     return new Promise((resolve) => {
       setTimeout(async () => {
         // Simulating a click on the shopping cart icon
+        await this.page.waitForTimeout(1000);
         await this.shoppingCartIcon.click();
         // Extracting the text of the empty cart message
         const text = await this.emptyCartMsg.textContent();
@@ -258,7 +260,7 @@ class DashboardPage {
                       `You added ${productName} to your shopping cart.`
                     )
                   ) {
-                   logger.info(`${productName} added in cart`);
+                    logger.info(`${productName} added in cart`);
 
                     // Assert the success message
                     if (await this.assertDynamicProductAddedMsg(productName))
@@ -436,29 +438,26 @@ class DashboardPage {
     }
   }
 
- /**
- * Navigates to the shopping cart.
- * Resolves the promise after navigating to the cart.
- * @returns {Promise<void>}
- */
-async navigateToShoppingCart() {
-  await this.shoppingCartIcon.waitFor();
-  await this.allhrefs.last().waitFor();
-  try {
-    await this.page.waitForTimeout(2000);
-    // Click on the shopping cart icon
-    await this.shoppingCartIcon.click();
-   
+  /**
+   * Navigates to the shopping cart.
+   * Resolves the promise after navigating to the cart.
+   * @returns {Promise<void>}
+   */
+  async navigateToShoppingCart() {
+    await this.shoppingCartIcon.waitFor();
+    await this.allhrefs.last().waitFor();
+    try {
+      await this.page.waitForTimeout(2000);
+      // Click on the shopping cart icon
+      await this.shoppingCartIcon.click();
 
-    // Hover over and click on the "View and Edit Cart" link
-    await this.shoppingCartViewAndEditLink.hover();
-    await this.shoppingCartViewAndEditLink.click();
-  } catch (error) {
-    logger.error("Error navigating to shopping cart:", error);
+      // Hover over and click on the "View and Edit Cart" link
+      await this.shoppingCartViewAndEditLink.hover();
+      await this.shoppingCartViewAndEditLink.click();
+    } catch (error) {
+      logger.error("Error navigating to shopping cart:", error);
+    }
   }
-}
-
-
 
   /**
    * Removes the first item from the mini-cart.
@@ -476,7 +475,7 @@ async navigateToShoppingCart() {
 
           // Get the initial count of items in the mini-cart
           const initialCount = await this.minicartItemsList.count();
-          await this.removeIconMinicart.last().waitFor()
+          await this.removeIconMinicart.last().waitFor();
           // Hover over and click on the remove icon of the first item
           await this.removeIconMinicart.first().hover();
           await this.removeIconMinicart.first().click();
@@ -504,6 +503,20 @@ async navigateToShoppingCart() {
         }
       }, 2000);
     });
+  }
+
+  async proceedToCheckOutThroughMinicart() {
+    // Wait for 2 seconds
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    // Click on the shopping cart icon
+    await this.shoppingCartIcon.click();
+
+    // Click on the proceed to checkout button
+    await this.proceedToCheckoutBtn.click();
+
+    // Wait for the page to load completely
+    await this.page.waitForLoadState("domcontentloaded");
   }
 }
 

@@ -44,7 +44,7 @@ class ShoppingCartPage {
     await this.updateShoppingCartBtn.click();
 
     // Wait for the page to finish loading after updating the shopping cart
-   await this.page.waitForTimeout(2000)
+    await this.page.waitForTimeout(2000);
   }
 
   /**
@@ -83,6 +83,17 @@ class ShoppingCartPage {
    */
   async getEmptyCartTextAfterDeletion() {
     return this.noItemsInCartText.textContent();
+  }
+
+  async updateCartForReOrder() {
+    await this.page.waitForTimeout(2000);
+
+    await this.updateShoppingCartBtn.waitFor()
+     // Click on the update shopping cart button to apply the changes    
+     // Wait for the page to finish loading after updating the shopping cart
+    await this.updateShoppingCartBtn.click();
+
+//  await this.page.pause()
   }
 }
 

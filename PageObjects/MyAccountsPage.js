@@ -1,4 +1,5 @@
-import { logger } from '../Utils/Logger';
+import { waitForDebugger } from "inspector";
+import { logger } from "../Utils/Logger";
 
 class MyAccountsPage {
   /**
@@ -15,6 +16,9 @@ class MyAccountsPage {
     this.page = page;
     this.viewAllOrdersLink = page.locator(
       "div.block-title.order a.action.view>span"
+    );
+    this.recentOrdersList = page.locator(
+      "table.data.table.table-order-items tbody>tr"
     );
     this.allOrdersRowInsinglePage = page.locator(
       "table.data.table.table-order-items.history tbody>tr"
@@ -41,6 +45,13 @@ class MyAccountsPage {
     );
     this.sidebarAddressBookLink = page.locator(
       "div.sidebar.sidebar-main li>a[href*='address']"
+    );
+    this.recentlyOrderedHeading = page.locator("strong#block-reorder-heading");
+    this.recentlyOrderedProductsList = page.locator(
+      "ol#cart-sidebar-reorder>li "
+    );
+    this.recentlyOrderedAddToCartBtn = page.locator(
+      "div.sidebar.sidebar-additional button[title='Add to Cart']>span"
     );
   }
 
@@ -134,9 +145,9 @@ class MyAccountsPage {
     // Check if the edit was successful and log a message accordingly
     const editSuccess = await this.editSuccessMsg.textContent();
     if (editSuccess.trim() === "You saved the account information.") {
-     logger.info("User's Account firstname and lastname are changed");
+      logger.info("User's Account firstname and lastname are changed");
     } else {
-     logger.info("-> User's Account firstname and lastname are not changed");
+      logger.info("-> User's Account firstname and lastname are not changed");
     }
   }
 
@@ -146,6 +157,33 @@ class MyAccountsPage {
    */
   async navigateToAddressBookPage() {
     await this.sidebarAddressBookLink.click();
+  }
+
+  // async addRecentlyOrderedProductsToCart() {
+  //   await this.recentlyOrderedHeading.waitFor()
+  //   for (let i = 0; i < await this.recentlyOrderedProductsList.count(); i++){
+  //     await this.recentlyOrderedProductsList.nth(i).locator("input[type=checkbox]").check();
+  //   }
+  //   await this.recentlyOrderedAddToCartBtn.click()
+  //   await this.page.pause()
+  // }
+
+  async reOrder() {
+    for (let i = 0; i < (await this.recentOrdersList.count()); i++) {
+      if (
+        (await this.recentOrdersList
+          .nth(i)
+          .locator(" td[data-th=Status]")
+          .textContent()) == "Processing" ||
+        (await this.recentOrdersList
+          .nth(i)
+          .locator(" td[data-th=Status]")
+          .textContent()) == "Pending"
+      ) {
+        await this.recentOrdersList.nth(i).locator(" td[data-th=Actions] a.action.order").click();
+        break;
+      }
+    }
   }
 }
 
