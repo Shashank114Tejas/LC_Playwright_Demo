@@ -68,8 +68,8 @@ class Browser extends _instrumentation.SdkObject {
     };
   }
   async stopPendingOperations(reason) {
-    var _this$_contextForReus, _this$_contextForReus2;
-    await ((_this$_contextForReus = this._contextForReuse) === null || _this$_contextForReus === void 0 ? void 0 : (_this$_contextForReus2 = _this$_contextForReus.context) === null || _this$_contextForReus2 === void 0 ? void 0 : _this$_contextForReus2.stopPendingOperations(reason));
+    var _this$_contextForReus;
+    await ((_this$_contextForReus = this._contextForReuse) === null || _this$_contextForReus === void 0 || (_this$_contextForReus = _this$_contextForReus.context) === null || _this$_contextForReus === void 0 ? void 0 : _this$_contextForReus.stopPendingOperations(reason));
   }
   _downloadCreated(page, uuid, url, suggestedFilename) {
     const download = new _download.Download(page, this.options.downloadsPath || '', uuid, url, suggestedFilename);

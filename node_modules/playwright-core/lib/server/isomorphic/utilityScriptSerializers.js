@@ -177,7 +177,6 @@ function source() {
         } catch (e) {
           continue; // native bindings will throw sometimes
         }
-
         if (name === 'toJSON' && typeof item === 'function') o.push({
           k: name,
           v: {

@@ -26,8 +26,8 @@ var _timeoutRunner = require("../utils/timeoutRunner");
 var _locatorParser = require("../utils/isomorphic/locatorParser");
 var _stringUtils = require("../utils/isomorphic/stringUtils");
 var _eventsHelper = require("./../utils/eventsHelper");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 /**
  * Copyright (c) Microsoft Corporation.
  *
@@ -144,7 +144,7 @@ class Recorder {
       var _this$_recorderApp;
       this._recorderSources = data.sources;
       this._pushAllSources();
-      (_this$_recorderApp = this._recorderApp) === null || _this$_recorderApp === void 0 ? void 0 : _this$_recorderApp.setFileIfNeeded(data.primaryFileName);
+      (_this$_recorderApp = this._recorderApp) === null || _this$_recorderApp === void 0 || _this$_recorderApp.setFileIfNeeded(data.primaryFileName);
     });
     await this._context.exposeBinding('__pw_recorderState', false, source => {
       let actionSelector = '';
@@ -213,7 +213,7 @@ class Recorder {
     } of this._debugger.pausedDetails()) {
       if (!this._currentCallsMetadata.has(metadata)) this.onBeforeCall(sdkObject, metadata);
     }
-    (_this$_recorderApp3 = this._recorderApp) === null || _this$_recorderApp3 === void 0 ? void 0 : _this$_recorderApp3.setPaused(this._debugger.isPaused());
+    (_this$_recorderApp3 = this._recorderApp) === null || _this$_recorderApp3 === void 0 || _this$_recorderApp3.setPaused(this._debugger.isPaused());
     this._updateUserSources();
     this.updateCallLog([...this._currentCallsMetadata.keys()]);
   }
@@ -222,7 +222,7 @@ class Recorder {
     if (this._mode === mode) return;
     this._highlightedSelector = '';
     this._mode = mode;
-    (_this$_recorderApp4 = this._recorderApp) === null || _this$_recorderApp4 === void 0 ? void 0 : _this$_recorderApp4.setMode(this._mode);
+    (_this$_recorderApp4 = this._recorderApp) === null || _this$_recorderApp4 === void 0 || _this$_recorderApp4.setMode(this._mode);
     this._contextRecorder.setEnabled(this._mode === 'recording' || this._mode === 'assertingText' || this._mode === 'assertingVisibility' || this._mode === 'assertingValue');
     this._debugger.setMuted(this._mode === 'recording' || this._mode === 'assertingText' || this._mode === 'assertingVisibility' || this._mode === 'assertingValue');
     if (this._mode !== 'none' && this._mode !== 'standby' && this._context.pages().length === 1) this._context.pages()[0].bringToFront().catch(() => {});
@@ -258,7 +258,7 @@ class Recorder {
     } else if (metadata.params && metadata.params.selector) {
       var _this$_recorderApp5;
       this._highlightedSelector = metadata.params.selector;
-      (_this$_recorderApp5 = this._recorderApp) === null || _this$_recorderApp5 === void 0 ? void 0 : _this$_recorderApp5.setSelector(this._highlightedSelector).catch(() => {});
+      (_this$_recorderApp5 = this._recorderApp) === null || _this$_recorderApp5 === void 0 || _this$_recorderApp5.setSelector(this._highlightedSelector).catch(() => {});
     }
   }
   async onAfterCall(sdkObject, metadata) {
@@ -306,11 +306,11 @@ class Recorder {
       }
     }
     this._pushAllSources();
-    if (fileToSelect) (_this$_recorderApp6 = this._recorderApp) === null || _this$_recorderApp6 === void 0 ? void 0 : _this$_recorderApp6.setFileIfNeeded(fileToSelect);
+    if (fileToSelect) (_this$_recorderApp6 = this._recorderApp) === null || _this$_recorderApp6 === void 0 || _this$_recorderApp6.setFileIfNeeded(fileToSelect);
   }
   _pushAllSources() {
     var _this$_recorderApp7;
-    (_this$_recorderApp7 = this._recorderApp) === null || _this$_recorderApp7 === void 0 ? void 0 : _this$_recorderApp7.setSources([...this._recorderSources, ...this._userSources.values()]);
+    (_this$_recorderApp7 = this._recorderApp) === null || _this$_recorderApp7 === void 0 || _this$_recorderApp7.setSources([...this._recorderSources, ...this._userSources.values()]);
   }
   async onBeforeInputAction(sdkObject, metadata) {}
   async onCallLog(sdkObject, metadata, logName, message) {
@@ -327,7 +327,7 @@ class Recorder {
       if (this._debugger.isPaused(metadata)) status = 'paused';
       logs.push((0, _recorderUtils.metadataToCallLog)(metadata, status));
     }
-    (_this$_recorderApp8 = this._recorderApp) === null || _this$_recorderApp8 === void 0 ? void 0 : _this$_recorderApp8.updateCallLogs(logs);
+    (_this$_recorderApp8 = this._recorderApp) === null || _this$_recorderApp8 === void 0 || _this$_recorderApp8.updateCallLogs(logs);
   }
   _readSource(fileName) {
     try {
@@ -384,7 +384,7 @@ class ContextRecorder extends _events.EventEmitter {
         };
         source.revealLine = text.split('\n').length - 1;
         this._recorderSources.push(source);
-        if (languageGenerator === this._orderedLanguages[0]) (_this$_throttledOutpu = this._throttledOutputFile) === null || _this$_throttledOutpu === void 0 ? void 0 : _this$_throttledOutpu.setContent(source.text);
+        if (languageGenerator === this._orderedLanguages[0]) (_this$_throttledOutpu = this._throttledOutputFile) === null || _this$_throttledOutpu === void 0 || _this$_throttledOutpu.setContent(source.text);
       }
       this.emit(ContextRecorder.Events.Change, {
         sources: this._recorderSources,
@@ -393,23 +393,23 @@ class ContextRecorder extends _events.EventEmitter {
     });
     context.on(_browserContext.BrowserContext.Events.BeforeClose, () => {
       var _this$_throttledOutpu2;
-      (_this$_throttledOutpu2 = this._throttledOutputFile) === null || _this$_throttledOutpu2 === void 0 ? void 0 : _this$_throttledOutpu2.flush();
+      (_this$_throttledOutpu2 = this._throttledOutputFile) === null || _this$_throttledOutpu2 === void 0 || _this$_throttledOutpu2.flush();
     });
     this._listeners.push(_eventsHelper.eventsHelper.addEventListener(process, 'exit', () => {
       var _this$_throttledOutpu3;
-      (_this$_throttledOutpu3 = this._throttledOutputFile) === null || _this$_throttledOutpu3 === void 0 ? void 0 : _this$_throttledOutpu3.flush();
+      (_this$_throttledOutpu3 = this._throttledOutputFile) === null || _this$_throttledOutpu3 === void 0 || _this$_throttledOutpu3.flush();
     }));
     this._generator = generator;
   }
   setOutput(codegenId, outputFile) {
     var _this$_generator;
-    const languages = new Set([new _java.JavaLanguageGenerator(), new _javascript.JavaScriptLanguageGenerator( /* isPlaywrightTest */false), new _javascript.JavaScriptLanguageGenerator( /* isPlaywrightTest */true), new _python.PythonLanguageGenerator( /* isAsync */false, /* isPytest */true), new _python.PythonLanguageGenerator( /* isAsync */false, /* isPytest */false), new _python.PythonLanguageGenerator( /* isAsync */true, /* isPytest */false), new _csharp.CSharpLanguageGenerator('mstest'), new _csharp.CSharpLanguageGenerator('nunit'), new _csharp.CSharpLanguageGenerator('library'), new _jsonl.JsonlLanguageGenerator()]);
+    const languages = new Set([new _java.JavaLanguageGenerator('junit'), new _java.JavaLanguageGenerator('library'), new _javascript.JavaScriptLanguageGenerator( /* isPlaywrightTest */false), new _javascript.JavaScriptLanguageGenerator( /* isPlaywrightTest */true), new _python.PythonLanguageGenerator( /* isAsync */false, /* isPytest */true), new _python.PythonLanguageGenerator( /* isAsync */false, /* isPytest */false), new _python.PythonLanguageGenerator( /* isAsync */true, /* isPytest */false), new _csharp.CSharpLanguageGenerator('mstest'), new _csharp.CSharpLanguageGenerator('nunit'), new _csharp.CSharpLanguageGenerator('library'), new _jsonl.JsonlLanguageGenerator()]);
     const primaryLanguage = [...languages].find(l => l.id === codegenId);
     if (!primaryLanguage) throw new Error(`\n===============================\nUnsupported language: '${codegenId}'\n===============================\n`);
     languages.delete(primaryLanguage);
     this._orderedLanguages = [primaryLanguage, ...languages];
     this._throttledOutputFile = outputFile ? new ThrottledFile(outputFile) : null;
-    (_this$_generator = this._generator) === null || _this$_generator === void 0 ? void 0 : _this$_generator.restart();
+    (_this$_generator = this._generator) === null || _this$_generator === void 0 || _this$_generator.restart();
   }
   languageName(id) {
     for (const lang of this._orderedLanguages) {
@@ -690,7 +690,7 @@ async function findFrameSelector(frame) {
     const utility = await parent._utilityContext();
     const injected = await utility.injectedScript();
     const selector = await injected.evaluate((injected, element) => {
-      return injected.generateSelector(element, {
+      return injected.generateSelectorSimple(element, {
         testIdAttributeName: '',
         omitInternalEngines: true
       });

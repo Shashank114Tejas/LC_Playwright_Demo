@@ -20,8 +20,8 @@ var _writableStreamDispatcher = require("./writableStreamDispatcher");
 var _dialogDispatcher = require("./dialogDispatcher");
 var _errors = require("../errors");
 var _elementHandlerDispatcher = require("./elementHandlerDispatcher");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 /**
  * Copyright (c) Microsoft Corporation.
  *
@@ -90,8 +90,9 @@ class BrowserContextDispatcher extends _dispatcher.Dispatcher {
       });
     });
     this.addObjectListener(_browserContext.BrowserContext.Events.Console, message => {
-      if (this._shouldDispatchEvent(message.page(), 'console')) {
-        const pageDispatcher = _pageDispatcher.PageDispatcher.from(this, message.page());
+      const page = message.page();
+      if (this._shouldDispatchEvent(page, 'console')) {
+        const pageDispatcher = _pageDispatcher.PageDispatcher.from(this, page);
         this._dispatchEvent('console', {
           page: pageDispatcher,
           type: message.type(),
@@ -171,8 +172,8 @@ class BrowserContextDispatcher extends _dispatcher.Dispatcher {
     });
   }
   _shouldDispatchNetworkEvent(request, event) {
-    var _request$frame4, _request$frame4$_page;
-    return this._shouldDispatchEvent((_request$frame4 = request.frame()) === null || _request$frame4 === void 0 ? void 0 : (_request$frame4$_page = _request$frame4._page) === null || _request$frame4$_page === void 0 ? void 0 : _request$frame4$_page.initializedOrUndefined(), event);
+    var _request$frame4;
+    return this._shouldDispatchEvent((_request$frame4 = request.frame()) === null || _request$frame4 === void 0 || (_request$frame4 = _request$frame4._page) === null || _request$frame4 === void 0 ? void 0 : _request$frame4.initializedOrUndefined(), event);
   }
   _shouldDispatchEvent(page, event) {
     if (this._subscriptions.has(event)) return true;

@@ -9,6 +9,7 @@ exports.fileUploadSizeLimit = exports.existsAsync = void 0;
 exports.mkdirIfNeeded = mkdirIfNeeded;
 exports.removeFolders = removeFolders;
 exports.sanitizeForFilePath = sanitizeForFilePath;
+exports.toPosixPath = toPosixPath;
 var _fs = _interopRequireDefault(require("fs"));
 var _path = _interopRequireDefault(require("path"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -59,4 +60,7 @@ async function copyFileAndMakeWritable(from, to) {
 }
 function sanitizeForFilePath(s) {
   return s.replace(/[\x00-\x2C\x2E-\x2F\x3A-\x40\x5B-\x60\x7B-\x7F]+/g, '-');
+}
+function toPosixPath(aPath) {
+  return aPath.split(_path.default.sep).join(_path.default.posix.sep);
 }

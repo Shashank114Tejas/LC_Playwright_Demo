@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.cssEscape = cssEscape;
 exports.escapeForAttributeSelector = escapeForAttributeSelector;
 exports.escapeForTextSelector = escapeForTextSelector;
+exports.escapeRegExp = escapeRegExp;
 exports.escapeWithQuotes = escapeWithQuotes;
 exports.isString = isString;
 exports.normalizeEscapedRegexQuotes = normalizeEscapedRegexQuotes;
@@ -104,4 +105,8 @@ function trimString(input, cap, suffix = '') {
 }
 function trimStringWithEllipsis(input, cap) {
   return trimString(input, cap, '\u2026');
+}
+function escapeRegExp(s) {
+  // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }

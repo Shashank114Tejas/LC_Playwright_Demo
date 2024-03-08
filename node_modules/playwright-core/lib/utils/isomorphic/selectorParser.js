@@ -252,7 +252,6 @@ function parseAttributeSelector(selector, allowUnquotedStrings) {
     || char === '\u005f' // "_"
     || char === '\u002d'; // "-"
   }
-
   function readIdentifier() {
     let result = '';
     skipSpaces();

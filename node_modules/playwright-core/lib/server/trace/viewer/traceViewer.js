@@ -168,7 +168,7 @@ async function openTraceInBrowser(traceUrls, options) {
   } = await startTraceViewerServer(traceUrls, options);
   // eslint-disable-next-line no-console
   console.log('\nListening on ' + url);
-  if (!(0, _utils.isUnderTest)()) await (0, _utilsBundle.open)(url).catch(() => {});
+  if (!(0, _utils.isUnderTest)()) await (0, _utilsBundle.open)(url.replace('0.0.0.0', 'localhost')).catch(() => {});
 }
 class StdinServer {
   constructor() {
@@ -195,7 +195,7 @@ class StdinServer {
     var _this$sendEvent;
     this._traceUrl = url;
     clearTimeout(this._pollTimer);
-    (_this$sendEvent = this.sendEvent) === null || _this$sendEvent === void 0 ? void 0 : _this$sendEvent.call(this, 'loadTrace', {
+    (_this$sendEvent = this.sendEvent) === null || _this$sendEvent === void 0 || _this$sendEvent.call(this, 'loadTrace', {
       url
     });
   }

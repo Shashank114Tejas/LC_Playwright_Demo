@@ -11,7 +11,7 @@ var _socksProxy = require("../common/socksProxy");
 var _utils = require("../utils");
 var _android = require("../server/android/android");
 var _debugControllerDispatcher = require("../server/dispatchers/debugControllerDispatcher");
-var _debugLogger = require("../common/debugLogger");
+var _debugLogger = require("../utils/debugLogger");
 /**
  * Copyright (c) Microsoft Corporation.
  *
@@ -109,7 +109,7 @@ class PlaywrightConnection {
     const playwright = this._preLaunched.playwright;
 
     // Note: connected client owns the socks proxy and configures the pattern.
-    (_this$_preLaunched$so = this._preLaunched.socksProxy) === null || _this$_preLaunched$so === void 0 ? void 0 : _this$_preLaunched$so.setPattern(this._options.socksProxyPattern);
+    (_this$_preLaunched$so = this._preLaunched.socksProxy) === null || _this$_preLaunched$so === void 0 || _this$_preLaunched$so.setPattern(this._options.socksProxyPattern);
     const browser = this._preLaunched.browser;
     browser.on(_browser.Browser.Events.Disconnected, () => {
       // Underlying browser did close for some reason - force disconnect the client.

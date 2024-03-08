@@ -85,16 +85,17 @@ class ShoppingCartPage {
     return this.noItemsInCartText.textContent();
   }
 
-  async updateCartForReOrder() {
-    await this.page.waitForTimeout(2000);
+//   async updateCartForReOrder() {
+//     // Wait for the update shopping cart button to be visible
+//     await this.updateShoppingCartBtn.waitFor({ state: 'visible' });
 
-    await this.updateShoppingCartBtn.waitFor()
-     // Click on the update shopping cart button to apply the changes    
-     // Wait for the page to finish loading after updating the shopping cart
-    await this.updateShoppingCartBtn.click();
+//     // Click on the update shopping cart button to apply the changes
+//     await this.updateShoppingCartBtn.click();
 
-//  await this.page.pause()
-  }
+//     // Wait for the page to finish loading after updating the shopping cart
+//     await this.page.waitForLoadState('domcontentloaded');
+// }
+
 }
 
 export { ShoppingCartPage };

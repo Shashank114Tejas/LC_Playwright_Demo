@@ -88,6 +88,7 @@ const Events = exports.Events = {
   },
   ElectronApplication: {
     Close: 'close',
+    Console: 'console',
     Window: 'window'
   }
 };

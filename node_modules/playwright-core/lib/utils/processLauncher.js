@@ -13,8 +13,8 @@ var childProcess = _interopRequireWildcard(require("child_process"));
 var readline = _interopRequireWildcard(require("readline"));
 var _ = require("./");
 var _fileUtils = require("./fileUtils");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 /**
  * Copyright 2017 Google Inc. All rights reserved.
@@ -95,6 +95,11 @@ function addProcessHandlerIfNeeded(name) {
     process.on(name, processHandlers[name]);
   }
 }
+function removeProcessHandlersIfNeeded() {
+  if (killSet.size) return;
+  for (const handler of installedHandlers) process.off(handler, processHandlers[handler]);
+  installedHandlers.clear();
+}
 async function launchProcess(options) {
   const stdio = options.stdio === 'pipe' ? ['ignore', 'pipe', 'pipe', 'pipe', 'pipe'] : ['pipe', 'pipe', 'pipe'];
   options.log(`<launching> ${options.command} ${options.args ? options.args.join(' ') : ''}`);
@@ -149,6 +154,7 @@ async function launchProcess(options) {
     processClosed = true;
     gracefullyCloseSet.delete(gracefullyClose);
     killSet.delete(killProcessAndCleanup);
+    removeProcessHandlersIfNeeded();
     options.onExit(exitCode, signal);
     // Cleanup as process exits.
     cleanup().then(fulfillCleanup);
@@ -182,6 +188,7 @@ async function launchProcess(options) {
   function killProcess() {
     gracefullyCloseSet.delete(gracefullyClose);
     killSet.delete(killProcessAndCleanup);
+    removeProcessHandlersIfNeeded();
     options.log(`[pid=${spawnedProcess.pid}] <kill>`);
     if (spawnedProcess.pid && !spawnedProcess.killed && !processClosed) {
       options.log(`[pid=${spawnedProcess.pid}] <will force kill>`);

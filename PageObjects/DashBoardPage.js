@@ -506,18 +506,22 @@ class DashboardPage {
   }
 
   async proceedToCheckOutThroughMinicart() {
-    // Wait for 2 seconds
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // Wait for 1 second
+    await this.page.waitForTimeout(1000);
 
     // Click on the shopping cart icon
     await this.shoppingCartIcon.click();
+
+    // Wait for the proceed to checkout button to be visible
+    await this.proceedToCheckoutBtn.waitFor({ state: 'visible' });
 
     // Click on the proceed to checkout button
     await this.proceedToCheckoutBtn.click();
 
     // Wait for the page to load completely
     await this.page.waitForLoadState("domcontentloaded");
-  }
+}
+
 }
 
 export { DashboardPage };

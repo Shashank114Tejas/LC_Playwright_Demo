@@ -18,57 +18,91 @@ import { addLoggingHooks } from "../Utils/TestUtils";
 import { logger, logTestCaseStart, logTestCaseEnd } from '../Utils/Logger';
 
 
-// Loading test data from a JSON file
-const dataset = JSON.parse(
-  JSON.stringify(require("../Utils/ClientAppTestData.json"))
-);
+test.describe("Test Case Title", () => {
 
-// Adding logging hooks for better test reporting
-addLoggingHooks(test);
+    // Loading test data from a JSON file
+    const dataset = JSON.parse(
+        JSON.stringify(require("../Utils/ClientAppTestData.json"))
+    );
 
-// Iterating through each set of test data
-for (const data of dataset) {
-    test("Edit User Firstname And Lastname", async ({
-        page,
-    }) => {
-        logTestCaseStart("=>=>=> Edit User Firstname And Lastname. <=<=<=");
+    // Adding logging hooks for better test reporting
+    addLoggingHooks(test);
 
-        // Navigate to the specified URL
-        await page.goto(data.url);
-        const poManager = new POManager(page);
-        const dashboardPage = poManager.getDashBoardPage();
+    // Iterating through each set of test data
+    for (const data of dataset) {
+        test("Edit User Firstname And Lastname", async ({ page }) => {
+            
+            test.info().annotations.push({
+                type: 'Description',
+                description: `This test case edits the user's first name and last name on the account page. It involves:
+                - Navigating to the specified URL.
+                - Signing in with the provided credentials.
+                - Navigating to the My Account page.
+                - Retrieving the current first name, last name, and email.
+                - Logging the current first name and last name.
+                - Editing the first name and last name.
+                - Retrieving the updated first name and last name.
+                - Logging the updated first name and last name.
+                - Asserting that the updated first name and last name match the expected values.`
+            });
 
-        logger.info("Signing in...");
-        await dashboardPage.clickOnSignInLink();
+            logTestCaseStart("=>=>=> Edit User Firstname And Lastname. <=<=<=");
 
-        // Login with provided credentials
-        const loginPage = poManager.getLoginPage();
-        const heading = await loginPage.getCustomerLoginHeading();
-        expect(heading?.trim()).toBe("Customer Login");
-        await loginPage.validLogin(data.email, data.password);
-        await page.waitForLoadState("networkidle");
+            // Step: Navigate to the specified URL
+            await test.step("Navigate to the specified URL", async () => {
+                await page.goto(data.url);
+            });
 
-        logger.info("User Signed in Succesfully!");
+            const poManager = new POManager(page);
+            const dashboardPage = poManager.getDashBoardPage();
+            await test.step("Login with valid credentials", async () => {
+                logger.info("Signing in...");
+                await dashboardPage.clickOnSignInLink();
+    
+                // Login with provided credentials
+                const loginPage = poManager.getLoginPage();
+                const heading = await loginPage.getCustomerLoginHeading();
+                expect(heading?.trim()).toBe("Customer Login");
+                await loginPage.validLogin(data.email, data.password);
+                await page.waitForLoadState("networkidle");
+    
+                logger.info("User Signed in Succesfully!");
+                          });
+          
+            // Step: Navigate to My Account page
+            await test.step("Navigate to My Account page", async () => {
+                await dashboardPage.NavigateToMyAccountPage();
+            });
 
-        // Navigate to My Account page
-        await dashboardPage.NavigateToMyAccountPage();
-        const myAccountsPage = poManager.getMyAccountsPage();
-        
-        // Retrieve current first name, last name, and email
-        const [firstname, lastname] = await myAccountsPage.getMyAccountFirstNameLastNameEmail();
-        logger.info(`Before editing account firstname, lastname is --> ${firstname} ${lastname}`);
+            const myAccountsPage = poManager.getMyAccountsPage();
+            
+            // Step: Retrieve current first name, last name, and email
+            await test.step("Retrieve current first name, last name, and email", async () => {
+                const [firstname, lastname] = await myAccountsPage.getMyAccountFirstNameLastNameEmail();
+                logger.info(`Before editing account firstname, lastname is --> ${firstname} ${lastname}`);            });
+           
 
-        // Edit first name and last name
-        await myAccountsPage.editMyAccountFirstNameAndLastName();
+            // Step: Edit first name and last name
+            await test.step("Edit first name and last name", async () => {
+                await myAccountsPage.editMyAccountFirstNameAndLastName();
+            });
 
-        // Retrieve updated first name and last name
-        const [firstName, lastName] = await myAccountsPage.getMyAccountFirstNameLastNameEmail();
-        logger.info(`After editing account firstname, lastname is --> ${firstName} ${lastName}`);
+            // Step: Retrieve updated first name and last name
+            await test.step("Retrieve updated first name, last name, ", async () => {
+            const [firstName, lastName] = await myAccountsPage.getMyAccountFirstNameLastNameEmail();
+                logger.info(`After editing account firstname, lastname is --> ${firstName} ${lastName}`);
+                 // Step: Assert that updated first name and last name match expected values
+            await test.step("Assert that updated first name and last name match expected values", async () => {
+                expect(["QARemo", "John"]).toContain(firstName);
+                expect(["Sys", "Doe"]).toContain(lastName);
+            });
+                
+            });
+            
+            
+            logTestCaseEnd("=>=>=> Edit User Firstname And Lastname. <=<=<=");
 
-        // Assert that updated first name and last name match expected values
-        expect(["QARemo", "John"]).toContain(firstName);
-        expect(["Sys", "Doe"]).toContain(lastName);
-        logTestCaseEnd("=>=>=> Edit User Firstname And Lastname. <=<=<=");
+        })
+    }
 
-    })
-}
+});

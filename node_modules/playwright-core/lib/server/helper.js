@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.helper = void 0;
-var _debugLogger = require("../common/debugLogger");
+var _debugLogger = require("../utils/debugLogger");
 var _eventsHelper = require("../utils/eventsHelper");
 /**
  * Copyright 2017 Google Inc. All rights reserved.

@@ -19,7 +19,7 @@ var _userAgent = require("../../utils/userAgent");
 var _ascii = require("../../utils/ascii");
 var _utils = require("../../utils");
 var _fileUtils = require("../../utils/fileUtils");
-var _debugLogger = require("../../common/debugLogger");
+var _debugLogger = require("../../utils/debugLogger");
 var _progress = require("../progress");
 var _timeoutSettings = require("../../common/timeoutSettings");
 var _helper = require("../helper");
@@ -68,7 +68,7 @@ class Chromium extends _browserType.BrowserType {
       'User-Agent': (0, _userAgent.getUserAgent)()
     };else if (headersMap && !Object.keys(headersMap).some(key => key.toLowerCase() === 'user-agent')) headersMap['User-Agent'] = (0, _userAgent.getUserAgent)();
     const artifactsDir = await _fs.default.promises.mkdtemp(ARTIFACTS_FOLDER);
-    const wsEndpoint = await urlToWSEndpoint(progress, endpointURL);
+    const wsEndpoint = await urlToWSEndpoint(progress, endpointURL, headersMap);
     progress.throwIfAborted();
     const chromeTransport = await _transport.WebSocketTransport.connect(progress, wsEndpoint, headersMap);
     const cleanedUp = new _manualPromise.ManualPromise();
@@ -305,12 +305,13 @@ class Chromium extends _browserType.BrowserType {
   }
 }
 exports.Chromium = Chromium;
-async function urlToWSEndpoint(progress, endpointURL) {
+async function urlToWSEndpoint(progress, endpointURL, headers) {
   if (endpointURL.startsWith('ws')) return endpointURL;
   progress.log(`<ws preparing> retrieving websocket url from ${endpointURL}`);
   const httpURL = endpointURL.endsWith('/') ? `${endpointURL}json/version/` : `${endpointURL}/json/version/`;
   const json = await (0, _network.fetchData)({
-    url: httpURL
+    url: httpURL,
+    headers
   }, async (_, resp) => new Error(`Unexpected status ${resp.statusCode} when connecting to ${httpURL}.\n` + `This does not look like a DevTools server, try connecting via ws://.`));
   return JSON.parse(json).webSocketDebuggerUrl;
 }

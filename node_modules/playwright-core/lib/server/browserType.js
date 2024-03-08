@@ -17,12 +17,12 @@ var _timeoutSettings = require("../common/timeoutSettings");
 var _utils = require("../utils");
 var _fileUtils = require("../utils/fileUtils");
 var _helper = require("./helper");
-var _debugLogger = require("../common/debugLogger");
+var _debugLogger = require("../utils/debugLogger");
 var _instrumentation = require("./instrumentation");
 var _manualPromise = require("../utils/manualPromise");
 var _protocolError = require("./protocolError");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 /**
  * Copyright (c) Microsoft Corporation.
@@ -164,7 +164,7 @@ class BrowserType extends _instrumentation.SdkObject {
       const registryExecutable = _registry.registry.findExecutable(options.channel || this._name);
       if (!registryExecutable || registryExecutable.browserName !== this._name) throw new Error(`Unsupported ${this._name} channel "${options.channel}"`);
       executable = registryExecutable.executablePathOrDie(this.attribution.playwright.options.sdkLanguage);
-      await registryExecutable.validateHostRequirements(this.attribution.playwright.options.sdkLanguage);
+      await _registry.registry.validateHostRequirementsForExecutablesIfNeeded([registryExecutable], this.attribution.playwright.options.sdkLanguage);
     }
     const waitForWSEndpoint = options.useWebSocket || (_options$args = options.args) !== null && _options$args !== void 0 && _options$args.some(a => a.startsWith('--remote-debugging-port')) ? new _manualPromise.ManualPromise() : undefined;
     const waitForJuggler = this._name === 'firefox' ? new _manualPromise.ManualPromise() : undefined;
@@ -203,7 +203,7 @@ class BrowserType extends _instrumentation.SdkObject {
       },
       onExit: (exitCode, signal) => {
         // Unblock launch when browser prematurely exits.
-        waitForJuggler === null || waitForJuggler === void 0 ? void 0 : waitForJuggler.resolve();
+        waitForJuggler === null || waitForJuggler === void 0 || waitForJuggler.resolve();
         if (browserProcess && browserProcess.onclose) browserProcess.onclose(exitCode, signal);
       }
     });

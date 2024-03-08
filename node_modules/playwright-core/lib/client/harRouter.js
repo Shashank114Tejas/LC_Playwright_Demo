@@ -4,8 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.HarRouter = void 0;
-var _debugLogger = require("../common/debugLogger");
-var _events = require("./events");
+var _debugLogger = require("../utils/debugLogger");
 let _Symbol$asyncDispose;
 /**
  * Copyright (c) Microsoft Corporation.
@@ -60,6 +59,12 @@ class HarRouter {
       return;
     }
     if (response.action === 'fulfill') {
+      // If the response status is -1, the request was canceled or stalled, so we just stall it here.
+      // See https://github.com/microsoft/playwright/issues/29311.
+      // TODO: it'd be better to abort such requests, but then we likely need to respect the timing,
+      // because the request might have been stalled for a long time until the very end of the
+      // test when HAR was recorded but we'd abort it immediately.
+      if (response.status === -1) return;
       await route.fulfill({
         status: response.status,
         headers: Object.fromEntries(response.headers.map(h => [h.name, h.value])),
@@ -78,11 +83,9 @@ class HarRouter {
   }
   async addContextRoute(context) {
     await context.route(this._options.urlMatch || '**/*', route => this._handle(route));
-    context.once(_events.Events.BrowserContext.Close, () => this.dispose());
   }
   async addPageRoute(page) {
     await page.route(this._options.urlMatch || '**/*', route => this._handle(route));
-    page.once(_events.Events.Page.Close, () => this.dispose());
   }
   async [_Symbol$asyncDispose]() {
     await this.dispose();

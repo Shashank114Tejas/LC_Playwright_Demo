@@ -27,16 +27,29 @@ var _locatorGenerators = require("../../utils/isomorphic/locatorGenerators");
 
 const deviceDescriptors = require('../deviceDescriptorsSource.json');
 class JavaLanguageGenerator {
-  constructor() {
-    this.id = 'java';
+  constructor(mode) {
+    this.id = void 0;
     this.groupName = 'Java';
-    this.name = 'Library';
+    this.name = void 0;
     this.highlighter = 'java';
+    this._mode = void 0;
+    if (mode === 'library') {
+      this.name = 'Library';
+      this.id = 'java';
+    } else if (mode === 'junit') {
+      this.name = 'JUnit';
+      this.id = 'java-junit';
+    } else {
+      throw new Error(`Unknown Java language mode: ${mode}`);
+    }
+    this._mode = mode;
   }
   generateAction(actionInContext) {
     const action = actionInContext.action;
     const pageAlias = actionInContext.frame.pageAlias;
-    const formatter = new _javascript.JavaScriptFormatter(6);
+    const offset = this._mode === 'junit' ? 4 : 6;
+    const formatter = new _javascript.JavaScriptFormatter(offset);
+    if (this._mode !== 'library' && (action.name === 'openPage' || action.name === 'closePage')) return '';
     if (action.name === 'openPage') {
       formatter.add(`Page ${pageAlias} = context.newPage();`);
       if (action.url && action.url !== 'about:blank' && action.url !== 'chrome://newtab/') formatter.add(`${pageAlias}.navigate(${quote(action.url)});`);
@@ -127,6 +140,21 @@ class JavaLanguageGenerator {
   }
   generateHeader(options) {
     const formatter = new _javascript.JavaScriptFormatter();
+    if (this._mode === 'junit') {
+      formatter.add(`
+      import com.microsoft.playwright.junit.UsePlaywright;
+      import com.microsoft.playwright.Page;
+      import com.microsoft.playwright.options.*;
+
+      import org.junit.jupiter.api.*;
+      import static com.microsoft.playwright.assertions.PlaywrightAssertions.*;
+
+      @UsePlaywright
+      public class TestExample {
+        @Test
+        void test(Page page) {`);
+      return formatter.format();
+    }
     formatter.add(`
     import com.microsoft.playwright.*;
     import com.microsoft.playwright.options.*;
@@ -142,6 +170,10 @@ class JavaLanguageGenerator {
   }
   generateFooter(saveStorage) {
     const storageStateLine = saveStorage ? `\n      context.storageState(new BrowserContext.StorageStateOptions().setPath(${quote(saveStorage)}));\n` : '';
+    if (this._mode === 'junit') {
+      return `${storageStateLine}  }
+}`;
+    }
     return `${storageStateLine}    }
   }
 }`;

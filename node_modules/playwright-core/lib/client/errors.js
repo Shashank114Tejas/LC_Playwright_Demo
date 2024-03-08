@@ -25,7 +25,12 @@ var _serializers = require("../protocol/serializers");
  * limitations under the License.
  */
 
-class TimeoutError extends Error {}
+class TimeoutError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'TimeoutError';
+  }
+}
 exports.TimeoutError = TimeoutError;
 class TargetClosedError extends Error {
   constructor(cause) {

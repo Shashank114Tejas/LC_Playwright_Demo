@@ -77,7 +77,7 @@ class BrowserServerLauncherImpl {
     browserServer._disconnectForTest = () => server.close();
     browserServer._userDataDirForTest = browser._userDataDirForTest;
     browser.options.browserProcess.onclose = (exitCode, signal) => {
-      socksProxy === null || socksProxy === void 0 ? void 0 : socksProxy.close().catch(() => {});
+      socksProxy === null || socksProxy === void 0 || socksProxy.close().catch(() => {});
       server.close();
       browserServer.emit('close', exitCode, signal);
     };

@@ -9,6 +9,7 @@ exports.createHttpServer = createHttpServer;
 exports.createHttpsServer = createHttpsServer;
 exports.fetchData = fetchData;
 exports.httpRequest = httpRequest;
+exports.isURLAvailable = isURLAvailable;
 exports.urlMatches = urlMatches;
 exports.urlMatchesEqual = urlMatchesEqual;
 var _http = _interopRequireDefault(require("http"));
@@ -140,6 +141,37 @@ function createHttpsServer(...args) {
   const server = _https.default.createServer(...args);
   decorateServer(server);
   return server;
+}
+async function isURLAvailable(url, ignoreHTTPSErrors, onLog, onStdErr) {
+  let statusCode = await httpStatusCode(url, ignoreHTTPSErrors, onLog, onStdErr);
+  if (statusCode === 404 && url.pathname === '/') {
+    const indexUrl = new URL(url);
+    indexUrl.pathname = '/index.html';
+    statusCode = await httpStatusCode(indexUrl, ignoreHTTPSErrors, onLog, onStdErr);
+  }
+  return statusCode >= 200 && statusCode < 404;
+}
+async function httpStatusCode(url, ignoreHTTPSErrors, onLog, onStdErr) {
+  return new Promise(resolve => {
+    onLog === null || onLog === void 0 || onLog(`HTTP GET: ${url}`);
+    httpRequest({
+      url: url.toString(),
+      headers: {
+        Accept: '*/*'
+      },
+      rejectUnauthorized: !ignoreHTTPSErrors
+    }, res => {
+      var _res$statusCode;
+      res.resume();
+      const statusCode = (_res$statusCode = res.statusCode) !== null && _res$statusCode !== void 0 ? _res$statusCode : 0;
+      onLog === null || onLog === void 0 || onLog(`HTTP Status: ${statusCode}`);
+      resolve(statusCode);
+    }, error => {
+      if (error.code === 'DEPTH_ZERO_SELF_SIGNED_CERT') onStdErr === null || onStdErr === void 0 || onStdErr(`[WebServer] Self-signed certificate detected. Try adding ignoreHTTPSErrors: true to config.webServer.`);
+      onLog === null || onLog === void 0 || onLog(`Error while checking if ${url} is available: ${error.message}`);
+      resolve(0);
+    });
+  });
 }
 function decorateServer(server) {
   const sockets = new Set();

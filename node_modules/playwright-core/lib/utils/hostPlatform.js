@@ -63,7 +63,7 @@ function calculatePlatform() {
       const isOfficiallySupportedPlatform = (distroInfo === null || distroInfo === void 0 ? void 0 : distroInfo.id) === 'ubuntu';
       if (parseInt(distroInfo.version, 10) <= 19) return {
         hostPlatform: 'ubuntu18.04' + archSuffix,
-        isOfficiallySupportedPlatform
+        isOfficiallySupportedPlatform: false
       };
       if (parseInt(distroInfo.version, 10) <= 21) return {
         hostPlatform: 'ubuntu20.04' + archSuffix,

@@ -160,8 +160,6 @@ class DebugController extends _instrumentation.SdkObject {
         pageCount += context.pages().length;
       }
     }
-    // TODO: browsers is deprecated, remove it.
-    this.emit(DebugController.Events.BrowsersChanged, browsers);
     this.emit(DebugController.Events.StateChanged, {
       pageCount
     });
@@ -189,7 +187,6 @@ class DebugController extends _instrumentation.SdkObject {
 }
 exports.DebugController = DebugController;
 DebugController.Events = {
-  BrowsersChanged: 'browsersChanged',
   StateChanged: 'stateChanged',
   InspectRequested: 'inspectRequested',
   SourceChanged: 'sourceChanged',
