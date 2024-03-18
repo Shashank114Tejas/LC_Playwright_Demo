@@ -1,0 +1,34 @@
+[2024-03-08T08:50:48.087] [INFO] default - 
+✅ Finished test case: =>=>=> Get Default Billing/Shipping Addresses. <=<=<= ✅
+
+[2024-03-08T08:50:51.792] [INFO] default - 
+🚀 Starting test case: =>=>=> Purchase Flow with Store Pickup and Order Confirmation. <=<=<= 🚀
+
+[2024-03-08T08:50:55.058] [INFO] default - Navigating to URL: https://qa-josephsbeverage-teststore.epicommercestore.com/
+[2024-03-08T08:50:55.062] [INFO] default - Signing in...
+[2024-03-08T08:50:55.832] [INFO] default -  Verifying login page heading: Customer Login
+[2024-03-08T08:50:58.151] [INFO] default - User signed in successfully!
+[2024-03-08T08:50:58.233] [INFO] default - Adding products to the cart from Excel data...
+[2024-03-08T08:50:58.233] [INFO] default - Data received: {"CategoryName":"POP","SubCategoryName":"RED-BULL","ProductName":"Red Bull SF 6 pack"}
+[2024-03-08T08:50:58.233] [INFO] default - Checking categoryName: "POP"
+[2024-03-08T08:50:58.233] [INFO] default - Checking subcategoryName: "RED-BULL"
+[2024-03-08T08:50:58.233] [INFO] default - Checking productName: "Red Bull SF 6 pack"
+[2024-03-08T08:50:58.408] [INFO] default - Category matched: "pop"
+[2024-03-08T08:50:58.509] [INFO] default - Category is expanded
+[2024-03-08T08:50:58.715] [INFO] default - Subcategory matched: RED-BULL
+[2024-03-08T08:51:02.968] [INFO] default - Red Bull SF 6 pack added in cart
+[2024-03-08T08:51:03.002] [INFO] default - Data received: {"CategoryName":"OH-LIQUOR","SubCategoryName":"BRANDY","ProductName":"HENNESSY XO - 4103B"}
+[2024-03-08T08:51:03.002] [INFO] default - Checking categoryName: "OH-LIQUOR"
+[2024-03-08T08:51:03.002] [INFO] default - Checking subcategoryName: "BRANDY"
+[2024-03-08T08:51:03.002] [INFO] default - Checking productName: "HENNESSY XO - 4103B"
+[2024-03-08T08:51:03.527] [INFO] default - Category matched: "oh-liquor"
+[2024-03-08T08:51:03.632] [INFO] default - Category is expanded
+[2024-03-08T08:51:03.985] [INFO] default - Subcategory matched: BRANDY
+[2024-03-08T08:51:10.395] [INFO] default - HENNESSY XO - 4103B added in cart
+[2024-03-08T08:51:10.401] [INFO] default - Data received: {"CategoryName":"OH-LIQUOR","SubCategoryName":"SCOTCH","ProductName":"CLASSIC MALTS - COASTAL PACK - 6669H"}
+[2024-03-08T08:51:10.401] [INFO] default - Checking categoryName: "OH-LIQUOR"
+[2024-03-08T08:51:10.401] [INFO] default - Checking subcategoryName: "SCOTCH"
+[2024-03-08T08:51:10.401] [INFO] default - Checking productName: "CLASSIC MALTS - COASTAL PACK - 6669H"
+[2024-03-08T08:51:10.491] [INFO] default - Category matched: "oh-liquor"
+[2024-03-08T08:51:10.542] [INFO] default - Category is expanded
+[2024-03-08T08:51:10.581] [INFO] default - Subcategory matched: SCOTCH

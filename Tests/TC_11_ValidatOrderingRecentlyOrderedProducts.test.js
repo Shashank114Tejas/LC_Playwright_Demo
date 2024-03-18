@@ -65,7 +65,7 @@ test.describe("Test Case Title", () => {
       // Update cart for re-ordering
       await test.step("Update cart for re-ordering", async () => {
         const shoppingCartPage = poManager.getShoppingCartPage();
-        await shoppingCartPage.updateQuantitiesOfAllProducts()
+         await shoppingCartPage.updateQuantitiesOfAllProducts()
       });
 
       // Proceed to checkout through mini cart

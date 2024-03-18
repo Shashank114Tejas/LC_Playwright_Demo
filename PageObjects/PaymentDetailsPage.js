@@ -26,7 +26,6 @@ class PaymentDetailsPage {
    *  card number, name, CVV, and expiry date. After filling the details, it waits for the page to load
    *  and then clicks on the payment button.
    *  If any error occurs during the process, it's logged to the logfile.
-   * Fills the payment card details using environment variables and proceeds with payment.
    *
    */
   async fillPaymentCardDetails() {

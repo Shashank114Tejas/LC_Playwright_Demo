@@ -18,6 +18,8 @@ class ShoppingCartPage {
     this.noItemsInCartText = page.locator("div.cart-empty>p").first();
   }
 
+  
+  
   /**
    * This method iterates through each product in the shopping cart, updates the quantity of each product
    *  (incremented by 2 in this example), and then clicks the update shopping cart button to apply the changes.
@@ -39,6 +41,7 @@ class ShoppingCartPage {
       // Fill the input field with the updated quantity (incremented by 2 for demonstration)
       await inputField.fill(String(i + 2));
     }
+    await this.page.waitForTimeout(2000);
 
     // Click on the update shopping cart button to apply the changes
     await this.updateShoppingCartBtn.click();

@@ -1,0 +1,798 @@
+[2024-03-18T05:27:33.868] [INFO] default - 
+✅ Finished test case: =>=>=> Get Default Billing/Shipping Addresses. <=<=<= ✅
+
+[2024-03-18T05:27:37.770] [INFO] default - 
+🚀 Starting test case: =>=>=> Purchase Flow with Store Pickup and Order Confirmation. <=<=<= 🚀
+
+[2024-03-18T05:27:43.397] [INFO] default - Navigating to URL: https://qa-josephsbeverage-teststore.epicommercestore.com/
+[2024-03-18T05:27:43.400] [INFO] default - Signing in...
+[2024-03-18T05:27:44.269] [INFO] default -  Verifying login page heading: Customer Login
+[2024-03-18T05:27:46.659] [INFO] default - User signed in successfully!
+[2024-03-18T05:27:46.787] [INFO] default - Adding products to the cart from Excel data...
+[2024-03-18T05:27:46.788] [INFO] default - Data received: {"CategoryName":"POP","SubCategoryName":"RED-BULL","ProductName":"Red Bull SF 6 pack"}
+[2024-03-18T05:27:46.788] [INFO] default - Checking categoryName: "POP"
+[2024-03-18T05:27:46.788] [INFO] default - Checking subcategoryName: "RED-BULL"
+[2024-03-18T05:27:46.788] [INFO] default - Checking productName: "Red Bull SF 6 pack"
+[2024-03-18T05:27:46.979] [INFO] default - Category matched: "pop"
+[2024-03-18T05:27:47.081] [INFO] default - Category is expanded
+[2024-03-18T05:27:47.284] [INFO] default - Subcategory matched: RED-BULL
+[2024-03-18T05:27:56.799] [INFO] default - Red Bull SF 6 pack added in cart
+[2024-03-18T05:27:56.842] [INFO] default - Data received: {"CategoryName":"OH-LIQUOR","SubCategoryName":"BRANDY","ProductName":"HENNESSY XO - 4103B"}
+[2024-03-18T05:27:56.843] [INFO] default - Checking categoryName: "OH-LIQUOR"
+[2024-03-18T05:27:56.843] [INFO] default - Checking subcategoryName: "BRANDY"
+[2024-03-18T05:27:56.843] [INFO] default - Checking productName: "HENNESSY XO - 4103B"
+[2024-03-18T05:27:57.449] [INFO] default - Category matched: "oh-liquor"
+[2024-03-18T05:27:57.574] [INFO] default - Category is expanded
+[2024-03-18T05:27:57.918] [INFO] default - Subcategory matched: BRANDY
+[2024-03-18T05:28:05.229] [INFO] default - HENNESSY XO - 4103B added in cart
+[2024-03-18T05:28:05.264] [INFO] default - Data received: {"CategoryName":"OH-LIQUOR","SubCategoryName":"SCOTCH","ProductName":"CLASSIC MALTS - COASTAL PACK - 6669H"}
+[2024-03-18T05:28:05.264] [INFO] default - Checking categoryName: "OH-LIQUOR"
+[2024-03-18T05:28:05.264] [INFO] default - Checking subcategoryName: "SCOTCH"
+[2024-03-18T05:28:05.264] [INFO] default - Checking productName: "CLASSIC MALTS - COASTAL PACK - 6669H"
+[2024-03-18T05:28:05.703] [INFO] default - Category matched: "oh-liquor"
+[2024-03-18T05:28:05.847] [INFO] default - Category is expanded
+[2024-03-18T05:28:05.987] [INFO] default - Subcategory matched: SCOTCH
+[2024-03-18T05:28:09.737] [INFO] default - CLASSIC MALTS - COASTAL PACK - 6669H added in cart
+[2024-03-18T05:28:09.772] [INFO] default - Data received: {"CategoryName":"TOBACCO","SubCategoryName":"KING-EDWARD","ProductName":"KING EDWARD"}
+[2024-03-18T05:28:09.772] [INFO] default - Checking categoryName: "TOBACCO"
+[2024-03-18T05:28:09.772] [INFO] default - Checking subcategoryName: "KING-EDWARD"
+[2024-03-18T05:28:09.772] [INFO] default - Checking productName: "KING EDWARD"
+[2024-03-18T05:28:10.104] [INFO] default - Category matched: "tobacco"
+[2024-03-18T05:28:10.245] [INFO] default - Category is expanded
+[2024-03-18T05:28:10.353] [INFO] default - Subcategory matched: KING-EDWARD
+[2024-03-18T05:28:13.745] [INFO] default - Item qty not available, skipping this product
+[2024-03-18T05:28:13.745] [INFO] default - Data received: {"CategoryName":"E-Cig","SubCategoryName":"Breeze","ProductName":"Breeze Watermelon Mint"}
+[2024-03-18T05:28:13.745] [INFO] default - Checking categoryName: "E-Cig"
+[2024-03-18T05:28:13.745] [INFO] default - Checking subcategoryName: "Breeze"
+[2024-03-18T05:28:13.745] [INFO] default - Checking productName: "Breeze Watermelon Mint"
+[2024-03-18T05:28:13.883] [INFO] default - Category matched: "e-cig"
+[2024-03-18T05:28:14.079] [INFO] default - Category is expanded
+[2024-03-18T05:28:14.116] [INFO] default - Subcategory matched: Breeze
+[2024-03-18T05:28:23.179] [INFO] default - Item qty not available, skipping this product
+[2024-03-18T05:28:23.179] [INFO] default - All available products added to the cart
+[2024-03-18T05:28:23.180] [INFO] default - Proceeding to checkout...
+[2024-03-18T05:28:25.308] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T05:28:28.686] [INFO] default - Selected store pickup radio button
+[2024-03-18T05:28:31.848] [INFO] default - Clicked on Store Pickup order type radio button
+[2024-03-18T05:28:31.849] [INFO] default - Validating address and proceeding to checkout...
+[2024-03-18T05:28:34.492] [INFO] default - Filling payment card details...
+[2024-03-18T05:28:49.708] [INFO] default - Payment successful! Order number: 000000984
+[2024-03-18T05:28:49.709] [INFO] default - Navigating to My Orders page and extracting order and pricing details...
+[2024-03-18T05:28:52.707] [INFO] default - User is on the My Account page
+[2024-03-18T05:28:52.708] [INFO] default - Checking before/after status from My Accounts Page...
+[2024-03-18T05:28:53.867] [INFO] default - Before action status: Processing
+[2024-03-18T05:28:53.873] [INFO] default - Confirming order...
+[2024-03-18T05:28:57.634] [INFO] default - Validating order data...
+[2024-03-18T05:28:57.635] [INFO] default - Data validation successful!
+[2024-03-18T05:28:57.637] [INFO] default - Validating pricing details...
+[2024-03-18T05:28:57.637] [INFO] default - OrderNo:-000000984 verified
+[2024-03-18T05:28:57.637] [INFO] default - Expected Subtotal:  289.74, Actual Subtotal: 289.74
+[2024-03-18T05:28:57.637] [INFO] default - Expected Shipping:  0, Actual Shipping: 0
+[2024-03-18T05:28:57.638] [INFO] default - Expected ServiceFee:  5.79, Actual ServiceFee: 5.79
+[2024-03-18T05:28:57.638] [INFO] default - Expected Taxes:  22.45, Actual Taxes: 22.45
+[2024-03-18T05:28:57.638] [INFO] default - Expected GrandTotal:  317.98, Actual GrandTotal: 317.98
+[2024-03-18T05:28:57.638] [INFO] default - Pricing validation successful!
+[2024-03-18T05:29:06.554] [INFO] default - User is on the My Account page
+[2024-03-18T05:29:07.983] [INFO] default - After action status: Processing
+[2024-03-18T05:29:13.604] [INFO] default - 
+🚀 Starting test case: =>=>=> Purchase Flow with Delivery Option and Order Rejection. <=<=<= 🚀
+
+[2024-03-18T05:29:16.742] [INFO] default - Signing in...
+[2024-03-18T05:29:17.488] [INFO] default -  Verifying login page heading: Customer Login
+[2024-03-18T05:29:19.792] [INFO] default - User Signed in Succesfully!
+[2024-03-18T05:29:19.878] [INFO] default - Adding products to the cart from Excel data...
+[2024-03-18T05:29:19.879] [INFO] default - Data received: {"CategoryName":"OH-LIQUOR","SubCategoryName":"Vodka","ProductName":"THREE OLIVES CUCUMBER LIME - 9344B"}
+[2024-03-18T05:29:19.879] [INFO] default - Checking categoryName: "OH-LIQUOR"
+[2024-03-18T05:29:19.879] [INFO] default - Checking subcategoryName: "Vodka"
+[2024-03-18T05:29:19.879] [INFO] default - Checking productName: "THREE OLIVES CUCUMBER LIME - 9344B"
+[2024-03-18T05:29:20.141] [INFO] default - Category matched: "oh-liquor"
+[2024-03-18T05:29:20.238] [INFO] default - Category is expanded
+[2024-03-18T05:29:20.365] [INFO] default - Subcategory matched: Vodka
+[2024-03-18T05:29:25.840] [INFO] default - THREE OLIVES CUCUMBER LIME - 9344B added in cart
+[2024-03-18T05:29:25.868] [INFO] default - Data received: {"CategoryName":"POP","SubCategoryName":"MONSTER","ProductName":"MONSTER REHAB 16OZ"}
+[2024-03-18T05:29:25.868] [INFO] default - Checking categoryName: "POP"
+[2024-03-18T05:29:25.868] [INFO] default - Checking subcategoryName: "MONSTER"
+[2024-03-18T05:29:25.868] [INFO] default - Checking productName: "MONSTER REHAB 16OZ"
+[2024-03-18T05:29:26.108] [INFO] default - Category matched: "pop"
+[2024-03-18T05:29:26.221] [INFO] default - Category is expanded
+[2024-03-18T05:29:26.469] [INFO] default - Subcategory matched: MONSTER
+[2024-03-18T05:29:37.056] [INFO] default - MONSTER REHAB 16OZ added in cart
+[2024-03-18T05:29:37.081] [INFO] default - All available products added in the cart
+[2024-03-18T05:29:37.082] [INFO] default - Clicking on Proceed To Checkout button from shopping cart icon
+[2024-03-18T05:29:40.132] [INFO] default - Selecting delivery option at checkout
+[2024-03-18T05:29:46.356] [INFO] default - Clicked on Delivery order type radio button
+[2024-03-18T05:29:46.357] [INFO] default - Validating address and proceeding to checkout
+[2024-03-18T05:29:50.052] [INFO] default - Filling payment card details...
+[2024-03-18T05:30:04.709] [INFO] default - Payment successful! OrderNo is generated.
+[2024-03-18T05:30:04.709] [INFO] default - Order No is: 000000985
+[2024-03-18T05:30:06.604] [INFO] default - Checking Before/After status from My Accounts Page
+[2024-03-18T05:30:07.492] [INFO] default - User is on the My Account page
+[2024-03-18T05:30:08.764] [INFO] default - Before Action status: Processing
+[2024-03-18T05:30:12.462] [INFO] default - Data validation successful!
+[2024-03-18T05:30:12.462] [INFO] default - Validating Pricing details
+[2024-03-18T05:30:12.463] [INFO] default - OrderNo:-000000985 verified
+[2024-03-18T05:30:12.463] [INFO] default - Expected Subtotal:  8.77, Actual Subtotal: 8.77
+[2024-03-18T05:30:12.463] [INFO] default - Expected Shipping:  5, Actual Shipping: 5
+[2024-03-18T05:30:12.463] [INFO] default - Expected ServiceFee:  0.18, Actual ServiceFee: 0.18
+[2024-03-18T05:30:12.463] [INFO] default - Expected Taxes:  0.68, Actual Taxes: 0.68
+[2024-03-18T05:30:12.463] [INFO] default - Expected GrandTotal:  14.63, Actual GrandTotal: 14.63
+[2024-03-18T05:30:12.463] [INFO] default - Pricing validation successful!
+[2024-03-18T05:30:19.261] [INFO] default - User is on the My Account page
+[2024-03-18T05:30:20.510] [INFO] default - After Action status:  Processing
+[2024-03-18T05:30:24.777] [INFO] default - 
+🚀 Starting test case: =>=>=> Header Validation on Homepage Before Sign-In. <=<=<= 🚀
+
+[2024-03-18T05:30:27.915] [INFO] default - Store info is being displayed as : Josephs Beverage Center-test, 4129 Talmadge RD, Toledo, Ohio, 43623
+[2024-03-18T05:30:27.923] [INFO] default - Merchant's phone and hours info is being displayed as : (631) 494-3506 Open from 9:00 am to 6:00 pm
+[2024-03-18T05:30:27.971] [INFO] default - Logo is displayed on the homepage of the application
+[2024-03-18T05:30:27.990] [INFO] default - Shopping Cart icon is displayed
+[2024-03-18T05:30:28.502] [INFO] default - Logo functionality is working fine
+[2024-03-18T05:30:29.715] [INFO] default - The Account functions is not functioning properly as it is displayed on the homepage for users who are not logged in.
+[2024-03-18T05:30:31.843] [INFO] default - Shopping cart functionality is working fine when no product is added
+[2024-03-18T05:30:35.074] [INFO] default - Sign in Functionality is working fine, User is logged in
+[2024-03-18T05:30:36.040] [INFO] default - Sign out functionality is working fine, User is logged out
+[2024-03-18T05:30:36.040] [INFO] default - Congratulations!! All Header Validation is Successful
+[2024-03-18T05:30:36.040] [INFO] default - 
+✅ Finished test case: =>=>=> Header Validation on Homepage Before Sign-In <=<=<= ✅
+
+[2024-03-18T05:30:37.589] [INFO] default - 
+🚀 Starting test case: =>=>=> Quick Guest Checkout with Delivery Order Type. <=<=<= 🚀
+
+[2024-03-18T05:30:41.829] [INFO] default - Adding products to the cart from Excel data...
+[2024-03-18T05:30:41.830] [INFO] default - Data received: {"CategoryName":"CIGARS","SubCategoryName":"CIGARS","ProductName":"cigars"}
+[2024-03-18T05:30:41.830] [INFO] default - Checking categoryName: "CIGARS"
+[2024-03-18T05:30:41.830] [INFO] default - Checking subcategoryName: "CIGARS"
+[2024-03-18T05:30:41.830] [INFO] default - Checking productName: "cigars"
+[2024-03-18T05:30:41.918] [INFO] default - Category matched: "cigars"
+[2024-03-18T05:30:42.028] [INFO] default - Category is expanded
+[2024-03-18T05:30:42.051] [INFO] default - Subcategory matched: CIGARS
+[2024-03-18T05:30:46.422] [INFO] default - cigars added in cart
+[2024-03-18T05:30:46.446] [INFO] default - Data received: {"CategoryName":"E-Cig","SubCategoryName":"Breeze","ProductName":"Breeze Pro Pina Colada"}
+[2024-03-18T05:30:46.446] [INFO] default - Checking categoryName: "E-Cig"
+[2024-03-18T05:30:46.446] [INFO] default - Checking subcategoryName: "Breeze"
+[2024-03-18T05:30:46.446] [INFO] default - Checking productName: "Breeze Pro Pina Colada"
+[2024-03-18T05:30:46.575] [INFO] default - Category matched: "e-cig"
+[2024-03-18T05:30:46.714] [INFO] default - Category is expanded
+[2024-03-18T05:30:46.754] [INFO] default - Subcategory matched: Breeze
+[2024-03-18T05:30:50.659] [INFO] default - Item qty not available, skipping this product
+[2024-03-18T05:30:50.659] [INFO] default - Available products added in the cart
+[2024-03-18T05:30:50.660] [INFO] default - Clicking on Proceed To Checkout button from shopping cart icon
+[2024-03-18T05:31:11.712] [INFO] default - Clicked on Delivery order type radio button and filled shipping details
+[2024-03-18T05:31:11.714] [INFO] default - Filling payment card details...
+[2024-03-18T05:31:28.714] [INFO] default - Payment successful!! Order number is generated.
+[2024-03-18T05:31:28.714] [INFO] default - Order No is: 000000986
+[2024-03-18T05:31:28.714] [INFO] default - Congratulations you've successfully placed an order with orderId: 000000986
+[2024-03-18T05:31:28.714] [INFO] default - 
+✅ Finished test case: =>=>=> Quick Guest Checkout with Delivery Order Type. <=<=<= ✅
+
+[2024-03-18T05:31:30.988] [INFO] default - 
+🚀 Starting test case: =>=>=> Edit User Firstname And Lastname. <=<=<= 🚀
+
+[2024-03-18T05:31:34.163] [INFO] default - Signing in...
+[2024-03-18T05:31:37.168] [INFO] default - User Signed in Succesfully!
+[2024-03-18T05:31:38.020] [INFO] default - User is on the My Account page
+[2024-03-18T05:31:38.114] [INFO] default - Before editing account firstname, lastname is --> John Doe
+[2024-03-18T05:31:41.151] [INFO] default - User's Account firstname and lastname are changed
+[2024-03-18T05:31:41.185] [INFO] default - After editing account firstname, lastname is --> QARemo Sys
+[2024-03-18T05:31:41.191] [INFO] default - 
+✅ Finished test case: =>=>=> Edit User Firstname And Lastname. <=<=<= ✅
+
+[2024-03-18T05:31:41.834] [INFO] default - 
+✅ Finished test case: =>=>=> Get Default Billing/Shipping Addresses. <=<=<= ✅
+
+[2024-03-18T05:31:41.940] [INFO] default - 
+🚀 Starting test case: =>=>=> Get Default Billing/Shipping Addresses. <=<=<= 🚀
+
+[2024-03-18T05:31:45.031] [INFO] default - Signing in...
+[2024-03-18T05:31:48.087] [INFO] default - User Signed in Successfully!
+[2024-03-18T05:31:48.930] [INFO] default - User is on the My Account page
+[2024-03-18T05:31:49.824] [INFO] default - Default Billing address is: QARemo1111111 Sys, , Test, , , , Toledo, Ohio, 43623, United States, T: 123-456-7890
+[2024-03-18T05:31:49.824] [INFO] default - Default Shipping address is: Remo22222222 Sys, , 6360 Secor Rd, 48144, United States, , , , Lambertville, MI, Ohio, 48144, United States, T: 123-456-7890
+[2024-03-18T05:31:50.867] [INFO] default - 
+🚀 Starting test case: =>=>=> Product Validation Through Search Panel Using SKU Values. <=<=<= 🚀
+
+[2024-03-18T05:31:54.118] [INFO] default - Adding products to the cart from Excel data...
+[2024-03-18T05:31:54.118] [INFO] default - Looking for 707510415408 SKU value
+[2024-03-18T05:31:58.032] [INFO] default - You added Sluricane Hurricane to your shopping cart.
+[2024-03-18T05:31:58.032] [INFO] default - Looking for 412565696190 SKU value
+[2024-03-18T05:32:02.158] [INFO] default - You added Tap Deposit to your shopping cart.
+[2024-03-18T05:32:02.159] [INFO] default - Looking for 070847038245 SKU value
+[2024-03-18T05:32:06.744] [INFO] default - You added MONSTER HYDRO ZERO SUGAR 20OZ to your shopping cart.
+[2024-03-18T05:32:06.744] [INFO] default - Looking for 145627282829 SKU value
+[2024-03-18T05:32:07.941] [INFO] default - Did not find any product with the SKU value 145627282829
+[2024-03-18T05:32:07.942] [INFO] default - All available products are added in the cart through SKU values
+[2024-03-18T05:32:07.942] [INFO] default - 
+✅ Finished test case: =>=>=> Product Validation Through Search Panel Using SKU Values. <=<=<= ✅
+
+[2024-03-18T05:32:12.195] [INFO] default - The user is signing in
+[2024-03-18T05:32:15.188] [INFO] default - User Signed in Successfully!
+[2024-03-18T05:32:15.569] [INFO] default - 
+🚀 Starting test case: =>=>=> Validate Quantities Update Functionality. <=<=<= 🚀
+
+[2024-03-18T05:32:16.711] [INFO] default - Extracting data from excel and adding products to the cart
+[2024-03-18T05:32:16.712] [INFO] default - Data received: {"CategoryName":"WINE","SubCategoryName":"Champagne","ProductName":"Freixenet Prosecco"}
+[2024-03-18T05:32:16.712] [INFO] default - Checking categoryName: "WINE"
+[2024-03-18T05:32:16.712] [INFO] default - Checking subcategoryName: "Champagne"
+[2024-03-18T05:32:16.712] [INFO] default - Checking productName: "Freixenet Prosecco"
+[2024-03-18T05:32:17.226] [INFO] default - Category matched: "wine"
+[2024-03-18T05:32:17.312] [INFO] default - Category is expanded
+[2024-03-18T05:32:17.661] [INFO] default - Subcategory matched: Champagne
+[2024-03-18T05:32:29.736] [INFO] default - Freixenet Prosecco added in cart
+[2024-03-18T05:32:29.767] [INFO] default - Data received: {"CategoryName":"wine","SubCategoryName":"moscato","ProductName":"Vignaioli Moscato D'asti"}
+[2024-03-18T05:32:29.767] [INFO] default - Checking categoryName: "wine"
+[2024-03-18T05:32:29.767] [INFO] default - Checking subcategoryName: "moscato"
+[2024-03-18T05:32:29.767] [INFO] default - Checking productName: "Vignaioli Moscato D'asti"
+[2024-03-18T05:32:30.165] [INFO] default - Category matched: "wine"
+[2024-03-18T05:32:30.294] [INFO] default - Category is expanded
+[2024-03-18T05:32:30.811] [INFO] default - Subcategory matched: moscato
+[2024-03-18T05:32:41.572] [INFO] default - Item qty not available, skipping this product
+[2024-03-18T05:32:41.572] [INFO] default - Data received: {"CategoryName":"Wine","SubCategoryName":"syrah","ProductName":"SPELLBOUND PETITE SIRAH"}
+[2024-03-18T05:32:41.572] [INFO] default - Checking categoryName: "Wine"
+[2024-03-18T05:32:41.572] [INFO] default - Checking subcategoryName: "syrah"
+[2024-03-18T05:32:41.572] [INFO] default - Checking productName: "SPELLBOUND PETITE SIRAH"
+[2024-03-18T05:32:42.039] [INFO] default - Category matched: "wine"
+[2024-03-18T05:32:42.176] [INFO] default - Category is expanded
+[2024-03-18T05:32:42.661] [INFO] default - Subcategory matched: syrah
+[2024-03-18T05:32:49.747] [INFO] default - SPELLBOUND PETITE SIRAH added in cart
+[2024-03-18T05:32:49.779] [INFO] default - Data received: {"CategoryName":"Wine","SubCategoryName":"Organic-and-Kosher","ProductName":"Schlink Haus Organic Riesling"}
+[2024-03-18T05:32:49.779] [INFO] default - Checking categoryName: "Wine"
+[2024-03-18T05:32:49.779] [INFO] default - Checking subcategoryName: "Organic-and-Kosher"
+[2024-03-18T05:32:49.779] [INFO] default - Checking productName: "Schlink Haus Organic Riesling"
+[2024-03-18T05:32:50.178] [INFO] default - Category matched: "wine"
+[2024-03-18T05:32:50.308] [INFO] default - Category is expanded
+[2024-03-18T05:32:51.135] [INFO] default - Subcategory matched: Organic-and-Kosher
+[2024-03-18T05:32:54.845] [INFO] default - Schlink Haus Organic Riesling added in cart
+[2024-03-18T05:32:54.877] [INFO] default - All available products added in the cart
+[2024-03-18T05:33:00.360] [INFO] default - 45.22
+[2024-03-18T05:33:03.816] [INFO] default - 131.36
+[2024-03-18T05:33:03.819] [INFO] default - All quantities are increased for products available in the cart
+[2024-03-18T05:33:03.819] [INFO] default - 
+✅ Finished test case: =>=>=> Validate Quantities Update Functionality. <=<=<= ✅
+
+[2024-03-18T05:33:05.824] [INFO] default - 
+🚀 Starting test case: =>=>=> Validate Remove Single Product From Minicart Functionality. <=<=<= 🚀
+
+[2024-03-18T05:33:13.376] [INFO] default - Congratulation! first product has been removed from the cart. The remove button is working fine.
+[2024-03-18T05:33:13.376] [INFO] default - 
+✅ Finished test case: =>=>=> Validate Remove Single Product From Minicart Functionality. <=<=<= ✅
+
+[2024-03-18T05:33:14.344] [INFO] default - 
+🚀 Starting test case: =>=>=> Validate All Products Remove Functionality. <=<=<= 🚀
+
+[2024-03-18T05:33:22.016] [INFO] default - Congratulation! all products have been removed from the cart.
+[2024-03-18T05:33:22.016] [INFO] default - 
+✅ Finished test case: =>=>=> Validate All Products Remove Functionality. <=<=<= ✅
+
+[2024-03-18T05:33:24.396] [INFO] default - 
+🚀 Starting test case: =>=>=> Header Validation on Homepage Before Sign-In. <=<=<= 🚀
+
+[2024-03-18T05:33:27.506] [INFO] default - Navigated to URL: https://qa-josephsbeverage-teststore.epicommercestore.com/
+[2024-03-18T05:33:27.509] [INFO] default - Signing in...
+[2024-03-18T05:33:31.356] [INFO] default - User is on the My Account page
+[2024-03-18T05:33:32.342] [INFO] default - Additional addresses: QA, Tester, 4129 Talmadge RD, Toledo, United States, Ohio, 43623, 098-765-4321, , Edit, Delete,QARemo, Sys, 8607 Co Rd 30, Iberia, United States, Ohio, 43623, 111-111-1111, , Edit, Delete
+[2024-03-18T05:33:32.342] [INFO] default - 
+✅ Finished test case: =>=>=> Get Additional Addresses Entries. <=<=<= ✅
+
+[2024-03-18T05:33:35.196] [INFO] default - 
+🚀 Starting test case: =>=>=> LC SKU API Status Validation. <=<=<= 🚀
+
+[2024-03-18T05:33:36.441] [INFO] default - Response status: 200
+[2024-03-18T05:33:36.441] [INFO] default - Response status text: OK
+[2024-03-18T05:33:36.444] [INFO] default - Congratulations! LC API's are Up and Running.
+[2024-03-18T05:33:36.444] [INFO] default - 
+✅ Finished test case: =>=>=> LC SKU API Status Validation. <=<=<= ✅
+
+[2024-03-18T05:33:38.786] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T05:33:41.825] [INFO] default - Signing in...
+[2024-03-18T05:33:44.791] [INFO] default - User Signed in Successfully!
+[2024-03-18T05:33:45.598] [INFO] default - User is on the My Account page
+[2024-03-18T05:40:19.104] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T05:40:22.228] [INFO] default - Signing in...
+[2024-03-18T05:40:25.283] [INFO] default - User Signed in Successfully!
+[2024-03-18T05:40:39.500] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T05:40:42.609] [INFO] default - Signing in...
+[2024-03-18T05:40:45.869] [INFO] default - User Signed in Successfully!
+[2024-03-18T05:40:46.732] [INFO] default - User is on the My Account page
+[2024-03-18T05:41:21.730] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T05:41:25.449] [INFO] default - Selected store pickup radio button
+[2024-03-18T05:41:28.632] [INFO] default - Clicked on Store Pickup order type radio button
+[2024-03-18T05:41:28.633] [INFO] default - Validating address and proceeding to checkout...
+[2024-03-18T05:41:31.227] [INFO] default - Filling payment card details...
+[2024-03-18T05:41:47.634] [INFO] default - Value of orderNo: 000000987
+[2024-03-18T05:41:47.637] [INFO] default - Payment successful! Order number: 000000987
+[2024-03-18T05:41:47.637] [INFO] default - 
+✅ Finished test case: =>=>=> Order Recently Ordered Products. <=<=<= ✅
+
+[2024-03-18T05:43:51.181] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T05:43:55.564] [INFO] default - Signing in...
+[2024-03-18T05:43:58.780] [INFO] default - User Signed in Successfully!
+[2024-03-18T05:43:59.613] [INFO] default - User is on the My Account page
+[2024-03-18T06:09:25.463] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:09:28.636] [INFO] default - Signing in...
+[2024-03-18T06:09:31.871] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:09:32.696] [INFO] default - User is on the My Account page
+[2024-03-18T06:10:01.191] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:10:04.408] [INFO] default - Signing in...
+[2024-03-18T06:10:07.580] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:10:08.508] [INFO] default - User is on the My Account page
+[2024-03-18T06:11:15.515] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:11:19.812] [INFO] default - Signing in...
+[2024-03-18T06:11:23.003] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:11:23.834] [INFO] default - User is on the My Account page
+[2024-03-18T06:11:31.279] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T06:11:34.514] [INFO] default - Selected store pickup radio button
+[2024-03-18T06:11:37.698] [INFO] default - Clicked on Store Pickup order type radio button
+[2024-03-18T06:11:37.699] [INFO] default - Validating address and proceeding to checkout...
+[2024-03-18T06:11:40.297] [INFO] default - Filling payment card details...
+[2024-03-18T06:11:58.582] [INFO] default - Value of orderNo: 000000988
+[2024-03-18T06:11:58.585] [INFO] default - Payment successful! Order number: 000000988
+[2024-03-18T06:11:58.585] [INFO] default - 
+✅ Finished test case: =>=>=> Order Recently Ordered Products. <=<=<= ✅
+
+[2024-03-18T06:13:00.585] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:13:04.905] [INFO] default - Signing in...
+[2024-03-18T06:13:08.079] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:13:08.930] [INFO] default - User is on the My Account page
+[2024-03-18T06:14:49.687] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:14:52.845] [INFO] default - Signing in...
+[2024-03-18T06:14:56.135] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:14:56.997] [INFO] default - User is on the My Account page
+[2024-03-18T06:19:57.693] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:20:06.000] [INFO] default - Signing in...
+[2024-03-18T06:20:12.092] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:20:12.993] [INFO] default - User is on the My Account page
+[2024-03-18T06:20:20.982] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T06:20:24.564] [INFO] default - Selected store pickup radio button
+[2024-03-18T06:20:27.813] [INFO] default - Clicked on Store Pickup order type radio button
+[2024-03-18T06:20:27.814] [INFO] default - Validating address and proceeding to checkout...
+[2024-03-18T06:20:30.435] [INFO] default - Filling payment card details...
+[2024-03-18T06:20:47.045] [INFO] default - Value of orderNo: 000000989
+[2024-03-18T06:20:47.050] [INFO] default - Payment successful! Order number: 000000989
+[2024-03-18T06:20:47.050] [INFO] default - 
+✅ Finished test case: =>=>=> Order Recently Ordered Products. <=<=<= ✅
+
+[2024-03-18T06:21:03.113] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:21:11.377] [INFO] default - Signing in...
+[2024-03-18T06:21:14.870] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:21:15.804] [INFO] default - User is on the My Account page
+[2024-03-18T06:21:23.746] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T06:21:27.168] [INFO] default - Selected store pickup radio button
+[2024-03-18T06:21:30.428] [INFO] default - Clicked on Store Pickup order type radio button
+[2024-03-18T06:21:30.429] [INFO] default - Validating address and proceeding to checkout...
+[2024-03-18T06:21:33.075] [INFO] default - Filling payment card details...
+[2024-03-18T06:21:49.602] [INFO] default - Value of orderNo: 000000990
+[2024-03-18T06:21:49.607] [INFO] default - Payment successful! Order number: 000000990
+[2024-03-18T06:21:49.607] [INFO] default - 
+✅ Finished test case: =>=>=> Order Recently Ordered Products. <=<=<= ✅
+
+[2024-03-18T06:22:16.221] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:22:21.612] [INFO] default - Signing in...
+[2024-03-18T06:22:24.703] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:22:25.529] [INFO] default - User is on the My Account page
+[2024-03-18T06:24:51.759] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:24:55.987] [INFO] default - Signing in...
+[2024-03-18T06:24:59.172] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:25:00.025] [INFO] default - User is on the My Account page
+[2024-03-18T06:25:50.167] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:25:54.552] [INFO] default - Signing in...
+[2024-03-18T06:25:57.762] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:25:58.602] [INFO] default - User is on the My Account page
+[2024-03-18T06:26:06.047] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T06:26:09.349] [INFO] default - Selected store pickup radio button
+[2024-03-18T06:26:12.535] [INFO] default - Clicked on Store Pickup order type radio button
+[2024-03-18T06:26:12.536] [INFO] default - Validating address and proceeding to checkout...
+[2024-03-18T06:26:15.130] [INFO] default - Filling payment card details...
+[2024-03-18T06:26:31.587] [INFO] default - Value of orderNo: 000000991
+[2024-03-18T06:26:31.590] [INFO] default - Payment successful! Order number: 000000991
+[2024-03-18T06:26:31.590] [INFO] default - 
+✅ Finished test case: =>=>=> Order Recently Ordered Products. <=<=<= ✅
+
+[2024-03-18T06:26:40.439] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:26:44.798] [INFO] default - Signing in...
+[2024-03-18T06:26:48.018] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:26:48.841] [INFO] default - User is on the My Account page
+[2024-03-18T06:29:04.413] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:29:07.450] [INFO] default - Signing in...
+[2024-03-18T06:29:10.667] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:29:11.511] [INFO] default - User is on the My Account page
+[2024-03-18T06:35:48.382] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:35:51.514] [INFO] default - Signing in...
+[2024-03-18T06:35:54.705] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:35:55.561] [INFO] default - User is on the My Account page
+[2024-03-18T06:36:52.769] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:36:55.839] [INFO] default - Signing in...
+[2024-03-18T06:36:59.145] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:36:59.980] [INFO] default - User is on the My Account page
+[2024-03-18T06:37:33.423] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:37:37.077] [INFO] default - Signing in...
+[2024-03-18T06:37:40.287] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:37:41.114] [INFO] default - User is on the My Account page
+[2024-03-18T06:38:46.688] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:38:51.048] [INFO] default - Signing in...
+[2024-03-18T06:38:54.231] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:38:55.059] [INFO] default - User is on the My Account page
+[2024-03-18T06:39:28.254] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:39:32.208] [INFO] default - Signing in...
+[2024-03-18T06:39:35.407] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:39:36.250] [INFO] default - User is on the My Account page
+[2024-03-18T06:41:49.692] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:41:52.861] [INFO] default - Signing in...
+[2024-03-18T06:41:56.076] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:41:56.913] [INFO] default - User is on the My Account page
+[2024-03-18T06:42:17.767] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T06:42:27.542] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:42:30.426] [INFO] default - Signing in...
+[2024-03-18T06:42:33.668] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:42:34.502] [INFO] default - User is on the My Account page
+[2024-03-18T06:42:57.542] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T06:43:00.945] [INFO] default - Selected store pickup radio button
+[2024-03-18T06:43:04.201] [INFO] default - Clicked on Store Pickup order type radio button
+[2024-03-18T06:43:04.202] [INFO] default - Validating address and proceeding to checkout...
+[2024-03-18T06:44:54.071] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:44:57.179] [INFO] default - Signing in...
+[2024-03-18T06:45:00.450] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:45:01.279] [INFO] default - User is on the My Account page
+[2024-03-18T06:46:40.707] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:46:48.889] [INFO] default - Signing in...
+[2024-03-18T06:46:55.972] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:46:57.312] [INFO] default - User is on the My Account page
+[2024-03-18T06:47:24.714] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T06:49:19.424] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:49:26.635] [INFO] default - Signing in...
+[2024-03-18T06:49:29.889] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:49:30.892] [INFO] default - User is on the My Account page
+[2024-03-18T06:49:39.138] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T06:49:42.439] [INFO] default - Selected store pickup radio button
+[2024-03-18T06:49:56.086] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:49:59.126] [INFO] default - Signing in...
+[2024-03-18T06:50:02.338] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:50:03.186] [INFO] default - User is on the My Account page
+[2024-03-18T06:50:10.940] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T06:50:14.116] [INFO] default - Selected store pickup radio button
+[2024-03-18T06:50:17.309] [INFO] default - Clicked on Store Pickup order type radio button
+[2024-03-18T06:50:17.310] [INFO] default - Validating address and proceeding to checkout...
+[2024-03-18T06:50:19.895] [INFO] default - Filling payment card details...
+[2024-03-18T06:50:25.198] [ERROR] default - Error while filling payment card details: locator.pressSequentially: Target page, context or browser has been closed
+Call log:
+  [2m- waiting for frameLocator('iframe[name="tx_iframe_tokenExIframeDiv"]').getByLabel('Data')[22m
+
+[2024-03-18T06:52:08.863] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T06:52:12.225] [INFO] default - Signing in...
+[2024-03-18T06:52:15.483] [INFO] default - User Signed in Successfully!
+[2024-03-18T06:52:16.304] [INFO] default - User is on the My Account page
+[2024-03-18T06:52:24.171] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T06:52:27.486] [INFO] default - Selected store pickup radio button
+[2024-03-18T06:52:30.644] [INFO] default - Clicked on Store Pickup order type radio button
+[2024-03-18T06:52:30.645] [INFO] default - Validating address and proceeding to checkout...
+[2024-03-18T06:52:33.174] [INFO] default - Filling payment card details...
+[2024-03-18T06:52:49.374] [INFO] default - Value of orderNo: 000000994
+[2024-03-18T06:52:49.376] [INFO] default - Payment successful! Order number: 000000994
+[2024-03-18T06:52:49.377] [INFO] default - 
+✅ Finished test case: =>=>=> Order Recently Ordered Products. <=<=<= ✅
+
+[2024-03-18T06:53:04.953] [INFO] default - 
+✅ Finished test case: =>=>=> Get Default Billing/Shipping Addresses. <=<=<= ✅
+
+[2024-03-18T06:53:06.533] [INFO] default - 
+🚀 Starting test case: =>=>=> Purchase Flow with Store Pickup and Order Confirmation. <=<=<= 🚀
+
+[2024-03-18T06:53:11.930] [INFO] default - Navigating to URL: https://qa-josephsbeverage-teststore.epicommercestore.com/
+[2024-03-18T06:53:11.933] [INFO] default - Signing in...
+[2024-03-18T06:53:12.671] [INFO] default -  Verifying login page heading: Customer Login
+[2024-03-18T06:53:14.989] [INFO] default - User signed in successfully!
+[2024-03-18T06:53:15.080] [INFO] default - Adding products to the cart from Excel data...
+[2024-03-18T06:53:15.080] [INFO] default - Data received: {"CategoryName":"POP","SubCategoryName":"RED-BULL","ProductName":"Red Bull SF 6 pack"}
+[2024-03-18T06:53:15.080] [INFO] default - Checking categoryName: "POP"
+[2024-03-18T06:53:15.080] [INFO] default - Checking subcategoryName: "RED-BULL"
+[2024-03-18T06:53:15.080] [INFO] default - Checking productName: "Red Bull SF 6 pack"
+[2024-03-18T06:53:15.258] [INFO] default - Category matched: "pop"
+[2024-03-18T06:53:15.356] [INFO] default - Category is expanded
+[2024-03-18T06:53:15.555] [INFO] default - Subcategory matched: RED-BULL
+[2024-03-18T06:53:19.826] [INFO] default - Red Bull SF 6 pack added in cart
+[2024-03-18T06:53:19.870] [INFO] default - Data received: {"CategoryName":"OH-LIQUOR","SubCategoryName":"BRANDY","ProductName":"HENNESSY XO - 4103B"}
+[2024-03-18T06:53:19.870] [INFO] default - Checking categoryName: "OH-LIQUOR"
+[2024-03-18T06:53:19.870] [INFO] default - Checking subcategoryName: "BRANDY"
+[2024-03-18T06:53:19.870] [INFO] default - Checking productName: "HENNESSY XO - 4103B"
+[2024-03-18T06:53:20.305] [INFO] default - Category matched: "oh-liquor"
+[2024-03-18T06:53:20.431] [INFO] default - Category is expanded
+[2024-03-18T06:53:20.737] [INFO] default - Subcategory matched: BRANDY
+[2024-03-18T06:53:26.999] [INFO] default - HENNESSY XO - 4103B added in cart
+[2024-03-18T06:53:27.034] [INFO] default - Data received: {"CategoryName":"OH-LIQUOR","SubCategoryName":"SCOTCH","ProductName":"CLASSIC MALTS - COASTAL PACK - 6669H"}
+[2024-03-18T06:53:27.034] [INFO] default - Checking categoryName: "OH-LIQUOR"
+[2024-03-18T06:53:27.034] [INFO] default - Checking subcategoryName: "SCOTCH"
+[2024-03-18T06:53:27.034] [INFO] default - Checking productName: "CLASSIC MALTS - COASTAL PACK - 6669H"
+[2024-03-18T06:53:27.417] [INFO] default - Category matched: "oh-liquor"
+[2024-03-18T06:53:27.545] [INFO] default - Category is expanded
+[2024-03-18T06:53:27.671] [INFO] default - Subcategory matched: SCOTCH
+[2024-03-18T06:53:30.990] [INFO] default - CLASSIC MALTS - COASTAL PACK - 6669H added in cart
+[2024-03-18T06:53:31.030] [INFO] default - Data received: {"CategoryName":"TOBACCO","SubCategoryName":"KING-EDWARD","ProductName":"KING EDWARD"}
+[2024-03-18T06:53:31.031] [INFO] default - Checking categoryName: "TOBACCO"
+[2024-03-18T06:53:31.031] [INFO] default - Checking subcategoryName: "KING-EDWARD"
+[2024-03-18T06:53:31.031] [INFO] default - Checking productName: "KING EDWARD"
+[2024-03-18T06:53:31.347] [INFO] default - Category matched: "tobacco"
+[2024-03-18T06:53:31.485] [INFO] default - Category is expanded
+[2024-03-18T06:53:31.590] [INFO] default - Subcategory matched: KING-EDWARD
+[2024-03-18T06:53:34.703] [INFO] default - Item qty not available, skipping this product
+[2024-03-18T06:53:34.703] [INFO] default - Data received: {"CategoryName":"E-Cig","SubCategoryName":"Breeze","ProductName":"Breeze Watermelon Mint"}
+[2024-03-18T06:53:34.703] [INFO] default - Checking categoryName: "E-Cig"
+[2024-03-18T06:53:34.703] [INFO] default - Checking subcategoryName: "Breeze"
+[2024-03-18T06:53:34.703] [INFO] default - Checking productName: "Breeze Watermelon Mint"
+[2024-03-18T06:53:34.940] [INFO] default - Category matched: "e-cig"
+[2024-03-18T06:53:35.087] [INFO] default - Category is expanded
+[2024-03-18T06:53:35.120] [INFO] default - Subcategory matched: Breeze
+[2024-03-18T06:53:42.550] [INFO] default - Item qty not available, skipping this product
+[2024-03-18T06:53:42.550] [INFO] default - All available products added to the cart
+[2024-03-18T06:53:42.552] [INFO] default - Proceeding to checkout...
+[2024-03-18T06:53:44.673] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T06:53:47.942] [INFO] default - Selected store pickup radio button
+[2024-03-18T06:53:51.105] [INFO] default - Clicked on Store Pickup order type radio button
+[2024-03-18T06:53:51.106] [INFO] default - Validating address and proceeding to checkout...
+[2024-03-18T06:53:53.671] [INFO] default - Filling payment card details...
+[2024-03-18T06:54:08.428] [INFO] default - Payment successful! Order number: 000000995
+[2024-03-18T06:54:08.429] [INFO] default - Navigating to My Orders page and extracting order and pricing details...
+[2024-03-18T06:54:10.999] [INFO] default - User is on the My Account page
+[2024-03-18T06:54:11.001] [INFO] default - Checking before/after status from My Accounts Page...
+[2024-03-18T06:54:12.214] [INFO] default - Before action status: Processing
+[2024-03-18T06:54:12.219] [INFO] default - Confirming order...
+[2024-03-18T06:54:15.890] [INFO] default - Validating order data...
+[2024-03-18T06:54:15.890] [INFO] default - Data validation successful!
+[2024-03-18T06:54:15.892] [INFO] default - Validating pricing details...
+[2024-03-18T06:54:15.893] [INFO] default - OrderNo:-000000995 verified
+[2024-03-18T06:54:15.893] [INFO] default - Expected Subtotal:  280.97, Actual Subtotal: 280.97
+[2024-03-18T06:54:15.893] [INFO] default - Expected Shipping:  0, Actual Shipping: 0
+[2024-03-18T06:54:15.893] [INFO] default - Expected ServiceFee:  5.62, Actual ServiceFee: 5.62
+[2024-03-18T06:54:15.893] [INFO] default - Expected Taxes:  21.78, Actual Taxes: 21.78
+[2024-03-18T06:54:15.893] [INFO] default - Expected GrandTotal:  308.37, Actual GrandTotal: 308.37
+[2024-03-18T06:54:15.893] [INFO] default - Pricing validation successful!
+[2024-03-18T06:54:24.748] [INFO] default - User is on the My Account page
+[2024-03-18T06:54:25.938] [INFO] default - After action status: Confirmed
+[2024-03-18T06:54:25.941] [INFO] default - Congratulations! Order successfully placed.
+[2024-03-18T06:54:25.941] [INFO] default - 
+✅ Finished test case: =>=>=> Purchase Flow with Store Pickup and Order Confirmation. <=<=<= ✅
+
+[2024-03-18T06:54:29.771] [INFO] default - 
+🚀 Starting test case: =>=>=> Purchase Flow with Delivery Option and Order Rejection. <=<=<= 🚀
+
+[2024-03-18T06:54:32.715] [INFO] default - Signing in...
+[2024-03-18T06:54:33.446] [INFO] default -  Verifying login page heading: Customer Login
+[2024-03-18T06:54:35.886] [INFO] default - User Signed in Succesfully!
+[2024-03-18T06:54:35.934] [INFO] default - Adding products to the cart from Excel data...
+[2024-03-18T06:54:35.934] [INFO] default - Data received: {"CategoryName":"OH-LIQUOR","SubCategoryName":"Vodka","ProductName":"THREE OLIVES CUCUMBER LIME - 9344B"}
+[2024-03-18T06:54:35.934] [INFO] default - Checking categoryName: "OH-LIQUOR"
+[2024-03-18T06:54:35.934] [INFO] default - Checking subcategoryName: "Vodka"
+[2024-03-18T06:54:35.934] [INFO] default - Checking productName: "THREE OLIVES CUCUMBER LIME - 9344B"
+[2024-03-18T06:58:58.975] [INFO] default - 
+🚀 Starting test case: =>=>=> Header Validation on Homepage Before Sign-In. <=<=<= 🚀
+
+[2024-03-18T06:59:02.352] [INFO] default - Store info is being displayed as : Josephs Beverage Center-test, 4129 Talmadge RD, Toledo, Ohio, 43623
+[2024-03-18T06:59:02.360] [INFO] default - Merchant's phone and hours info is being displayed as : (631) 494-3506 Open from 9:00 am to 6:00 pm
+[2024-03-18T06:59:02.408] [INFO] default - Logo is displayed on the homepage of the application
+[2024-03-18T06:59:02.430] [INFO] default - Shopping Cart icon is displayed
+[2024-03-18T06:59:02.903] [INFO] default - Logo functionality is working fine
+[2024-03-18T06:59:04.161] [INFO] default - The Account functions is not functioning properly as it is displayed on the homepage for users who are not logged in.
+[2024-03-18T06:59:06.328] [INFO] default - Shopping cart functionality is working fine when no product is added
+[2024-03-18T06:59:09.739] [INFO] default - Sign in Functionality is working fine, User is logged in
+[2024-03-18T06:59:10.611] [INFO] default - Sign out functionality is working fine, User is logged out
+[2024-03-18T06:59:10.611] [INFO] default - Congratulations!! All Header Validation is Successful
+[2024-03-18T06:59:10.611] [INFO] default - 
+✅ Finished test case: =>=>=> Header Validation on Homepage Before Sign-In <=<=<= ✅
+
+[2024-03-18T06:59:12.169] [INFO] default - 
+🚀 Starting test case: =>=>=> Quick Guest Checkout with Delivery Order Type. <=<=<= 🚀
+
+[2024-03-18T06:59:16.123] [INFO] default - Adding products to the cart from Excel data...
+[2024-03-18T06:59:16.124] [INFO] default - Data received: {"CategoryName":"CIGARS","SubCategoryName":"CIGARS","ProductName":"cigars"}
+[2024-03-18T06:59:16.124] [INFO] default - Checking categoryName: "CIGARS"
+[2024-03-18T06:59:16.124] [INFO] default - Checking subcategoryName: "CIGARS"
+[2024-03-18T06:59:16.124] [INFO] default - Checking productName: "cigars"
+[2024-03-18T06:59:16.172] [INFO] default - Category matched: "cigars"
+[2024-03-18T06:59:16.265] [INFO] default - Category is expanded
+[2024-03-18T06:59:16.292] [INFO] default - Subcategory matched: CIGARS
+[2024-03-18T06:59:20.180] [INFO] default - cigars added in cart
+[2024-03-18T06:59:20.201] [INFO] default - Data received: {"CategoryName":"E-Cig","SubCategoryName":"Breeze","ProductName":"Breeze Pro Pina Colada"}
+[2024-03-18T06:59:20.201] [INFO] default - Checking categoryName: "E-Cig"
+[2024-03-18T06:59:20.201] [INFO] default - Checking subcategoryName: "Breeze"
+[2024-03-18T06:59:20.201] [INFO] default - Checking productName: "Breeze Pro Pina Colada"
+[2024-03-18T06:59:20.319] [INFO] default - Category matched: "e-cig"
+[2024-03-18T06:59:20.493] [INFO] default - Category is expanded
+[2024-03-18T06:59:20.535] [INFO] default - Subcategory matched: Breeze
+[2024-03-18T06:59:23.953] [INFO] default - Item qty not available, skipping this product
+[2024-03-18T06:59:23.953] [INFO] default - Available products added in the cart
+[2024-03-18T06:59:23.954] [INFO] default - Clicking on Proceed To Checkout button from shopping cart icon
+[2024-03-18T06:59:44.067] [INFO] default - Clicked on Delivery order type radio button and filled shipping details
+[2024-03-18T06:59:44.068] [INFO] default - Filling payment card details...
+[2024-03-18T07:00:00.947] [INFO] default - Payment successful!! Order number is generated.
+[2024-03-18T07:00:00.947] [INFO] default - Order No is: 000000996
+[2024-03-18T07:00:00.947] [INFO] default - Congratulations you've successfully placed an order with orderId: 000000996
+[2024-03-18T07:00:00.947] [INFO] default - 
+✅ Finished test case: =>=>=> Quick Guest Checkout with Delivery Order Type. <=<=<= ✅
+
+[2024-03-18T07:00:03.346] [INFO] default - 
+🚀 Starting test case: =>=>=> Edit User Firstname And Lastname. <=<=<= 🚀
+
+[2024-03-18T07:00:06.357] [INFO] default - Signing in...
+[2024-03-18T07:00:09.349] [INFO] default - User Signed in Succesfully!
+[2024-03-18T07:00:10.161] [INFO] default - User is on the My Account page
+[2024-03-18T07:00:10.238] [INFO] default - Before editing account firstname, lastname is --> QARemo Sys
+[2024-03-18T07:00:13.867] [INFO] default - User's Account firstname and lastname are changed
+[2024-03-18T07:00:13.895] [INFO] default - After editing account firstname, lastname is --> John Doe
+[2024-03-18T07:00:13.900] [INFO] default - 
+✅ Finished test case: =>=>=> Edit User Firstname And Lastname. <=<=<= ✅
+
+[2024-03-18T07:00:14.565] [INFO] default - 
+✅ Finished test case: =>=>=> Get Default Billing/Shipping Addresses. <=<=<= ✅
+
+[2024-03-18T07:00:14.671] [INFO] default - 
+🚀 Starting test case: =>=>=> Get Default Billing/Shipping Addresses. <=<=<= 🚀
+
+[2024-03-18T07:00:17.730] [INFO] default - Signing in...
+[2024-03-18T07:00:20.769] [INFO] default - User Signed in Successfully!
+[2024-03-18T07:00:21.563] [INFO] default - User is on the My Account page
+[2024-03-18T07:00:22.482] [INFO] default - Default Billing address is: QARemo1111111 Sys, , Test, , , , Toledo, Ohio, 43623, United States, T: 123-456-7890
+[2024-03-18T07:00:22.483] [INFO] default - Default Shipping address is: Remo22222222 Sys, , 6360 Secor Rd, 48144, United States, , , , Lambertville, MI, Ohio, 48144, United States, T: 123-456-7890
+[2024-03-18T07:00:23.425] [INFO] default - 
+🚀 Starting test case: =>=>=> Product Validation Through Search Panel Using SKU Values. <=<=<= 🚀
+
+[2024-03-18T07:00:26.520] [INFO] default - Adding products to the cart from Excel data...
+[2024-03-18T07:00:26.520] [INFO] default - Looking for 707510415408 SKU value
+[2024-03-18T07:00:30.070] [INFO] default - You added Sluricane Hurricane to your shopping cart.
+[2024-03-18T07:00:30.070] [INFO] default - Looking for 412565696190 SKU value
+[2024-03-18T07:00:33.899] [INFO] default - You added Tap Deposit to your shopping cart.
+[2024-03-18T07:00:33.899] [INFO] default - Looking for 070847038245 SKU value
+[2024-03-18T07:00:38.177] [INFO] default - You added MONSTER HYDRO ZERO SUGAR 20OZ to your shopping cart.
+[2024-03-18T07:00:38.177] [INFO] default - Looking for 145627282829 SKU value
+[2024-03-18T07:00:39.363] [INFO] default - Did not find any product with the SKU value 145627282829
+[2024-03-18T07:00:39.363] [INFO] default - All available products are added in the cart through SKU values
+[2024-03-18T07:00:39.363] [INFO] default - 
+✅ Finished test case: =>=>=> Product Validation Through Search Panel Using SKU Values. <=<=<= ✅
+
+[2024-03-18T07:00:43.535] [INFO] default - The user is signing in
+[2024-03-18T07:00:46.508] [INFO] default - User Signed in Successfully!
+[2024-03-18T07:00:46.915] [INFO] default - 
+🚀 Starting test case: =>=>=> Validate Quantities Update Functionality. <=<=<= 🚀
+
+[2024-03-18T07:00:47.832] [INFO] default - Extracting data from excel and adding products to the cart
+[2024-03-18T07:00:47.832] [INFO] default - Data received: {"CategoryName":"WINE","SubCategoryName":"Champagne","ProductName":"Freixenet Prosecco"}
+[2024-03-18T07:00:47.832] [INFO] default - Checking categoryName: "WINE"
+[2024-03-18T07:00:47.832] [INFO] default - Checking subcategoryName: "Champagne"
+[2024-03-18T07:00:47.832] [INFO] default - Checking productName: "Freixenet Prosecco"
+[2024-03-18T07:00:48.321] [INFO] default - Category matched: "wine"
+[2024-03-18T07:00:48.417] [INFO] default - Category is expanded
+[2024-03-18T07:00:48.769] [INFO] default - Subcategory matched: Champagne
+[2024-03-18T07:00:58.538] [INFO] default - Freixenet Prosecco added in cart
+[2024-03-18T07:00:58.568] [INFO] default - Data received: {"CategoryName":"wine","SubCategoryName":"moscato","ProductName":"Vignaioli Moscato D'asti"}
+[2024-03-18T07:00:58.568] [INFO] default - Checking categoryName: "wine"
+[2024-03-18T07:00:58.568] [INFO] default - Checking subcategoryName: "moscato"
+[2024-03-18T07:00:58.568] [INFO] default - Checking productName: "Vignaioli Moscato D'asti"
+[2024-03-18T07:00:58.949] [INFO] default - Category matched: "wine"
+[2024-03-18T07:00:59.065] [INFO] default - Category is expanded
+[2024-03-18T07:00:59.572] [INFO] default - Subcategory matched: moscato
+[2024-03-18T07:01:08.471] [INFO] default - Item qty not available, skipping this product
+[2024-03-18T07:01:08.472] [INFO] default - Data received: {"CategoryName":"Wine","SubCategoryName":"syrah","ProductName":"SPELLBOUND PETITE SIRAH"}
+[2024-03-18T07:01:08.472] [INFO] default - Checking categoryName: "Wine"
+[2024-03-18T07:01:08.472] [INFO] default - Checking subcategoryName: "syrah"
+[2024-03-18T07:01:08.472] [INFO] default - Checking productName: "SPELLBOUND PETITE SIRAH"
+[2024-03-18T07:01:08.936] [INFO] default - Category matched: "wine"
+[2024-03-18T07:01:09.042] [INFO] default - Category is expanded
+[2024-03-18T07:01:09.510] [INFO] default - Subcategory matched: syrah
+[2024-03-18T07:01:15.455] [INFO] default - SPELLBOUND PETITE SIRAH added in cart
+[2024-03-18T07:01:15.483] [INFO] default - Data received: {"CategoryName":"Wine","SubCategoryName":"Organic-and-Kosher","ProductName":"Schlink Haus Organic Riesling"}
+[2024-03-18T07:01:15.483] [INFO] default - Checking categoryName: "Wine"
+[2024-03-18T07:01:15.483] [INFO] default - Checking subcategoryName: "Organic-and-Kosher"
+[2024-03-18T07:01:15.483] [INFO] default - Checking productName: "Schlink Haus Organic Riesling"
+[2024-03-18T07:01:15.895] [INFO] default - Category matched: "wine"
+[2024-03-18T07:01:16.046] [INFO] default - Category is expanded
+[2024-03-18T07:01:16.885] [INFO] default - Subcategory matched: Organic-and-Kosher
+[2024-03-18T07:01:20.185] [INFO] default - Schlink Haus Organic Riesling added in cart
+[2024-03-18T07:01:20.218] [INFO] default - All available products added in the cart
+[2024-03-18T07:01:25.637] [INFO] default - 45.22
+[2024-03-18T07:01:31.130] [INFO] default - 131.36
+[2024-03-18T07:01:31.134] [INFO] default - All quantities are increased for products available in the cart
+[2024-03-18T07:01:31.134] [INFO] default - 
+✅ Finished test case: =>=>=> Validate Quantities Update Functionality. <=<=<= ✅
+
+[2024-03-18T07:01:33.166] [INFO] default - 
+🚀 Starting test case: =>=>=> Validate Remove Single Product From Minicart Functionality. <=<=<= 🚀
+
+[2024-03-18T07:01:40.642] [INFO] default - Congratulation! first product has been removed from the cart. The remove button is working fine.
+[2024-03-18T07:01:40.642] [INFO] default - 
+✅ Finished test case: =>=>=> Validate Remove Single Product From Minicart Functionality. <=<=<= ✅
+
+[2024-03-18T07:01:41.596] [INFO] default - 
+🚀 Starting test case: =>=>=> Validate All Products Remove Functionality. <=<=<= 🚀
+
+[2024-03-18T07:01:49.149] [INFO] default - Congratulation! all products have been removed from the cart.
+[2024-03-18T07:01:49.149] [INFO] default - 
+✅ Finished test case: =>=>=> Validate All Products Remove Functionality. <=<=<= ✅
+
+[2024-03-18T07:01:51.428] [INFO] default - 
+🚀 Starting test case: =>=>=> Header Validation on Homepage Before Sign-In. <=<=<= 🚀
+
+[2024-03-18T07:01:54.673] [INFO] default - Navigated to URL: https://qa-josephsbeverage-teststore.epicommercestore.com/
+[2024-03-18T07:01:54.675] [INFO] default - Signing in...
+[2024-03-18T07:01:58.557] [INFO] default - User is on the My Account page
+[2024-03-18T07:01:59.501] [INFO] default - Additional addresses: QA, Tester, 4129 Talmadge RD, Toledo, United States, Ohio, 43623, 098-765-4321, , Edit, Delete,QARemo, Sys, 8607 Co Rd 30, Iberia, United States, Ohio, 43623, 111-111-1111, , Edit, Delete
+[2024-03-18T07:01:59.501] [INFO] default - 
+✅ Finished test case: =>=>=> Get Additional Addresses Entries. <=<=<= ✅
+
+[2024-03-18T07:02:02.289] [INFO] default - 
+🚀 Starting test case: =>=>=> LC SKU API Status Validation. <=<=<= 🚀
+
+[2024-03-18T07:02:03.508] [INFO] default - Response status: 200
+[2024-03-18T07:02:03.509] [INFO] default - Response status text: OK
+[2024-03-18T07:02:03.512] [INFO] default - Congratulations! LC API's are Up and Running.
+[2024-03-18T07:02:03.512] [INFO] default - 
+✅ Finished test case: =>=>=> LC SKU API Status Validation. <=<=<= ✅
+
+[2024-03-18T07:02:05.872] [INFO] default - 
+🚀 Starting test case: =>=>=> Order Recently Ordered Products. <=<=<= 🚀
+
+[2024-03-18T07:02:08.888] [INFO] default - Signing in...
+[2024-03-18T07:02:11.944] [INFO] default - User Signed in Successfully!
+[2024-03-18T07:02:12.845] [INFO] default - User is on the My Account page
+[2024-03-18T07:02:21.920] [INFO] default - Selecting Store Pickup at checkout...
+[2024-03-18T07:02:25.166] [INFO] default - Selected store pickup radio button
+[2024-03-18T07:02:28.317] [INFO] default - Clicked on Store Pickup order type radio button
+[2024-03-18T07:02:28.318] [INFO] default - Validating address and proceeding to checkout...
+[2024-03-18T07:02:30.896] [INFO] default - Filling payment card details...
+[2024-03-18T07:02:45.445] [INFO] default - Value of orderNo: 000000997
+[2024-03-18T07:02:45.449] [INFO] default - Payment successful! Order number: 000000997
+[2024-03-18T07:02:45.449] [INFO] default - 
+✅ Finished test case: =>=>=> Order Recently Ordered Products. <=<=<= ✅
+

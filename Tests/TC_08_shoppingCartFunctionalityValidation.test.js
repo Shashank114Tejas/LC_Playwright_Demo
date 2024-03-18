@@ -133,8 +133,8 @@ test.describe("Test Case Title ", () => {
     // Test case: Validating Remove Functionality in shopping cart
     test("Validate All Products Remove Functionality", async () => {
       test.info().annotations.push({
-        type: 'Description',
-        description: `This test case involves validating the remove functionality in the shopping cart by removing all products.`
+        type: "Description",
+        description: `This test case involves validating the remove functionality in the shopping cart by removing all products.`,
       });
       logTestCaseStart(
         "=>=>=> Validate All Products Remove Functionality. <=<=<="
