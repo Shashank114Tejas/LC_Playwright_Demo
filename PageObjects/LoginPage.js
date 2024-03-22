@@ -1,5 +1,7 @@
 class LoginPage {
 
+
+
   // /**
   //  * @param {import('@playwright/test').Page} page
   //  */
@@ -39,6 +41,6 @@ class LoginPage {
 
     // Wait for the greeting message to appear after successful login
     await this.page.locator("li.greet.welcome>span").first().waitFor();
-  }
+  } 
 }
 export { LoginPage };
