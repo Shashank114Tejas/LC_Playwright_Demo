@@ -1,4 +1,5 @@
 class ConfirmationPage {
+
   /**
    *@param {import('@playwright/test').Page} page
    */
@@ -116,7 +117,7 @@ class ConfirmationPage {
       // Create a new tab and navigate to the modified URL
       const newPage = await this.page.context().newPage();
       await newPage.goto(modifiedUrl);
-      await newPage.locator("button.btn-primary").waitFor();
+      await newPage.locator("button#confirmOrder").waitFor();
 
       const rowData = await this.extractItemsDetailsRowData(newPage);
       allRowData.push(rowData);
@@ -125,9 +126,9 @@ class ConfirmationPage {
 
       // Perform the action based on the 'action' parameter
       if (action.toLowerCase() === "confirm") {
-        await newPage.locator("button.btn-primary").click();
+        await newPage.locator("button#confirmOrder").click();
       } else {
-        await newPage.locator("button.btn-warning").click();
+        await newPage.locator("button#rejectOrder").click();
       }
 
       // Closing the new tab

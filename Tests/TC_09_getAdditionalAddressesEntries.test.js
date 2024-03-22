@@ -42,7 +42,7 @@ test.describe("Test Case Title", () => {
       - Logging the additional address entries.`
       });
 
-      logTestCaseStart("=>=>=> Header Validation on Homepage Before Sign-In. <=<=<=");
+      logTestCaseStart("=>=>=> Get Additional Addresses Entries. <=<=<=");
 
       // Step: Navigate to the specified URL
       await test.step("Navigate to the specified URL", async () => {

@@ -105,7 +105,7 @@ test.describe("Test Case Title", () => {
           return orderNo;
         });
 
-      const entity_Id = String(orderNo).slice(6, orderNo.length);
+      const entity_Id = String(orderNo).slice(5, orderNo.length);
 
       const myOrdersPage = poManager.getMyOrdersPage();
       const expectedItemsData =

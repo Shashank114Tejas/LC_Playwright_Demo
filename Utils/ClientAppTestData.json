@@ -5,7 +5,7 @@
     "password":"Welcome@123",
     "skuProductName":"Jimmies Cigarillos",
     "billingAddress":["QARemo1111111", "Sys", "Test", "Toledo, Ohio", "43623", "United States", "123-456-7890"],
-    "confirmationPageUrl":"https://qa-josephsbeverage-teststore.epicommercestore.com:8080/confirmationPage?entity_id=269&number=%28631%29+494-3506"
+    "confirmationPageUrl":"https://qa-josephsbeverage-teststore.epicommercestore.com:8080/confirmationPage?entity_id=1020&number=%28631%29+494-3506"
     }
 
 ]

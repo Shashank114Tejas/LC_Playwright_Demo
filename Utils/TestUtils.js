@@ -2,7 +2,7 @@
 This file contains a utility function `addLoggingHooks` used to enhance the logging in Playwright test cases.
 
 - addLoggingHooks(test): Adds custom logging hooks to the Playwright test cases. It logs messages before each test case execution
-  and after each test case execution for better visibility and debugging.
+  and after each test case execution for better visibility and debugging at console.
 
 */
 // testUtils.js

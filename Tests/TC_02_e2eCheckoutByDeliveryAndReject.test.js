@@ -108,7 +108,7 @@ test.describe("Test Case Title", () => {
         logger.info(`Order No is: ${orderNo}`);
       });
 
-      const entity_Id = String(orderNo).slice(6, orderNo.length);
+      const entity_Id = String(orderNo).slice(5, orderNo.length);
       let expectedItemsData;
       let expectedPricing;
       await test.step("Navigate to My Orders page and extract order derails and pricing details", async () => {
@@ -173,7 +173,7 @@ test.describe("Test Case Title", () => {
           orderNo
         );
         logger.info(`After Action status:  ${afterActionStatus}`);
-        await expect(
+        await expect.soft(
           afterActionStatus,
           `Order status is not as expected: ${afterActionStatus}`
         ).toBe("canceled");

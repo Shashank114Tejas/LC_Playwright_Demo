@@ -1,7 +1,8 @@
 class LoginPage {
-  /**
-   * @param {import('@playwright/test').Page} page
-   */
+
+  // /**
+  //  * @param {import('@playwright/test').Page} page
+  //  */
 
   constructor(page) {
     this.page = page;
@@ -15,6 +16,7 @@ class LoginPage {
    * Gets the text content of the customer login heading.
    * @returns {Promise<string>} The text content of the customer login heading.
    */
+  
   async getCustomerLoginHeading() {
     return this.customerHeading.textContent();
   }
